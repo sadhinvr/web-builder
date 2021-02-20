@@ -1,1 +1,1 @@
-body{background:#1e90ff;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-transform:translate(0);transform:translate(0);display:-webkit-box;display:-ms-flexbox;display:flex}
+body{background:#1e90ff;height:300vh}.dragable{background:#ff0;display:inline-block;padding:30px;cursor:-webkit-grab;cursor:grab;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;-o-user-select:none}.fade{opacity:.5}
