@@ -33,7 +33,7 @@ function drag(e) {
         window.scrollTo(0, ele.winheight);
         ele.winheight += 10;
     }
-    console.log('drag')
+    console.log('drag');
 
 }
 
