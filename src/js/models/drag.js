@@ -68,6 +68,6 @@ function resetDrag() {
 }
 
 window.addEventListener('mouseup', () => {
-    resetDrag();
+    resetDrag(); 
 })
 
