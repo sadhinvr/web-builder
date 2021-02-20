@@ -1,0 +1,22 @@
+.left_holder{
+    position: relative;
+    height: 100vh;
+}
+.left{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    height: 100%;
+    background: #404040;
+
+}
+
+.left_menu_row{
+    padding: 10px;
+    border-top: #333333 solid .5px;
+}
+
+.left_menu_row:last-child{
+    border-bottom: #333333 solid .5px;
+}

@@ -1,21 +1,27 @@
-body {
-    background: dodgerblue;
-    height: 300vh;
+body{
+    font-family: 'Open Sans', sans-serif;
 }
 
-.dragable {
-    background: #ffff00;
-    display: inline-block;
-    padding: 30px;
-    cursor: grab;
-
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -o-user-select: none;
+.full{
+    position: relative;
 }
 
-.fade {
-    opacity: .5
+.controller{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    position: relative;
+    top: 0;
+    color: #D7D7D7;
+
 }
+
+.col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px ;
+    cursor: pointer;
+}
+

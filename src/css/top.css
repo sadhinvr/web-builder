@@ -1,0 +1,30 @@
+.top_holder{
+    position: relative;
+    align-self: start;
+    justify-self: start;
+    grid-column: span 3;
+    width: 100%;
+}
+.top{
+    z-index: 99999999;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: #404040;
+    border-bottom: #333333 solid 1px;
+}
+
+.top .top_col{
+    display: flex;
+    align-items: center;
+}
+
+.top_col .col{
+    border-left: #333333 solid .5px;
+}
+
+.top_col .col:last-child{
+    border-right: #333333 solid .5px;
+}
