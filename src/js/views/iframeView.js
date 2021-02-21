@@ -1,24 +1,3 @@
-import {$} from '../reuse';
-
-let top_holder = $('.top_holder');
-let left_holder = $('.left_holder');
-let right_holder = $('.right_holder');
-let middle = $('.middle');
-
-let top_h = $('.top').getClientRects()[0].height;
-let left_w = $('.left').getClientRects()[0].width;
-let right_w = $('.right').getClientRects()[0].width;
-
-top_holder.style.height = `${top_h}px`;
-left_holder.style.width = `${left_w}px`;
-right_holder.style.width = `${right_w}px`;
-
-
-// create the iframe and attach it to the document
-const iframe = document.createElement("iframe");
-iframe.setAttribute("scrolling", "no");
-iframe.setAttribute("frameborder", "0");
-iframe.id = "iframe";
 middle.appendChild(iframe);
 
 // find the iframe's document and write some content
@@ -49,4 +28,3 @@ idocument.write(`
     
                 </html>`);
 idocument.close();
-iframe.height = iframe.contentWindow.document.querySelector('html').getClientRects()[0].height;

@@ -57,14 +57,14 @@ function readyDragClone() {
 }
 
 function resetDrag() {
-    if(ele.name){
-
+    if(ele && ele.dataset.ele){
+        ele.clone.dataset.sad = '10';
+        ele.clone.classList.remove('fade');
+        ele.winheight = window.scrollY;
+        ele.clone.addEventListener('mousedown', mousedown)
+        window.removeEventListener('mousemove', drag);
     }
-    ele.clone.dataset.sad = '10';
-    ele.clone.classList.remove('fade');
-    ele.winheight = window.scrollY;
-    ele.clone.addEventListener('mousedown', mousedown)
-    window.removeEventListener('mousemove', drag);
+    
 }
 
 window.addEventListener('mouseup', () => {

@@ -7,5 +7,5 @@ import '../css/right.css';
 import '../css/middle.css';
 
 import './models/drag';
-import './models/resize';
+import './views/resize';
 
