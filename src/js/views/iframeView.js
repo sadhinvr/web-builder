@@ -17,32 +17,24 @@ idocument.write(`
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-            background-color: #F5F5F5;
-            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 14px rgb(255 255 255 / 11%);
+            background-color: #777;
         }
 
         body::-webkit-scrollbar {
-            width: 10px;
-            background-color: #666;
+            width: 6px;
         }
 
         body::-webkit-scrollbar-thumb {
             border-radius: 10px;
-            background-color: #FFF;
-            background-image: -webkit-gradient(linear,
-                    40% 0%,
-                    75% 84%,
-                    from(#4D9C41),
-                    to(#19911D),
-                    color-stop(.6, #54DE5D))
-        }
-
-        * {
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
+            background-color: #333;
+            
         }
 
         img {
