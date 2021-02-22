@@ -1,8 +1,8 @@
 import {
-    elements
+    elements,$
 } from '../reuse';
 
-(function () {
+function afterLoad() {
     const top_h = elements.top.getClientRects()[0].height;
     const left_w = elements.left.getClientRects()[0].width;
     const right_w = elements.right.getClientRects()[0].width;
@@ -10,12 +10,8 @@ import {
     elements.top_holder.style.height = `${top_h}px`;
     elements.left_holder.style.width = `${left_w}px`;
     elements.right_holder.style.width = `${right_w}px`;
-})();
-
-// resising every time
-
-function resize() {
-    iframe.height = iframe.contentWindow.document.querySelector('html').getClientRects()[0].height;
+    $('#iframe').style.height = `calc(100vh - ${top_h+.4}px)`
 }
 
-window.addEventListener('resize', resize);
+window.addEventListener('load',afterLoad);
+

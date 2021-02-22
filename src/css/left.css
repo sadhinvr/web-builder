@@ -1,30 +1,38 @@
-.left_holder{
+.left_holder {
     position: relative;
     height: 100vh;
 }
-.left{
+
+.left {
     position: fixed;
     display: flex;
     justify-self: start;
     height: 100%;
     background: #404040;
 
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
 }
 
-.left_menu{
+.left_menu {
     border-right: #333 1px solid;
 }
 
-.left_menu_row{
+.left_menu_row {
     padding: 10px;
     border-top: #333333 solid .5px;
 }
 
-.left_menu_row:last-child{
+.left_menu_row:last-child {
     border-bottom: #333333 solid .5px;
 }
 
-.right_menu{
+.right_menu {
     display: flex;
     flex-direction: column;
     max-width: 300px;
@@ -32,36 +40,46 @@
     border-right: #666666 4px solid;
 }
 
-.right_menu .right_menu_row{
+.right_menu .right_menu_row {
     display: flex;
     flex-direction: column;
     max-width: 100%;
 }
 
-.right_menu .elements{
+.elements {
     max-width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 15px 0;
 }
 
-.right_menu .elements .element{
+.elements .element {
+    border-top: #333333 solid .5px;
+    border-left: #333333 solid .5px;
+    border-bottom: #333333 solid .5px;
+    
+}
+
+.element {
     font-size: 14px;
     padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: #333333 solid .5px;
-    border-left: #333333 solid .5px;
-    border-bottom: #333333 solid .5px;
     cursor: grab;
+    background: #404040;
 }
 
-.right_menu .elements .element:last-child{
+.elements .element:last-child {
     border-right: #333333 solid .5px;
 }
 
-.right_menu .elements .element img{
+.element img {
     padding: 10px;
-    
+
+}
+
+.fade{
+    opacity: .5;
+    cursor:grabbing;
 }

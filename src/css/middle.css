@@ -1,11 +1,10 @@
-.middle{
+.middle {
     display: block;
     width: 100%;
 }
 
-#iframe{
-    min-height: 100%;
+#iframe {
     width: 100%;
-    background:rgb(182, 182, 182);
+    background: rgb(182, 182, 182);
 }
 

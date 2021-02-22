@@ -1,55 +1,101 @@
-const dragable = document.querySelectorAll('.dragable');
-let ele;
+import {
+    drop
+} from './drop';
+import {
+    $
+} from '../reuse';
+
+const dragable = $('.dragable', true);
+let ele, dragging = false,
+    ifr = false;
+
 dragable.forEach(cur => {
     cur.addEventListener('mousedown', mousedown)
 })
 
 function mousedown(e) {
-    console.log('mousedown')
-    // set data
-    setDragData(e);
 
-    // ready clone
-    ele.name.dataset.sad === '11' ? readyDragClone() : 0;
+    if (e.currentTarget.dataset.drag) {
+        //set sate 
+        if (e.currentTarget.dataset.drag === '10') {
+            ifr = true;
+        }
 
-    ele.winheight = window.scrollY;
-    // mousemove run drag
-    window.addEventListener('mousemove', drag);
+        dragging = true;
+
+        // set data
+        setDragData(e);
+
+        // ready clone
+        readyDragClone();
+
+        ele.winheight = window.scrollY;
+        // mousemove run drag
+
+        if (!ifr) {
+            window.addEventListener('mousemove', drag);
+        } else {
+            ele.name.classList.add('hidden_on_drag');
+            $('#iframe').contentWindow.addEventListener('mousemove', drag);
+        }
+    }
 }
 
 function drag(e) {
-    if (ele.name.dataset.sad === '11') {
-        document.body.appendChild(ele.clone)
+    if (!ifr) {
+        document.body.appendChild(ele.clone);
         ele.clone.style.top = `${e.clientY-(ele.height/2)}px`;
         ele.clone.style.left = `${e.clientX-(ele.width/2)}px`;
-    }
-    //left:${e.clientX-(ele.width/2)}px;top:${e.clientY-(ele.height/2)}px;
-    if(ele.name.dataset.sad === '10'){
-        ele.name.style.top = `${e.clientY-(ele.height/2)}px`;
-        ele.name.style.left = `${e.clientX-(ele.width/2)}px`;
+    } else {
+        $('#iframe').contentDocument.body.appendChild(ele.clone)
+        ele.clone.style.top = `${e.clientY}px`;
+        ele.clone.style.left = `${e.clientX}px`;
     }
 
+// window scroll
+scrollWin(e);
+
+    
+
+}
+
+function scrollWin(e){
+    let speed = 5;
     if (window.innerHeight < e.clientY) {
         window.scrollTo(0, ele.winheight);
-        ele.winheight += 10;
+        ele.winheight += speed;
+    }else if(100 > e.clientY){
+        window.scrollTo(0, ele.winheight);
+        ele.winheight -= speed;
     }
-    console.log('drag');
-
 }
 
 function setDragData(e) {
     ele = {
         winheight: window.scrollY,
-        name: e.target,
-        width: e.target.getClientRects()[0].width,
-        height: e.target.getClientRects()[0].height,
-        top: e.target.getClientRects()[0].top,
-        left: e.target.getClientRects()[0].left,
-        clone: e.target.cloneNode(true)
+        name: e.currentTarget,
+        top: e.currentTarget.getClientRects()[0].top,
+        left: e.currentTarget.getClientRects()[0].left,
     };
+
+    if (!ifr) {
+        ele.clone = e.currentTarget.cloneNode(true);
+        ele.height = e.currentTarget.getClientRects()[0].height;
+        ele.width = e.currentTarget.getClientRects()[0].width;
+    } else {
+        ele.inside = $(`.element[data-ele="${e.currentTarget.dataset.ele}"]`);
+        ele.height = ele.inside.getClientRects()[0].height;
+        ele.width = ele.inside.getClientRects()[0].width;
+        ele.clone = ele.inside.cloneNode(true);
+    }
+    
 }
 
 function readyDragClone() {
+
+    ele.clone.style.width = `${ele.width}px`;
+    ele.clone.style.height = `${ele.height}px`;
+
     ele.clone.style.top = `${ele.top}px`;
     ele.clone.style.left = `${ele.left}px`;
     ele.clone.style.position = `fixed`;
@@ -57,17 +103,35 @@ function readyDragClone() {
 }
 
 function resetDrag() {
-    if(ele && ele.dataset.ele){
-        ele.clone.dataset.sad = '10';
-        ele.clone.classList.remove('fade');
-        ele.winheight = window.scrollY;
+    ele.winheight = window.scrollY;
+
+    if(!ifr){
         ele.clone.addEventListener('mousedown', mousedown)
         window.removeEventListener('mousemove', drag);
+        
+    }else{
+        $('#iframe').contentWindow.removeEventListener('mousemove', drag);
+        ele.name.classList.remove('hidden_on_drag');
     }
+    ele.clone.remove('fade');
     
 }
 
-window.addEventListener('mouseup', () => {
-    resetDrag(); 
-})
+function mouseup() {
+    if (dragging) {
+        resetDrag();
+        if (!ifr) {
+            drop(ele);
+        }
+    }
+    dragging = false;
+    ifr=false;
+}
 
+window.addEventListener('mouseup', mouseup)
+$('#iframe').contentWindow.addEventListener('mouseup',mouseup)
+
+export {
+    ele,
+    mousedown,mouseup
+};
