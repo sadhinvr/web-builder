@@ -1,12 +1,12 @@
 import {
     elements
 } from '../reuse';
-import iframe from '../models/iframe';
+import {idocument} from '../models/iframe';
 
-elements.middle.appendChild(iframe);
+
 
 // find the iframe's document and write some content
-const idocument = iframe.contentDocument;
+
 idocument.open();
 idocument.write(`
 <!DOCTYPE html>

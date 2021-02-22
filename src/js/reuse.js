@@ -13,9 +13,9 @@ const elements = {
     right_holder: $('.right_holder'),
     right: $('.right'),
     middle: $('.middle'),
-    iframe: $('#iframe'),
 
 }
+
 
 export {
     $,

@@ -8,6 +8,7 @@ import '../css/middle.css';
 
 import './models/drag';
 import './models/drop';
+// import './models/position';
 import './views/iframeView';
 import './views/resize';
 
