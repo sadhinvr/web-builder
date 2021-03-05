@@ -1,20 +1,61 @@
-// import {ele} from './drag';
-import {htmlMockup} from '../views/mockup';
-import {mousedown} from '../models/drag';
-import {iframeAppend} from '../views/iframeView';
+// import {ele,pos} from './drag';
+import {
+    htmlMockup
+} from '../views/mockup';
+import {
+    mousedown
+} from '../models/drag';
+import {
+    iframeAppend
+} from '../views/iframeView';
+import {
+    idocument,
+    iwindow
+} from './iframe';
+import { $ } from '../reuse';
 
-function drop(data){
+
+function drop(data, pos, d = true) {
+
     // ready
-    const dataEle=data.name.dataset.ele;
-    //clone
-    htmlMockup[dataEle].setAttribute('data-ele',data.name.dataset.ele)
-    const clone=htmlMockup[dataEle].cloneNode(true);
-    clone.addEventListener('mousedown',mousedown);
-    // append
-    iframeAppend(clone);
+    const dataEle = data.name.dataset.ele;
+
+    if (pos !== data.name) {
+        console.log(pos)
+        if (d) {
+            //clone
+            htmlMockup[dataEle].setAttribute('data-ele', data.name.dataset.ele)
+
+            const clone = htmlMockup[dataEle].cloneNode(true);
+            clone.addEventListener('mousedown', mousedown);
+            // append
+            iframeAppend(clone, pos);
+            iwindow.scrollTo({
+                left: clone.offsetLeft,
+                top: clone.offsetTop,
+                behavior: 'smooth'
+            })
+            clone.focus({preventScroll:true})
+
+        } else {
+            iframeAppend(data.name, pos);
+            iwindow.scrollTo({
+                left: data.name.offsetLeft,
+                top: data.name.offsetTop,
+                behavior: 'smooth'
+            })
+            data.name.focus({preventScroll:true})
+
+        }
+        
+    }
+    if (idocument.getElementById('curPos')) {
+        idocument.getElementById('curPos').remove();
+    };
+
+
 }
 
-export {drop};
-
-
-
+export {
+    drop
+};

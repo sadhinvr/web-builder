@@ -1,7 +1,8 @@
 import {
+    $,
     elements
 } from '../reuse';
-import {idocument} from '../models/iframe';
+import {idocument, iwindow} from '../models/iframe';
 
 
 
@@ -62,14 +63,28 @@ idocument.write(`
         }
 
         .hidden_on_drag {
-            display: none;
+            opacity:.5
         }
+
+        body,body *{
+            cursor:default;
+        }
+
+        .grabbing , body.grabbing * {
+            cursor:grabbing !important;
+        }
+
+        .fade{
+            opacity: .5;
+            pointer-events: none;
+        }
+
     </style>
 </head>
 
 <body>
     <h1 id="h">add heading</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat facere voluptatem nihil quasi blanditiis ullam
+    <p> ipsum dolor sit amet consectetur adipisicing elit. Quaerat facere voluptatem nihil quasi blanditiis ullam
         eius culpa earum consequuntur quo nemo mollitia, debitis deleniti fuga minus est aliquid repellat rem vero vel
         ipsa, ipsum qui nam eligendi. Doloremque, voluptate eaque consectetur autem eveniet quidem commodi aliquid
         pariatur temporibus quia cumque porro! Odio illo maxime et quam quisquam eius libero enim, quidem quibusdam
@@ -134,60 +149,42 @@ idocument.write(`
         accusamus veritatis rem velit, eius nihil corrupti, accusantium enim nemo quae cumque commodi temporibus!
         Quibusdam necessitatibus recusandae dolor suscipit vitae, est ullam porro harum dicta assumenda corporis alias
         accusantium iure tempora atque doloribus nam aliquid molestias voluptatibus voluptas?</p>
-    <h1>add heading</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat facere voluptatem nihil quasi blanditiis ullam
-        eius culpa earum consequuntur quo nemo mollitia, debitis deleniti fuga minus est aliquid repellat rem vero vel
-        ipsa, ipsum qui nam eligendi. Doloremque, voluptate eaque consectetur autem eveniet quidem commodi aliquid
-        pariatur temporibus quia cumque porro! Odio illo maxime et quam quisquam eius libero enim, quidem quibusdam
-        inventore modi est blanditiis dicta mollitia voluptas id fuga nihil excepturi error incidunt perspiciatis
-        aspernatur quaerat. Provident eos suscipit ad magni odit quas amet error eaque nemo! Saepe tempora ducimus
-        dolorem dolorum, velit ea quia. Quas, quos natus delectus doloremque laudantium corrupti laborum in repellendus
-        mollitia reprehenderit ab, est explicabo sint officiis. Repudiandae velit minima fugiat autem deserunt sed
-        incidunt aspernatur nihil ut eos recusandae hic optio illum facilis eaque, dignissimos quis veritatis iure neque
-        adipisci ducimus? Quia perferendis, itaque autem id incidunt est fugit enim consequuntur laboriosam blanditiis
-        ipsa iste, unde amet dolore officiis, accusantium deleniti provident totam optio nam sapiente non quo
-        reprehenderit. In officia ipsa blanditiis aliquam doloribus dolor deleniti eligendi, tenetur possimus itaque,
-        alias laboriosam earum! Fugiat eligendi officiis quibusdam iste, maxime consequatur laudantium esse expedita
-        voluptatibus nobis consequuntur recusandae ipsam eius exercitationem debitis sit labore ad minus quo hic beatae
-        laboriosam obcaecati aperiam. Ipsum nemo suscipit voluptatibus voluptates laborum culpa nostrum pariatur!
-        Dolorum saepe quae dicta necessitatibus labore? Ipsam nostrum hic, culpa beatae quas repellendus obcaecati
-        perferendis deleniti, ad facilis corrupti tenetur eligendi exercitationem qui aperiam dolorum fuga quam neque
-        repellat nulla iure illum saepe quae quod! Tempore architecto recusandae deleniti officiis maxime ipsum, quo
-        accusamus veritatis rem velit, eius nihil corrupti, accusantium enim nemo quae cumque commodi temporibus!
-        Quibusdam necessitatibus recusandae dolor suscipit vitae, est ullam porro harum dicta assumenda corporis alias
-        accusantium iure tempora atque doloribus nam aliquid molestias voluptatibus voluptas?</p>
-    <h1>add heading</h1>
-    <hr>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat facere voluptatem nihil quasi blanditiis ullam
-        eius culpa earum consequuntur quo nemo mollitia, debitis deleniti fuga minus est aliquid repellat rem vero vel
-        ipsa, ipsum qui nam eligendi. Doloremque, voluptate eaque consectetur autem eveniet quidem commodi aliquid
-        pariatur temporibus quia cumque porro! Odio illo maxime et quam quisquam eius libero enim, quidem quibusdam
-        inventore modi est blanditiis dicta mollitia voluptas id fuga nihil excepturi error incidunt perspiciatis
-        aspernatur quaerat. Provident eos suscipit ad magni odit quas amet error eaque nemo! Saepe tempora ducimus
-        dolorem dolorum, velit ea quia. Quas, quos natus delectus doloremque laudantium corrupti laborum in repellendus
-        mollitia reprehenderit ab, est explicabo sint officiis. Repudiandae velit minima fugiat autem deserunt sed
-        incidunt aspernatur nihil ut eos recusandae hic optio illum facilis eaque, dignissimos quis veritatis iure neque
-        adipisci ducimus? Quia perferendis, itaque autem id incidunt est fugit enim consequuntur laboriosam blanditiis
-        ipsa iste, unde amet dolore officiis, accusantium deleniti provident totam optio nam sapiente non quo
-        reprehenderit. In officia ipsa blanditiis aliquam doloribus dolor deleniti eligendi, tenetur possimus itaque,
-        alias laboriosam earum! Fugiat eligendi officiis quibusdam iste, maxime consequatur laudantium esse expedita
-        voluptatibus nobis consequuntur recusandae ipsam eius exercitationem debitis sit labore ad minus quo hic beatae
-        laboriosam obcaecati aperiam. Ipsum nemo suscipit voluptatibus voluptates laborum culpa nostrum pariatur!
-        Dolorum saepe quae dicta necessitatibus labore? Ipsam nostrum hic, culpa beatae quas repellendus obcaecati
-        perferendis deleniti, ad facilis corrupti tenetur eligendi exercitationem qui aperiam dolorum fuga quam neque
-        repellat nulla iure illum saepe quae quod! Tempore architecto recusandae deleniti officiis maxime ipsum, quo
-        accusamus veritatis rem velit, eius nihil corrupti, accusantium enim nemo quae cumque commodi temporibus!
-        Quibusdam necessitatibus recusandae dolor suscipit vitae, est ullam porro harum dicta assumenda corporis alias
-        accusantium iure tempora atque doloribus nam aliquid molestias voluptatibus voluptas?</p>
+
     <hr>
 </body>
 
 </html>`);
+
 idocument.close();
 
-function iframeAppend(html) {
-    idocument.body.insertAdjacentElement('afterbegin', html);
+//create boxes
+const mover=idocument.createElement('div');
+mover.id='mover';
+mover.style='position:absolute;pointer-events: none;';
+mover.setAttribute('focusable',"false");
+idocument.body.appendChild(mover);
+
+
+idocument.body.addEventListener('mouseover',mouseOver);
+
+function mouseOver (e){
+    // get rect
+    const cur= e.target.getBoundingClientRect();
+
+    // change style
+    mover.style.top=e.target.offsetTop+'px';
+    mover.style.left=e.target.offsetLeft+'px';
+    mover.style.border='1px solid dodgerblue';
+    mover.style.width=cur.width+'px';
+    mover.style.height=cur.height+'px';
+
+    // console.log(mover)
 }
+
+function iframeAppend(html,pos) {
+    pos.insertAdjacentElement('afterbegin', html);
+}
+
 
 export {
     iframeAppend

@@ -76,10 +76,10 @@
 
 .element img {
     padding: 10px;
-
+    pointer-events: none;
 }
 
 .fade{
     opacity: .5;
-    cursor:grabbing;
+    pointer-events: none;
 }
