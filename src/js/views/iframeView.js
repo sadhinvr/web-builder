@@ -2,7 +2,10 @@ import {
     $,
     elements
 } from '../reuse';
-import {idocument, iwindow} from '../models/iframe';
+import {
+    idocument,
+    iwindow
+} from '../models/iframe';
 
 
 
@@ -74,6 +77,10 @@ idocument.write(`
             cursor:grabbing !important;
         }
 
+        body.grabbing.not_allowed * ,body.grabbing.not_allowed{
+            cursor:not-allowed !important;
+        }
+
         .fade{
             opacity: .5;
             pointer-events: none;
@@ -82,7 +89,8 @@ idocument.write(`
     </style>
 </head>
 
-<body>
+<body data-ele="body">
+<div data-drag="10" data-ele="div" style="padding: 30px; box-shadow: 0px 0px 5px inset;"></div>
     <h1 id="h">add heading</h1>
     <p> ipsum dolor sit amet consectetur adipisicing elit. Quaerat facere voluptatem nihil quasi blanditiis ullam
         eius culpa earum consequuntur quo nemo mollitia, debitis deleniti fuga minus est aliquid repellat rem vero vel
@@ -158,34 +166,52 @@ idocument.write(`
 idocument.close();
 
 //create boxes
-const mover=idocument.createElement('div');
-mover.id='mover';
-mover.style='position:absolute;pointer-events: none;';
-mover.setAttribute('focusable',"false");
+let on;
+const mover = idocument.createElement('div');
+mover.id = 'mover';
+mover.style = 'position:absolute;pointer-events: none;';
+mover.setAttribute('focusable', "false");
 idocument.body.appendChild(mover);
 
 
-idocument.body.addEventListener('mouseover',mouseOver);
+idocument.body.addEventListener('mouseover', mouseOver);
+idocument.body.addEventListener('mouseleave', mouseLeave);
 
-function mouseOver (e){
+
+function mouseOver(e) {
+    on = true;
     // get rect
-    const cur= e.target.getBoundingClientRect();
-
+    const cur = e.target.getBoundingClientRect();
+    let style = e.target.currentStyle || window.getComputedStyle(e.target),
+        width = e.target.offsetWidth, // or use style.width
+        height = e.target.offsetHeight, // or use style.width
+        margin1 = parseFloat(style.marginLeft) + parseFloat(style.marginRight),
+        margin2 = parseFloat(style.marginTop) + parseFloat(style.marginBottom),
+        padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight),
+        border = parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth);
     // change style
-    mover.style.top=e.target.offsetTop+'px';
-    mover.style.left=e.target.offsetLeft+'px';
-    mover.style.border='1px solid dodgerblue';
-    mover.style.width=cur.width+'px';
-    mover.style.height=cur.height+'px';
+    mover.style.top = e.target.offsetTop - parseFloat(style.marginTop) + 'px';
+    mover.style.left = e.target.offsetLeft - parseFloat(style.marginLeft) + 'px';
+    mover.style.border = '1px solid dodgerblue';
+    mover.style.width = width + margin1 + 'px';
+    mover.style.height = height + margin2 + 'px';
+    if (e.target.dataset.ele && e.target.dataset.ele === 'body') {
+        mover.style.top = e.target.offsetTop  + 'px';
+        mover.style.left = e.target.offsetLeft  + 'px';
+    }
 
     // console.log(mover)
 }
 
-function iframeAppend(html,pos) {
+function mouseLeave() {
+    on = false;
+}
+
+function iframeAppend(html, pos) {
     pos.insertAdjacentElement('afterbegin', html);
 }
 
-
 export {
-    iframeAppend
+    iframeAppend,
+    on
 };

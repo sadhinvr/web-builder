@@ -26,7 +26,11 @@ body{
     cursor: pointer;
 }
 
-body.grabbing * {
+body.grabbing * ,body.grabbing {
     cursor:grabbing !important;
+}
+
+body.grabbing.not_allowed * ,body.grabbing.not_allowed{
+    cursor:not-allowed !important;
 }
 

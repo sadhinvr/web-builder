@@ -15,11 +15,14 @@ import {
 import {
     mouseOver
 } from './position';
+import {
+    on
+} from '../views/iframeView';
 
 const dragable = $('.dragable', true);
 let data, dragging = false,
     ifr = false,
-    appended, p, pos=idocument.body,active=false;
+    appended, p, pos, active;
 
 dragable.forEach(cur => {
     cur.addEventListener('mousedown', mousedown)
@@ -38,8 +41,6 @@ function mousedown(e) {
         // set data
         setDragData(e);
 
-        // change cursor
-        cCursor();
 
         // ready clone
         readyDragClone();
@@ -48,31 +49,56 @@ function mousedown(e) {
         data.winheight = iwindow.scrollY;
 
         // active
-        if (!ifr) {} else {
+        if (!ifr) {
+            if (active) {
+                pos = active;
+            }
+        } else {
             data.name.classList.add('hidden_on_drag');
-            // if(active){
-            //     active.style="";
-            // }
-            active=data.name;
-            active.style.border="2px solid green"
+            //active
+            if (active) {
+                active.style.border = "";
+            }
+            active = data.name;
+            active.style.border = "1px solid #09ff00";
+
         }
+
+        // change cursor
+        cCursor();
+
+
 
         // mouse over
         window.addEventListener('mouseover', appendPos);
         iwindow.addEventListener('mouseover', iappendPos);
 
     }
+
+    if (e.target.dataset.ele && e.target.dataset.ele === 'body') {
+        //active
+        if (active) {
+            active.dataset.active = '0';
+        }
+        active = e.target;
+        active.dataset.active = '1';
+    }
+
+
+
 }
 
 function cCursor() {
     if (dragging) {
         document.body.classList.add('grabbing');
         idocument.body.classList.add('grabbing');
+        
 
     } else {
         document.body.classList.remove('grabbing');
         idocument.body.classList.remove('grabbing');
     }
+    
 }
 
 function appendPos(e) {
@@ -90,9 +116,16 @@ function iappendPos(e) {
 }
 
 function drag(e) {
-    //position 
-    pos = mouseOver(e);
+    if (!on) {
+        document.body.classList.add('not_allowed');
+        idocument.body.classList.add('not_allowed');
+    }else{
+        document.body.classList.remove('not_allowed');
+        idocument.body.classList.remove('not_allowed');
+    }
 
+    //position 
+    pos = mouseOver(e, data.name.dataset.ele);
     // append child
 
     if (!ifr) {
@@ -103,8 +136,6 @@ function drag(e) {
 
     // window scroll
     scrollWin(e);
-
-
 
 }
 
@@ -125,13 +156,14 @@ function scrollWin(e) {
 function setDragData(e) {
     data = {
         winheight: iwindow.scrollY,
-        name: e.currentTarget,
+        name: e.target,
         top: e.currentTarget.getClientRects()[0].top,
         left: e.currentTarget.getClientRects()[0].left,
     };
 
     if (!ifr) {
-        data.clone = e.currentTarget.cloneNode(true);
+        data.name = e.currentTarget,
+            data.clone = e.currentTarget.cloneNode(true);
         data.height = e.currentTarget.getClientRects()[0].height;
         data.width = e.currentTarget.getClientRects()[0].width;
     }
@@ -198,6 +230,7 @@ function mouseup() {
 
 window.addEventListener('mouseup', mouseup)
 iwindow.addEventListener('mouseup', mouseup)
+idocument.body.addEventListener('mousedown', mousedown)
 
 export {
     data,

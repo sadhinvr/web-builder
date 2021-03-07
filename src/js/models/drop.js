@@ -12,16 +12,14 @@ import {
     idocument,
     iwindow
 } from './iframe';
-import { $ } from '../reuse';
 
 
 function drop(data, pos, d = true) {
 
     // ready
     const dataEle = data.name.dataset.ele;
-
-    if (pos !== data.name) {
-        console.log(pos)
+    if (pos && pos !== data.name && pos !== data.name.parentElement) {
+        console.log(pos,Math.random())
         if (d) {
             //clone
             htmlMockup[dataEle].setAttribute('data-ele', data.name.dataset.ele)
@@ -52,8 +50,6 @@ function drop(data, pos, d = true) {
     if (idocument.getElementById('curPos')) {
         idocument.getElementById('curPos').remove();
     };
-
-
 }
 
 export {

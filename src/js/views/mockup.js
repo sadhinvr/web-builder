@@ -1,6 +1,4 @@
-import {mousedown} from '../models/drag';
-
- const make={};
+const make={};
  
  //box
  let nstyle="padding:30px;box-shadow:inset 0 0 5px"
@@ -38,5 +36,6 @@ for(const i in make){
     img:make.img,
 
 }
+
 
 export {htmlMockup};
