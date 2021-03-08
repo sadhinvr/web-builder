@@ -65,12 +65,15 @@ idocument.write(`
             cursor: grabbing;
         }
 
-        .hidden_on_drag {
-            opacity:.5
-        }
-
         body,body *{
             cursor:default;
+            -webkit-user-select: none;
+            /* Chrome all / Safari all */
+            -moz-user-select: none;
+            /* Firefox all */
+            -ms-user-select: none;
+            /* IE 10+ */
+            user-select: none;
         }
 
         .grabbing , body.grabbing * {
@@ -87,124 +90,80 @@ idocument.write(`
         }
 
     </style>
+    <style id="main_style"></style>
 </head>
 
 <body data-ele="body">
-<div data-drag="10" data-ele="div" style="padding: 30px; box-shadow: 0px 0px 5px inset;"></div>
-    <h1 id="h">add heading</h1>
-    <p> ipsum dolor sit amet consectetur adipisicing elit. Quaerat facere voluptatem nihil quasi blanditiis ullam
-        eius culpa earum consequuntur quo nemo mollitia, debitis deleniti fuga minus est aliquid repellat rem vero vel
-        ipsa, ipsum qui nam eligendi. Doloremque, voluptate eaque consectetur autem eveniet quidem commodi aliquid
-        pariatur temporibus quia cumque porro! Odio illo maxime et quam quisquam eius libero enim, quidem quibusdam
-        inventore modi est blanditiis dicta mollitia voluptas id fuga nihil excepturi error incidunt perspiciatis
-        aspernatur quaerat. Provident eos suscipit ad magni odit quas amet error eaque nemo! Saepe tempora ducimus
-        dolorem dolorum, velit ea quia. Quas, quos natus delectus doloremque laudantium corrupti laborum in repellendus
-        mollitia reprehenderit ab, est explicabo sint officiis. Repudiandae velit minima fugiat autem deserunt sed
-        incidunt aspernatur nihil ut eos recusandae hic optio illum facilis eaque, dignissimos quis veritatis iure neque
-        adipisci ducimus? Quia perferendis, itaque autem id incidunt est fugit enim consequuntur laboriosam blanditiis
-        ipsa iste, unde amet dolore officiis, accusantium deleniti provident totam optio nam sapiente non quo
-        reprehenderit. In officia ipsa blanditiis aliquam doloribus dolor deleniti eligendi, tenetur possimus itaque,
-        alias laboriosam earum! Fugiat eligendi officiis quibusdam iste, maxime consequatur laudantium esse expedita
-        voluptatibus nobis consequuntur recusandae ipsam eius exercitationem debitis sit labore ad minus quo hic beatae
-        laboriosam obcaecati aperiam. Ipsum nemo suscipit voluptatibus voluptates laborum culpa nostrum pariatur!
-        Dolorum saepe quae dicta necessitatibus labore? Ipsam nostrum hic, culpa beatae quas repellendus obcaecati
-        perferendis deleniti, ad facilis corrupti tenetur eligendi exercitationem qui aperiam dolorum fuga quam neque
-        repellat nulla iure illum saepe quae quod! Tempore architecto recusandae deleniti officiis maxime ipsum, quo
-        accusamus veritatis rem velit, eius nihil corrupti, accusantium enim nemo quae cumque commodi temporibus!
-        Quibusdam necessitatibus recusandae dolor suscipit vitae, est ullam porro harum dicta assumenda corporis alias
-        accusantium iure tempora atque doloribus nam aliquid molestias voluptatibus voluptas?</p>
-    <h1>add heading</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat facere voluptatem nihil quasi blanditiis ullam
-        eius culpa earum consequuntur quo nemo mollitia, debitis deleniti fuga minus est aliquid repellat rem vero vel
-        ipsa, ipsum qui nam eligendi. Doloremque, voluptate eaque consectetur autem eveniet quidem commodi aliquid
-        pariatur temporibus quia cumque porro! Odio illo maxime et quam quisquam eius libero enim, quidem quibusdam
-        inventore modi est blanditiis dicta mollitia voluptas id fuga nihil excepturi error incidunt perspiciatis
-        aspernatur quaerat. Provident eos suscipit ad magni odit quas amet error eaque nemo! Saepe tempora ducimus
-        dolorem dolorum, velit ea quia. Quas, quos natus delectus doloremque laudantium corrupti laborum in repellendus
-        mollitia reprehenderit ab, est explicabo sint officiis. Repudiandae velit minima fugiat autem deserunt sed
-        incidunt aspernatur nihil ut eos recusandae hic optio illum facilis eaque, dignissimos quis veritatis iure neque
-        adipisci ducimus? Quia perferendis, itaque autem id incidunt est fugit enim consequuntur laboriosam blanditiis
-        ipsa iste, unde amet dolore officiis, accusantium deleniti provident totam optio nam sapiente non quo
-        reprehenderit. In officia ipsa blanditiis aliquam doloribus dolor deleniti eligendi, tenetur possimus itaque,
-        alias laboriosam earum! Fugiat eligendi officiis quibusdam iste, maxime consequatur laudantium esse expedita
-        voluptatibus nobis consequuntur recusandae ipsam eius exercitationem debitis sit labore ad minus quo hic beatae
-        laboriosam obcaecati aperiam. Ipsum nemo suscipit voluptatibus voluptates laborum culpa nostrum pariatur!
-        Dolorum saepe quae dicta necessitatibus labore? Ipsam nostrum hic, culpa beatae quas repellendus obcaecati
-        perferendis deleniti, ad facilis corrupti tenetur eligendi exercitationem qui aperiam dolorum fuga quam neque
-        repellat nulla iure illum saepe quae quod! Tempore architecto recusandae deleniti officiis maxime ipsum, quo
-        accusamus veritatis rem velit, eius nihil corrupti, accusantium enim nemo quae cumque commodi temporibus!
-        Quibusdam necessitatibus recusandae dolor suscipit vitae, est ullam porro harum dicta assumenda corporis alias
-        accusantium iure tempora atque doloribus nam aliquid molestias voluptatibus voluptas?</p>
-    <h1>add heading</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat facere voluptatem nihil quasi blanditiis ullam
-        eius culpa earum consequuntur quo nemo mollitia, debitis deleniti fuga minus est aliquid repellat rem vero vel
-        ipsa, ipsum qui nam eligendi. Doloremque, voluptate eaque consectetur autem eveniet quidem commodi aliquid
-        pariatur temporibus quia cumque porro! Odio illo maxime et quam quisquam eius libero enim, quidem quibusdam
-        inventore modi est blanditiis dicta mollitia voluptas id fuga nihil excepturi error incidunt perspiciatis
-        aspernatur quaerat. Provident eos suscipit ad magni odit quas amet error eaque nemo! Saepe tempora ducimus
-        dolorem dolorum, velit ea quia. Quas, quos natus delectus doloremque laudantium corrupti laborum in repellendus
-        mollitia reprehenderit ab, est explicabo sint officiis. Repudiandae velit minima fugiat autem deserunt sed
-        incidunt aspernatur nihil ut eos recusandae hic optio illum facilis eaque, dignissimos quis veritatis iure neque
-        adipisci ducimus? Quia perferendis, itaque autem id incidunt est fugit enim consequuntur laboriosam blanditiis
-        ipsa iste, unde amet dolore officiis, accusantium deleniti provident totam optio nam sapiente non quo
-        reprehenderit. In officia ipsa blanditiis aliquam doloribus dolor deleniti eligendi, tenetur possimus itaque,
-        alias laboriosam earum! Fugiat eligendi officiis quibusdam iste, maxime consequatur laudantium esse expedita
-        voluptatibus nobis consequuntur recusandae ipsam eius exercitationem debitis sit labore ad minus quo hic beatae
-        laboriosam obcaecati aperiam. Ipsum nemo suscipit voluptatibus voluptates laborum culpa nostrum pariatur!
-        Dolorum saepe quae dicta necessitatibus labore? Ipsam nostrum hic, culpa beatae quas repellendus obcaecati
-        perferendis deleniti, ad facilis corrupti tenetur eligendi exercitationem qui aperiam dolorum fuga quam neque
-        repellat nulla iure illum saepe quae quod! Tempore architecto recusandae deleniti officiis maxime ipsum, quo
-        accusamus veritatis rem velit, eius nihil corrupti, accusantium enim nemo quae cumque commodi temporibus!
-        Quibusdam necessitatibus recusandae dolor suscipit vitae, est ullam porro harum dicta assumenda corporis alias
-        accusantium iure tempora atque doloribus nam aliquid molestias voluptatibus voluptas?</p>
 
-    <hr>
+<!----><div id="dev" style="pointer-events: none;width:0;height:0;"></div><!---->
 </body>
 
 </html>`);
 
+
+iwindow.addEventListener('load', () => {
+    if (window.localStorage.getItem('DOM')) {
+        idocument.body.insertAdjacentHTML('afterbegin',window.localStorage.getItem('DOM')) ;
+    }
+})
+
 idocument.close();
+
+if(idocument.body.children.length>2){idocument.body.style.height="100vh";}
 
 //create boxes
 let on;
 const mover = idocument.createElement('div');
 mover.id = 'mover';
-mover.style = 'position:absolute;pointer-events: none;';
-mover.setAttribute('focusable', "false");
-idocument.body.appendChild(mover);
+
+
 
 
 idocument.body.addEventListener('mouseover', mouseOver);
 idocument.body.addEventListener('mouseleave', mouseLeave);
+$('#reset').addEventListener('click',resetDocument);
 
+function resetDocument(){
+    idocument.body.innerHTML=`<!----><div id="dev" style="pointer-events: none;width:0;height:0;"></div><!---->`;
+    idocument.body.style='height: 100vh;'
+}
 
 function mouseOver(e) {
     on = true;
-    // get rect
-    const cur = e.target.getBoundingClientRect();
-    let style = e.target.currentStyle || window.getComputedStyle(e.target),
-        width = e.target.offsetWidth, // or use style.width
-        height = e.target.offsetHeight, // or use style.width
+    setStyleData(e.target, mover, '1px solid dodgerblue');
+    // console.log(mover)
+    idocument.getElementById('dev').appendChild(mover);
+
+}
+
+function setStyleData(e, box, bor = false, bg = false) {
+    box.setAttribute('focusable', "false");
+    box.style = 'position:absolute;pointer-events: none;';
+    let style = e.currentStyle || window.getComputedStyle(e),
+        width = e.offsetWidth,
+        height = e.offsetHeight,
         margin1 = parseFloat(style.marginLeft) + parseFloat(style.marginRight),
         margin2 = parseFloat(style.marginTop) + parseFloat(style.marginBottom),
         padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight),
         border = parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth);
+
     // change style
-    mover.style.top = e.target.offsetTop - parseFloat(style.marginTop) + 'px';
-    mover.style.left = e.target.offsetLeft - parseFloat(style.marginLeft) + 'px';
-    mover.style.border = '1px solid dodgerblue';
-    mover.style.width = width + margin1 + 'px';
-    mover.style.height = height + margin2 + 'px';
-    if (e.target.dataset.ele && e.target.dataset.ele === 'body') {
-        mover.style.top = e.target.offsetTop  + 'px';
-        mover.style.left = e.target.offsetLeft  + 'px';
+    box.style.top = e.offsetTop - parseFloat(style.marginTop) + 'px';
+    box.style.left = e.offsetLeft - parseFloat(style.marginLeft) + 'px';
+
+    box.style.width = width + margin1 + 'px';
+    box.style.height = height + margin2 + 'px';
+    if (e.dataset.ele && e.dataset.ele === 'body') {
+        box.style.top = e.offsetTop + 'px';
+        box.style.left = e.offsetLeft + 'px';
     }
 
-    // console.log(mover)
+    bor ? box.style.border = bor : box.style.background = bg;
 }
 
 function mouseLeave() {
     on = false;
+    mover.remove();
 }
 
 function iframeAppend(html, pos) {
@@ -213,5 +172,6 @@ function iframeAppend(html, pos) {
 
 export {
     iframeAppend,
-    on
+    on,
+    setStyleData
 };

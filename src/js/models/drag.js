@@ -16,17 +16,24 @@ import {
     mouseOver
 } from './position';
 import {
-    on
+    on,
+    setStyleData
 } from '../views/iframeView';
+import { activeStyle } from './style';
 
 const dragable = $('.dragable', true);
 let data, dragging = false,
     ifr = false,
     appended, p, pos, active;
 
+const activeBox = idocument.createElement('div');
+activeBox.id = 'activeBox';
+
 dragable.forEach(cur => {
     cur.addEventListener('mousedown', mousedown)
 })
+
+
 
 function mousedown(e) {
     if (e.currentTarget.dataset.drag && e.button === 0) {
@@ -41,7 +48,6 @@ function mousedown(e) {
         // set data
         setDragData(e);
 
-
         // ready clone
         readyDragClone();
 
@@ -54,20 +60,19 @@ function mousedown(e) {
                 pos = active;
             }
         } else {
-            data.name.classList.add('hidden_on_drag');
+            data.name.style.opacity='.5';
             //active
-            if (active) {
-                active.style.border = "";
-            }
             active = data.name;
-            active.style.border = "1px solid #09ff00";
+            idocument.getElementById('dev').appendChild(activeBox);
+            setStyleData(active, activeBox, '2px solid #00ff13')
 
+            //active style
+            activeStyle();
+            
         }
 
         // change cursor
         cCursor();
-
-
 
         // mouse over
         window.addEventListener('mouseover', appendPos);
@@ -77,11 +82,9 @@ function mousedown(e) {
 
     if (e.target.dataset.ele && e.target.dataset.ele === 'body') {
         //active
-        if (active) {
-            active.dataset.active = '0';
-        }
         active = e.target;
-        active.dataset.active = '1';
+        idocument.getElementById('dev').appendChild(activeBox);
+        setStyleData(active, activeBox, '2px solid #00ff13')
     }
 
 
@@ -92,13 +95,12 @@ function cCursor() {
     if (dragging) {
         document.body.classList.add('grabbing');
         idocument.body.classList.add('grabbing');
-        
 
     } else {
         document.body.classList.remove('grabbing');
         idocument.body.classList.remove('grabbing');
     }
-    
+
 }
 
 function appendPos(e) {
@@ -119,7 +121,7 @@ function drag(e) {
     if (!on) {
         document.body.classList.add('not_allowed');
         idocument.body.classList.add('not_allowed');
-    }else{
+    } else {
         document.body.classList.remove('not_allowed');
         idocument.body.classList.remove('not_allowed');
     }
@@ -198,7 +200,7 @@ function resetDrag() {
 
 
     } else {
-        data.name.classList.remove('hidden_on_drag');
+        data.name.style.opacity='';
         idocument.body.classList.remove('cursor_dragging');
         // iwindow.removeEventListener('mousemove', drag);
 
@@ -209,6 +211,12 @@ function resetDrag() {
     iwindow.removeEventListener('mouseover', iappendPos);
     window.removeEventListener('mousemove', drag);
     iwindow.removeEventListener('mousemove', drag);
+
+    if (active) {
+        setInterval(() => {
+            setStyleData(active, activeBox, '2px solid #00ff13')
+        }, 500);
+    }
 
 }
 
@@ -235,5 +243,6 @@ idocument.body.addEventListener('mousedown', mousedown)
 export {
     data,
     mousedown,
-    mouseup
+    mouseup,
+    active
 };

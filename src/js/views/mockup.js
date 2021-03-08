@@ -1,11 +1,11 @@
 const make={};
  
  //box
- let nstyle="padding:30px;box-shadow:inset 0 0 5px"
+//  let nstyle="padding:30px;box-shadow:inset 0 0 5px"
  make.div=document.createElement('div');
- make.div.style=nstyle;
+//  make.div.style=nstyle;
  make.section=document.createElement('section');
- make.section.style=nstyle;
+//  make.section.style=nstyle;
 
  make.container=document.createElement('div');
  make.container.className="container";
