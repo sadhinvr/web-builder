@@ -90,7 +90,7 @@ idocument.write(`
         }
 
     </style>
-    <style id="main_style"></style>
+    <style id="main_style" rel="stylesheet"></style>
 </head>
 
 <body data-ele="body">
@@ -103,13 +103,16 @@ idocument.write(`
 
 iwindow.addEventListener('load', () => {
     if (window.localStorage.getItem('DOM')) {
-        idocument.body.insertAdjacentHTML('afterbegin',window.localStorage.getItem('DOM')) ;
+        idocument.body.insertAdjacentHTML('afterbegin', window.localStorage.getItem('DOM'));
     }
+    if (idocument.body.children.length < 2) {
+        idocument.body.style.height = "100vh";
+    }
+
 })
 
 idocument.close();
 
-if(idocument.body.children.length>2){idocument.body.style.height="100vh";}
 
 //create boxes
 let on;
@@ -121,11 +124,11 @@ mover.id = 'mover';
 
 idocument.body.addEventListener('mouseover', mouseOver);
 idocument.body.addEventListener('mouseleave', mouseLeave);
-$('#reset').addEventListener('click',resetDocument);
+$('#reset').addEventListener('click', resetDocument);
 
-function resetDocument(){
-    idocument.body.innerHTML=`<!----><div id="dev" style="pointer-events: none;width:0;height:0;"></div><!---->`;
-    idocument.body.style='height: 100vh;'
+function resetDocument() {
+    idocument.body.innerHTML = `<!----><div id="dev" style="pointer-events: none;width:0;height:0;"></div><!---->`;
+    idocument.body.style = 'height: 100vh;'
 }
 
 function mouseOver(e) {

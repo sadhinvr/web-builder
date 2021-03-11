@@ -2,12 +2,10 @@
     position: relative;
     align-self: start;
     justify-self: start;
-    grid-column: span 3;
+    grid-column: span 2;
     width: 100%;
 }
 .top{
-    z-index: 99999999;
-    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;

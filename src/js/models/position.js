@@ -25,8 +25,9 @@ const cantake = {
 }
 
 //mouseover
-const mouseOver = (e, childEle) => {
-    if (on) {
+const mouseOver = (e, childEle,clicked=false) => {
+    if (on || clicked) {
+        console.log(e.target.dataset.ele)
         // if(e.clientY >= top - offset || )
 
         if (childEle) {

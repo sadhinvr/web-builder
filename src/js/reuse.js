@@ -1,4 +1,11 @@
-const $ = function (q, a = false) {
+const $ = function (q, a = false ,i = false) {
+    if(i){
+        if (a) {
+            return document.getElementById('iframe').contentDocument.querySelectorAll(q);
+        }
+        return document.getElementById('iframe').contentDocument.querySelector(q);
+    }
+
     if (a) {
         return document.querySelectorAll(q)
     }

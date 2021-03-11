@@ -4,7 +4,6 @@
 }
 
 .left {
-    position: fixed;
     display: flex;
     justify-self: start;
     height: 100%;
@@ -38,6 +37,7 @@
     max-width: 300px;
     padding: 10px;
     border-right: #666666 4px solid;
+    overflow-y: scroll;
 }
 
 .right_menu .right_menu_row {

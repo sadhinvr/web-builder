@@ -19,7 +19,7 @@ import {
     on,
     setStyleData
 } from '../views/iframeView';
-import { activeStyle } from './style';
+import { getStyle } from './style';
 
 const dragable = $('.dragable', true);
 let data, dragging = false,
@@ -57,7 +57,8 @@ function mousedown(e) {
         // active
         if (!ifr) {
             if (active) {
-                pos = active;
+                // console.log(active)
+                pos = mouseOver(e, active.dataset.ele,true);
             }
         } else {
             data.name.style.opacity='.5';
@@ -67,7 +68,7 @@ function mousedown(e) {
             setStyleData(active, activeBox, '2px solid #00ff13')
 
             //active style
-            activeStyle();
+            getStyle(active);
             
         }
 
@@ -191,6 +192,8 @@ function readyDragClone() {
 }
 
 function resetDrag() {
+        document.body.className.includes('not_allowed')?document.body.classList.remove('not_allowed'):0;
+        idocument.body.className.includes('not_allowed')?idocument.body.classList.remove('not_allowed'):0;
 
     if (!ifr) {
         // window.removeEventListener('mousemove', drag);
