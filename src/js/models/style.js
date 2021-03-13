@@ -13,11 +13,11 @@ const style = {
     display: '',
     margin: '',
     width: '',
-    'min-width': '',
-    'max-width': '',
+    minWidth: '',
+    maxWidth: '',
     height: '',
-    'min-height': '',
-    'max-height': '',
+    minHeight: '',
+    maxHeight: '',
 };
 
 const styleEle = {
@@ -25,16 +25,10 @@ const styleEle = {
     className: $('#className'),
 };
 
-
-
-
-
-
-
-
+//style sheet 
 const sheet = idocument.getElementById('main_style').sheet;
 sheet.insertRule(':root{}', 0);
-sheet.insertRule('@media all {*{box-sizing:border-box;} .named{width:200px}}', 1);
+sheet.insertRule('@media all {*{box-sizing:border-box;} .named{width:200px ;min-width:150px;}}', 1);
 sheet.insertRule('@media (max-width:991px){body{color:#333;}}', 2);
 sheet.insertRule('@media (max-width:767px){}', 3);
 sheet.insertRule('@media (max-width:479px){}', 4);
@@ -44,92 +38,176 @@ sheet.cssRules[2].__sad_style = 'medium';
 sheet.cssRules[3].__sad_style = 'small';
 sheet.cssRules[4].__sad_style = 'tiny';
 
+let sheetNum = 1;
+
 console.log(sheet)
 
-// sheet.insertRule('@media (max-width:480){}',5);
 
-$('input', true).forEach(cur => {
-    cur.addEventListener('input', inputValue)
-});
+//eventListener
+$('[data-style]', true).forEach(cur => {
+    const s = cur.dataset.style.split(' ');
 
+    //click
+    if (s[0] == true) {
+        cur.addEventListener('click', click);
+    }
 
-function inputValue(e) {
-    if (active) { // console.log(e.target.value)
-        if (e.target.id === 'id') {
-            active.className = e.target.value;
+    //dblclick
+    if (s[1] == true) {
+        cur.addEventListener('dblclick', dblClick);
+    }
+
+    //input
+    if (s[2] == true) {
+        cur.addEventListener('input', input);
+    }
+
+    //drag
+    if (s[3] == true) {
+        cur.addEventListener('mousedown', mousedown);
+    }
+
+})
+
+function click(e) {
+    if (active) {
+        const s = e.target.dataset.style.split(' ');
+        if (e.target.classList && e.target.classList.contains('active_style')) {
+            resetActiveStyle(e.target)
+            setStyle(s[4], '');
+            e.target.classList.remove('active_style');
         } else {
-            if (!active.className) {
-                active.className = 'hello';
-                $('#id').value = active.className;
-            }
-
-            if (active.className) {
-                const selector = `.${active.className}`;
-                const property = `${e.target.name}:${e.target.value+e.target.dataset.suffix}`;
-                if (sheet.cssRules[0]) {
-                    if (sheet.cssRules[0].style.cssText.includes(e.target.name)) {
-                        const regex = new RegExp(`${e.target.name}(.|\n)*?;`, 'g');
-                        sheet.cssRules[0].style.cssText = sheet.cssRules[0].style.cssText.replace(regex, property + ';');
-                        // console.log(sheet.cssRules[0].style.cssText.replace(regex,property+';'))
-                    } else {
-                        sheet.cssRules[0].style.cssText += property;
-                    }
-                } else {
-                    sheet.insertRule(`${selector}{${property}}`)
-                }
-            }
+            resetActiveStyle(e.target)
+            setStyle(s[4], s[5]);
+            e.target.classList.add('active_style');
         }
     }
 }
 
-function getStyle(active) {
+function input(e) {
+    if (active) {
+        const s = e.target.dataset.style.split(' ');
+        setStyle(s[4],e.target.value)
+    }
+}
 
+
+function findSelector(t) {
+    let selector;
+    for (let i = 0; i < sheet.cssRules[sheetNum].cssRules.length; i++) {
+        if (sheet.cssRules[sheetNum].cssRules[i].selectorText === '.' + t) {
+
+            selector = sheet.cssRules[sheetNum].cssRules[i];
+            break;
+        } else {
+            selector = false;
+        }
+    }
+
+    return selector;
+}
+
+function setStyle(s, p) {
+    const cssom = findSelector(active.className);
+    if (cssom) {
+        cssom.style[s] = p;
+    } else {
+        if (!active.className) {
+            active.classList.add(`${active.tagName}${Math.floor(Math.random()*1000)}`)
+        }
+        sheet.cssRules[sheetNum].insertRule(`.${active.className}{${s}:${p}}`, 1)
+    }
+}
+
+
+function getStyle() {
     // intial
+    resetActiveStyle();
+    const cssom = findSelector(active.className);
+
     $('#tagName').innerText = active.tagName + ' ';
     $('#className').innerText = active.className ? active.className + ' ' : '-';
-    $('#countEle').parentElement.style.display= 'none';
+    $('#countEle').parentElement.style.display = 'none';
 
 
     if (active.className) {
         $('#countEle').innerText = $('.' + active.className, true, true).length;
-        $('#countEle').parentElement.style.display= '';
+        $('#countEle').parentElement.style.display = '';
 
-        // console.log($('.'+active.className, true,true))
-        // active.classList.forEach(cls=>{
 
-        for (let i = 0; i < sheet.cssRules[1].cssRules.length; i++) {
-
-            if (sheet.cssRules[1].cssRules[i].selectorText.includes('.' + active.className)) {
-                // console.log(sheet.cssRules[1].cssRules[i].style.cssText)
-                for (const cur in style) {
-
-                    style[cur] = sheet.cssRules[1].cssRules[i].style[cur];
-                }
-                break;
-
+        if (cssom) {
+            // console.log(sheet.cssRules[1].cssRules[i].style.cssText)
+            for (const cur in style) {
+                style[cur] = cssom.style[cur];
             }
-            // console.log(sheet.cssRules[1].cssRules[i].selectorText.includes('.' + active.className))
         }
 
-        // })
+
     }
-
-    viewStyle()
-
+    viewStyle();
 
 }
 
 function viewStyle() {
-    $('input[data-style]', true).forEach(ele => {
-        ele.value = style[ele.dataset.style]
+
+    $('[data-style]', true).forEach(ele => {
+        const s = ele.dataset.style.split(' ');
+
+        //click
+        if (s[0] == true && style[s[4]] === s[5]) {
+            ele.classList.add('active_style');
+        } else {
+
+        }
+
+        //dblclick
+        if (s[1] == true) {
+
+        }
+
+        //input
+        if (s[2] == true) {
+
+        }
+
+        //drag
+        if (s[3] == true) {
+
+        }
     })
+
     for (const cur in style) {
         style[cur] = ''
     }
 }
 
 
+function resetActiveStyle(e) {
+    if (e) {
+        try {
+            $(`.${e.parentElement.className} .active_style`).classList.remove('active_style')
+        } catch (err) {
+            // console.log(err)
+        }
+    } else {
+        try {
+            $(`.active_style`, true).forEach(cur => {
+                cur.classList.remove('active_style');
+            })
+        } catch (err) {
+            // console.log(err)
+        }
+    }
+}
+
+
+
+
 
 export {
     getStyle
 };
+
+
+
+//  data-style="{[ 0 click] [ 1 dblclick] [ 2 input] [ 3 drag]} {[ 4 style] [ 5 value]}"

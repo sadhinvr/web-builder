@@ -85,7 +85,10 @@ function mousedown(e) {
         //active
         active = e.target;
         idocument.getElementById('dev').appendChild(activeBox);
-        setStyleData(active, activeBox, '2px solid #00ff13')
+        setStyleData(active, activeBox, '2px solid #00ff13');
+
+        getStyle();
+
     }
 
 

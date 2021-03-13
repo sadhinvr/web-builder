@@ -127,17 +127,19 @@
                                 </div>
                                 <div class="right_row">
                                     <p class="--light">Display</p>
-                                    <div class="display" data-style='display'>
-                                        <div class="block">🅰</div>
-                                        <div class="flex">🅰</div>
-                                        <div class="grid">🅰</div>
-                                        <div class="inline-block">🅰</div>
-                                        <div class="inline">🅰</div>
-                                        <div class="none">🅰</div>
+                                    <div class="display">
+                                        <div data-style="1 0 0 0 display block">🅰</div>
+                                        <div data-style="1 0 0 0 display flex">🅰</div>
+                                        <div data-style="1 0 0 0 display grid">🅰</div>
+                                        <div data-style="1 0 0 0 display inline">🅰</div>
+                                        <div data-style="1 0 0 0 display inline-block">🅰</div>
+                                        <div data-style="1 0 0 0 display none">🅰</div>
                                     </div>
                                 </div>
-                                <div class="right_row" style="display: none;">
-                                    <div class="flex--more"></div>
+                                <div class="right_row flex_or_grid" style="display: block;">
+                                    <div class="flex--more">
+                                        
+                                    </div>
                                     <div class="grid--more"></div>
                                 </div>
                             </div>
@@ -305,29 +307,29 @@
                                     <div class="right_col">
                                         <div>
                                             <p class="--light">Width</p>
-                                            <input type="text" data-style="width" placeholder="Auto -">
+                                            <input type="text" data-style="0 0 1 0 width" placeholder="Auto -">
                                         </div>
                                         <div>
                                             <p class="--light">Min W</p>
-                                            <input type="text" data-style="min-width" placeholder="- px">
+                                            <input type="text" data-style="0 0 1 0 minWidth" placeholder="- px">
                                         </div>
                                         <div>
                                             <p class="--light">Max W</p>
-                                            <input type="text" data-style="max-width" placeholder="- px">
+                                            <input type="text" data-style="0 0 1 0 maxWidth" placeholder="- px">
                                         </div>
                                     </div>
                                     <div class="right_col">
                                         <div>
                                             <p class="--light">Height</p>
-                                            <input type="text" data-style="height" placeholder="Auto -">
+                                            <input type="text" data-style="0 0 1 0 height" placeholder="Auto -">
                                         </div>
                                         <div>
                                             <p class="--light">Min H</p>
-                                            <input type="text" data-style="min-height" placeholder="- px">
+                                            <input type="text" data-style="0 0 1 0 minHeight" placeholder="- px">
                                         </div>
                                         <div>
                                             <p class="--light">Max H</p>
-                                            <input type="text" data-style="max-height" placeholder="- px">
+                                            <input type="text" data-style="0 0 1 0 maxHeight" placeholder="- px">
                                         </div>
                                     </div>
 
