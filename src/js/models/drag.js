@@ -65,7 +65,7 @@ function mousedown(e) {
             //active
             active = data.name;
             idocument.getElementById('dev').appendChild(activeBox);
-            setStyleData(active, activeBox, '2px solid #00ff13')
+            setStyleData(active, activeBox, '1px solid #00ff13')
 
             //active style
             getStyle(active);
@@ -85,7 +85,7 @@ function mousedown(e) {
         //active
         active = e.target;
         idocument.getElementById('dev').appendChild(activeBox);
-        setStyleData(active, activeBox, '2px solid #00ff13');
+        setStyleData(active, activeBox, '1px solid #00ff13');
 
         getStyle();
 
@@ -220,8 +220,8 @@ function resetDrag() {
 
     if (active) {
         setInterval(() => {
-            setStyleData(active, activeBox, '2px solid #00ff13')
-        }, 500);
+            setStyleData(active, activeBox, '1px solid #00ff13')
+        }, 100);
     }
 
 }
