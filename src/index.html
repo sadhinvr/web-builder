@@ -307,57 +307,145 @@
                                     <div class="right_col">
                                         <div>
                                             <p class="--light">Width</p>
-                                            <input type="text" data-style="0 0 1 0 width 0px" placeholder="Auto -">
+                                            <div class="style_input">
+                                                <input type="text" data-style="0 0 1 0 width 0px" placeholder="Auto">
+                                                <p class="suffix">px</p>
+                                            </div>
                                         </div>
                                         <div>
                                             <p class="--light">Min W</p>
-                                            <input type="text" data-style="0 0 1 0 minWidth 0px" placeholder="- px">
+                                            <div class="style_input">
+                                                <input type="text" data-style="0 0 1 0 minWidth 0px" placeholder="-">
+                                                <p class="suffix">px</p>
+                                            </div>
                                         </div>
                                         <div>
                                             <p class="--light">Max W</p>
-                                            <input type="text" data-style="0 0 1 0 maxWidth 0px" placeholder="- px">
+                                            <div class="style_input">
+                                                <input type="text" data-style="0 0 1 0 maxWidth 0px" placeholder="-">
+                                                <p class="suffix">px</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="right_col">
                                         <div>
                                             <p class="--light">Height</p>
-                                            <input type="text" data-style="0 0 1 0 height 0px" placeholder="Auto -">
+                                            <div class="style_input">
+                                                <input type="text" data-style="0 0 1 0 height 0px" placeholder="Auto">
+                                                <p class="suffix">px</p>
+                                            </div>
                                         </div>
                                         <div>
                                             <p class="--light">Min H</p>
-                                            <input type="text" data-style="0 0 1 0 minHeight 0px" placeholder="- px">
+                                            <div class="style_input">
+                                                <input type="text" data-style="0 0 1 0 minHeight 0px" placeholder="-">
+                                                <p class="suffix">px</p>
+                                            </div>
                                         </div>
                                         <div>
                                             <p class="--light">Max H</p>
-                                            <input type="text" data-style="0 0 1 0 maxHeight 0px" placeholder="- px">
+                                            <div class="style_input">
+                                                <input type="text" data-style="0 0 1 0 maxHeight 0px" placeholder="-">
+                                                <p class="suffix">px</p>
+                                            </div>
                                         </div>
                                     </div>
 
 
                                 </div>
+
+                                <div class="right_row" style="border-top: #343434 solid 1px;">
+                                    <p class="--light">Overflow</p>
+                                    <div class="overflow">
+                                        <div data-style="1 0 0 0 overflow visible">😀</div>
+                                        <div data-style="1 0 0 0 overflow hidden">😀</div>
+                                        <div data-style="1 0 0 0 overflow scroll">😀</div>
+                                        <div data-style="1 0 0 0 overflow auto">😀</div>
+                                    </div>
+                                </div>
+
+                                <div class="right_row">
+                                    <p class="--light">Fit</p>
+                                    <div class="fit">
+                                        <select name="objectFit" data-style="0 0 1 0 objectFit" value="fill">
+                                            <option value="fill">fill</option>
+                                            <option value="contain">contain</option>
+                                            <option value="none">none</option>
+                                            <option value="scale-down">scale-down</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="reveal_tab">
                                 <div class="right_row reveal_tab_btn">
                                     <div>
-                                        🔽 <h2>Layout</h2>
+                                        🔽 <h2>position</h2>
                                     </div>
                                 </div>
                                 <div class="right_row">
-                                    <p class="--light">Display</p>
-
+                                    <p class="--light">Position</p>
+                                    <div class="fit">
+                                        <select name="position" data-style="0 0 1 0 position" value="static">
+                                            <option value="static">static</option>
+                                            <option value="relative">relative</option>
+                                            <option value="absolute">absolute</option>
+                                            <option value="fixed">fixed</option>
+                                            <option value="sticky">sticky</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="right_row" style="border-top: #343434 solid 1px;">
+                                    <p class="--light">float</p>
+                                    <div class="float">
+                                        <div data-style="1 0 0 0 float none">🆗</div>
+                                        <div data-style="1 0 0 0 float left">🆗</div>
+                                        <div data-style="1 0 0 0 float right">🆗</div>
+                                    </div>
+                                </div>
+                                <div class="right_row">
+                                    <p class="--light">clear</p>
+                                    <div class="clear">
+                                        <div data-style="1 0 0 0 clear none">🛑</div>
+                                        <div data-style="1 0 0 0 clear left">🛑</div>
+                                        <div data-style="1 0 0 0 clear right">🛑</div>
+                                        <div data-style="1 0 0 0 clear both">🛑</div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="reveal_tab">
                                 <div class="right_row reveal_tab_btn">
                                     <div>
-                                        🔽 <h2>Layout</h2>
+                                        🔽 <h2>Typography</h2>
                                     </div>
                                 </div>
                                 <div class="right_row">
-                                    <p class="--light">Display</p>
-
+                                    <p class="--light">Font</p>
+                                    <div class="fit">
+                                        <select name="fontFamily" data-style="0 0 1 0 fontFamily" value="arial">
+                                            <option value="arial">arial</option>
+                                            <option value="roboto">roboto</option>
+                                            <option value=" -apple-system"> -apple-system</option>
+                                            <option value="BlinkMacSystemFont">BlinkMacSystemFont</option>
+                                            <option value="Segoe UI">'Segoe UI'</option>
+                                            <option value="Open Sans">'Open Sans'</option>
+                                            <option value="Ubuntu">Ubuntu</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="right_row">
+                                    <p class="--light">Weight</p>
+                                    <div class="fit">
+                                        <select name="fontWeight" data-style="0 0 1 0 fontWeight" value="roboto">
+                                            <option value="200">200</option>
+                                            <option value="300">300</option>
+                                            <option value="400">400</option>
+                                            <option value="600">600</option>
+                                            <option value="700">700</option>
+                                            <option value="900">900</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 

@@ -55,6 +55,7 @@
 
 .right_row,.right_row div{
     display: flex;
+    align-items: center;
 }
 
 .reveal_tab{
@@ -88,26 +89,65 @@
     border-radius: 2px;
 }
 
-.display div{
+.display div[data-style],.overflow div[data-style],.float div[data-style],.clear div[data-style]{
     cursor: pointer;
 }
 
-.right_col div{
+.right_col>div{
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
     padding: 5px 0;
 }
+.style .right_col .style_input{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    align-items: center;
+}
 .style .right_col input{
-    width: 50px;
+    width: 40px;
     height: 24px;
     background: #292929;
-    border: none;
     color: #fff;
     padding: 5px;
-    border-radius: 2px;
+    border-radius: 2px 0px 0px 2px;
+    border: 1px transparent solid;
 }
 .style .right_col input:focus{
-    outline: 1px #111 solid;
+    border: 1px dodgerblue solid;
+    outline: none;
+}
+.style .right_col .suffix{
+    background: #4e4e4e;
+    border-radius: 0px 2px 2px 0px;
+    height: 24px;
+    width:24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 3px;
+    /* margin-left: 1px; */
+    cursor: pointer;
+}
+.style .right_col .suffix:hover{
+    background: #5a5a5a;
+}
+
+.style select{
+    background: #666;
+    color: #fff;
+    border: #333 solid 1px;
+    height: 24px;
+    border-radius: 2px;
+}
+.style select:focus{
+    border-color: dodgerblue;
+    outline: none;
+    background: #444;
+}
+.style select option{
+    border:none;
+    
 }

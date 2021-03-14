@@ -9,7 +9,6 @@ import {
 } from "./iframe";
 
 const style = {
-    // id: '',
     display: '',
     margin: '',
     width: '',
@@ -18,7 +17,12 @@ const style = {
     height: '',
     minHeight: '',
     maxHeight: '',
+    objectFit: ''
 };
+
+const suffixArr = ['px', 'vh', 'vw', '%', 'rem', 'em'];
+const regexSuffix = new RegExp(/(px)|(vh)|(vw)|(%)|(rem)|(em)|(deg)+/, 'g');
+const removeNum = new RegExp(/(\d)|(-)+/, 'g');
 
 //style sheet 
 const sheet = idocument.getElementById('main_style').sheet;
@@ -54,18 +58,20 @@ $('[data-style]', true).forEach(cur => {
     //input
     if (s[2] == true) {
         cur.addEventListener('input', input);
-        cur.addEventListener('focus', e => {
-            if (active) {
-                document.addEventListener('keydown', arrow);
-            }
+        if (s[5]) {
+            cur.addEventListener('focus', e => {
+                if (active) {
+                    document.addEventListener('keydown', arrow);
+                }
 
-        })
-        cur.addEventListener('blur', e => {
-            if (active) {
-                document.removeEventListener('keydown', arrow);
-            }
-
-        })
+            })
+            cur.addEventListener('blur', e => {
+                if (active) {
+                    document.removeEventListener('keydown', arrow);
+                }
+                e.target.value = e.target.value.replace(/([a-z])+/gi, '');
+            })
+        }
     }
 
     //drag
@@ -80,28 +86,29 @@ function arrow(e) {
 
     if (e.keyCode == '38') {
         // up arrow
-        let v = parseFloat(e.target.value.replace(/(px)|(vh)|(vw)|(%)+/g,''));
-        e.target.value == ''?v = -1:0;
-        setStyle(s[4], (v + 1) + s[5].replace(/(\d)|(-)+/g,''));
+        let v = parseFloat(e.target.value.replace(regexSuffix, ''));
+        e.target.value == '' ? v = -1 : 0;
+        setStyle(s[4], (v + 1) + s[5].replace(removeNum, ''));
         e.target.value = v + 1;
 
     } else if (e.keyCode == '40') {
         // down arrow
-        let v = parseFloat(e.target.value.replace(/(px)|(vh)|(vw)|(%)+/g,''));
-        e.target.value == ''?v = -1:0;
-        if(s[5].includes('-')){
-            setStyle(s[4], (v - 1) + s[5].replace(/(\d)|(-)+/g,''));
+        let v = parseFloat(e.target.value.replace(regexSuffix, ''));
+        e.target.value == '' ? v = -1 : 0;
+        if (s[5].includes('-')) {
+            setStyle(s[4], (v - 1) + s[5].replace(removeNum, ''));
             e.target.value = v - 1;
-        }else if(v>0){
-            setStyle(s[4], (v - 1) + s[5].replace(/(\d)|(-)+/g,''));
+        } else if (v > 0) {
+            setStyle(s[4], (v - 1) + s[5].replace(removeNum, ''));
             e.target.value = v - 1;
         }
-        
-    }else if(e.keyCode == '13'){
-        e.target.value = e.target.value.replace(/(px)|(vh)|(vw)|(%)+/g,'');
+
+    } else if (e.keyCode == '13') {
+        //e.target.value = e.target.value.replace(/([a-z])+/gi, '');
+        e.target.blur();
     }
 
-    getSuffix(s,e.target.value,e.target);
+    getSuffix(s, e.target.value, e.target);
 }
 
 
@@ -119,20 +126,20 @@ function click(e) {
             setStyle(s[4], s[5]);
             e.target.classList.add('active_style');
 
-            const flexMore=$('.flex--more');
-            const gridMore=$('.grid--more');
-            if(s[5] == 'flex'){
-                flexMore.parentElement.style.display='flex';
-                flexMore.style.display='block';
-                gridMore.style.display='none';
-            }else if(s[5] == 'grid'){
-                flexMore.parentElement.style.display='flex';
-                gridMore.style.display='block';
-                flexMore.style.display='none';
-            }else{
-                flexMore.style.display='none';
-                gridMore.style.display='none';
-                flexMore.parentElement.style.display='none';
+            const flexMore = $('.flex--more');
+            const gridMore = $('.grid--more');
+            if (s[5] == 'flex') {
+                flexMore.parentElement.style.display = 'flex';
+                flexMore.style.display = 'block';
+                gridMore.style.display = 'none';
+            } else if (s[5] == 'grid') {
+                flexMore.parentElement.style.display = 'flex';
+                gridMore.style.display = 'block';
+                flexMore.style.display = 'none';
+            } else {
+                flexMore.style.display = 'none';
+                gridMore.style.display = 'none';
+                flexMore.parentElement.style.display = 'none';
             }
         }
     }
@@ -141,8 +148,17 @@ function click(e) {
 function input(e) {
     if (active) {
         const s = e.target.dataset.style.split(' ');
-        const suffix=getSuffix(s,e.target.value,e.target);
-        setStyle(s[4], e.target.value.replace(/(px)|(vh)|(vw)|(%)+/g, '') + suffix);
+        const suffix = getSuffix(s, e.target.value, e.target);
+        console.log(e.target.value != '', suffix)
+        if (e.target.value != '' && suffix) {
+            setStyle(s[4], e.target.value.replace(regexSuffix, '') + suffix)
+        } else if (e.target.value != '' && suffix == undefined) {
+            console.log(s[4], e.target.value)
+            setStyle(s[4], e.target.value);
+        } else {
+            console.log('remove')
+            setStyle(s[4], '');
+        };
     }
 }
 
@@ -163,15 +179,17 @@ function findSelector(t) {
 }
 
 function setStyle(s, p) {
+
     const cssom = findSelector(active.className);
     if (cssom) {
         cssom.style[s] = p;
-        console.log(cssom);
+        // console.log(cssom);
     } else {
         if (!active.className) {
             active.classList.add(`${active.tagName}${Math.floor(Math.random()*1000)}`)
         }
-        sheet.cssRules[sheetNum].insertRule(`.${active.className}{${s}:${p}}`, 1)
+        sheet.cssRules[sheetNum].insertRule(`.${active.className}{}`, 1);
+        findSelector(active.className).style[s] = p;
     }
 }
 
@@ -212,8 +230,6 @@ function viewStyle() {
         //click
         if (s[0] == true && style[s[4]] === s[5]) {
             ele.classList.add('active_style');
-        } else {
-
         }
 
         //dblclick
@@ -223,8 +239,15 @@ function viewStyle() {
 
         //input
         if (s[2] == true) {
-            const suffix=getSuffix(s,style[s[4]],ele);
-            ele.value = style[s[4]].replace(suffix,'');
+            if (style[s[4]] && ele.tagName == 'SELECT') {
+                ele.value = style[s[4]];
+            }else if(ele.tagName != 'SELECT'){
+                const suffix = getSuffix(s, style[s[4]], ele);
+                ele.value = style[s[4]].replace(suffix, '');
+            }else if(ele.tagName == 'SELECT'){
+                ele.value = ele.querySelector('option').value;
+            }
+            
         }
 
         //drag
@@ -256,53 +279,70 @@ function resetActiveStyle(e) {
 
 
 function getSuffix(s, p, e) {
-    let a;
-    if (p != '') {
-    // console.log('inside')
-        e.style.backgroundColor='';
-
-        if (p.includes('px')) {
-            a = 'px';
-        } else if (p.includes('vh')) {
-            a = 'vh';
-        } else if (p.includes('vw')) {
-            a = 'vw';
-        } else if (p.includes('%')) {
-            a = '%';
+    if (s[5] != undefined) {
+        let a;
+        e.style.borderColor = '';
+        e.style.color = '';
 
 
-        }else if(p.split(/([a-z])+/gi).length>1){
-            a=s[5].replace(/(\d)|(-)+/g,'');
-            e.style.backgroundColor='#bb3b3b82';
-        }else{
-            a=s[5].replace(/(\d)|(-)+/g,'');
+        if (p != '') {
+            const ptext = p.replace(removeNum, '');
+            // console.log('inside')
+
+            a = suffixArr.find(ele => ele == ptext);
+
+            if (a != undefined) {
+                e.value = e.value.replace(ptext, '')
+
+            } else if (ptext.length == 0 && a == undefined) {
+                //nothing
+                a = s[5].replace(removeNum, '');
+                e.style.borderColor = '';
+                e.style.color = '';
+            } else if (ptext.length > 0 && a == undefined) {
+                //err
+                a = s[5].replace(removeNum, '');
+                e.style.borderColor = '#e04f4f';
+                e.style.color = '#e04f4f';
+            } else {
+                a = s[5].replace(removeNum, '')
+            }
+        } else {
+            if (s[5] != 'deg') {
+                a = 'px';
+            } else {
+                a = s[5].replace(removeNum, '');
+            }
         }
-    }else{
-        a=s[5].replace(/(\d)|(-)+/g,'');
+
+
+        setSuffix(s, a, e);
+        return a;
     }
-    // console.log(a)
-    setSuffix(s, a, e);
-    return a;
+
 }
 
 function setSuffix(s, v, e) {
     let b = '';
     s.forEach((cur, i) => {
         if (i == 5) {
-            if (s.length-1 == i) {
-                b += s[5].replace(/(px)|(vh)|(vw)|(%)+/g, v)
-            }else{
-                b +=s[5].replace(/(px)|(vh)|(vw)|(%)+/g, v)+' ';
+            if (s.length - 1 == i) {
+                b += s[5].replace(regexSuffix, v)
+            } else {
+                b += s[5].replace(regexSuffix, v) + ' ';
             };
         } else {
-            
-            if (s.length-1 == i) {
+
+            if (s.length - 1 == i) {
                 b += cur;
-            }else{
-                b +=cur+' '
+            } else {
+                b += cur + ' '
             };
         }
     })
+    // console.log(b);
+    e.nextSibling.nextSibling.innerHTML = v;
+    // console.log(e.nextSibling.nextSibling)
     e.dataset.style = b;
 }
 
