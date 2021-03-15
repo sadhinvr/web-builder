@@ -49,8 +49,18 @@
     background: #404040;
 }
 
-.active_style{
+.style .active_style{
     opacity: .5;
+}
+
+.style .active_style_property{
+    color: rgb(139, 190, 250);
+    background: rgba(76, 152, 241, 0.15);
+    cursor: pointer;
+}
+
+.style .--light{
+    padding: 2px;
 }
 
 .right_row,.right_row div{
@@ -61,11 +71,22 @@
 .reveal_tab{
     /* margin-top: 10px; */
 }
-
 .reveal_tab_btn{
     background: #292929;
     cursor: pointer;
+    margin-bottom: 6px;
 }
+.reveal_tab--sub{
+    padding: 0px 8px;
+}
+.reveal_tab--sub .right_row{
+    padding: 5px 0px;
+}
+.reveal_tab--sub .reveal_tab_btn{
+    background: #555;
+    padding: 4px;
+}
+
 
 .style>.right_row:first-child{
     border-bottom: #333 solid 1px;
@@ -89,8 +110,19 @@
     border-radius: 2px;
 }
 
-.display div[data-style],.overflow div[data-style],.float div[data-style],.clear div[data-style]{
+:is(.display ,.overflow ,.float,.clear) div[data-style]{
     cursor: pointer;
+    height: 24px;
+    padding: 5px;
+    border: #3a3a3a solid 1px;
+    border-right: none;
+    background: #555;
+}
+:is(.display ,.overflow ,.float,.clear) div[data-style]:last-child{
+    border-right: #3a3a3a solid 1px;
+}
+:is(.display ,.overflow ,.float,.clear) div[data-style]:hover{
+    background: #4e4e4e;
 }
 
 .right_col>div{
@@ -100,13 +132,13 @@
     align-items: center;
     padding: 5px 0;
 }
-.style .right_col .style_input{
+.style .style_input{
     position: relative;
     display: grid;
     grid-template-columns: repeat(2,auto);
     align-items: center;
 }
-.style .right_col input{
+.style input{
     width: 40px;
     height: 24px;
     background: #292929;
@@ -115,11 +147,16 @@
     border-radius: 2px 0px 0px 2px;
     border: 1px transparent solid;
 }
-.style .right_col input:focus{
+.style input[type="range"]{
+    width:auto;
+    max-width: 90px;
+    padding: 0;
+}
+.style input:focus{
     border: 1px dodgerblue solid;
     outline: none;
 }
-.style .right_col .suffix{
+.style .suffix{
     background: #4e4e4e;
     border-radius: 0px 2px 2px 0px;
     height: 24px;
@@ -131,7 +168,7 @@
     /* margin-left: 1px; */
     cursor: pointer;
 }
-.style .right_col .suffix:hover{
+.style .suffix:hover{
     background: #5a5a5a;
 }
 

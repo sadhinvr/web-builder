@@ -8,17 +8,8 @@ import {
     idocument
 } from "./iframe";
 
-const style = {
-    display: '',
-    margin: '',
-    width: '',
-    minWidth: '',
-    maxWidth: '',
-    height: '',
-    minHeight: '',
-    maxHeight: '',
-    objectFit: ''
-};
+
+let style = {};
 
 const suffixArr = ['px', 'vh', 'vw', '%', 'rem', 'em'];
 const regexSuffix = new RegExp(/(px)|(vh)|(vw)|(%)|(rem)|(em)|(deg)+/, 'g');
@@ -26,11 +17,21 @@ const removeNum = new RegExp(/(\d)|(-)+/, 'g');
 
 //style sheet 
 const sheet = idocument.getElementById('main_style').sheet;
-sheet.insertRule(':root{}', 0);
-sheet.insertRule('@media all {*{box-sizing:border-box;} .named{width:20vh ;min-width:150px;}}', 1);
-sheet.insertRule('@media (max-width:991px){body{color:#333;}}', 2);
-sheet.insertRule('@media (max-width:767px){}', 3);
-sheet.insertRule('@media (max-width:479px){}', 4);
+
+if (window.localStorage.getItem('stylesheet')) {
+    let storedData = JSON.parse(window.localStorage.getItem('stylesheet'));
+    for (const cur in storedData) {
+        sheet.insertRule(storedData[cur], cur);
+    }
+} else {
+    sheet.insertRule(':root{}', 0);
+    sheet.insertRule('@media all {*{box-sizing:border-box;} .named{width:20vh ;min-width:150px;}}', 1);
+    sheet.insertRule('@media (max-width:991px){body{color:#333;}}', 2);
+    sheet.insertRule('@media (max-width:767px){}', 3);
+    sheet.insertRule('@media (max-width:479px){}', 4);
+}
+
+
 
 sheet.cssRules[1].__sad_style = 'main';
 sheet.cssRules[2].__sad_style = 'medium';
@@ -39,7 +40,15 @@ sheet.cssRules[4].__sad_style = 'tiny';
 
 let sheetNum = 1;
 
+//local storage
 
+function storeAllStyle() {
+    let storeStyle = {};
+    for (let i = 0; sheet.cssRules.length > i; i++) {
+        storeStyle[i] = sheet.cssRules[i].cssText;
+    }
+    window.localStorage.setItem('stylesheet', JSON.stringify(storeStyle));
+}
 
 //eventListener
 $('[data-style]', true).forEach(cur => {
@@ -69,7 +78,7 @@ $('[data-style]', true).forEach(cur => {
                 if (active) {
                     document.removeEventListener('keydown', arrow);
                 }
-                e.target.value = e.target.value.replace(/([a-z])+/gi, '');
+                e.currentTarget.value = e.currentTarget.value.replace(/([a-z])+/gi, '');
             })
         }
     }
@@ -93,7 +102,7 @@ function arrow(e) {
 
     } else if (e.keyCode == '40') {
         // down arrow
-        let v = parseFloat(e.target.value.replace(regexSuffix, ''));
+        let v = parseFloat(e.target.value.replace(regexSuffix, ''), e.target);
         e.target.value == '' ? v = -1 : 0;
         if (s[5].includes('-')) {
             setStyle(s[4], (v - 1) + s[5].replace(removeNum, ''));
@@ -104,7 +113,7 @@ function arrow(e) {
         }
 
     } else if (e.keyCode == '13') {
-        //e.target.value = e.target.value.replace(/([a-z])+/gi, '');
+        //enter
         e.target.blur();
     }
 
@@ -116,15 +125,15 @@ function arrow(e) {
 
 function click(e) {
     if (active) {
-        const s = e.target.dataset.style.split(' ');
-        if (e.target.classList && e.target.classList.contains('active_style')) {
-            resetActiveStyle(e.target)
+        const s = e.currentTarget.dataset.style.split(' ');
+        if (e.currentTarget.classList && e.currentTarget.classList.contains('active_style')) {
+            resetActiveStyle(e.currentTarget)
             setStyle(s[4], '');
-            e.target.classList.remove('active_style');
+            e.currentTarget.classList.remove('active_style');
         } else {
-            resetActiveStyle(e.target);
+            resetActiveStyle(e.currentTarget);
             setStyle(s[4], s[5]);
-            e.target.classList.add('active_style');
+            e.currentTarget.classList.add('active_style');
 
             const flexMore = $('.flex--more');
             const gridMore = $('.grid--more');
@@ -147,16 +156,13 @@ function click(e) {
 
 function input(e) {
     if (active) {
-        const s = e.target.dataset.style.split(' ');
-        const suffix = getSuffix(s, e.target.value, e.target);
-        console.log(e.target.value != '', suffix)
-        if (e.target.value != '' && suffix) {
-            setStyle(s[4], e.target.value.replace(regexSuffix, '') + suffix)
-        } else if (e.target.value != '' && suffix == undefined) {
-            console.log(s[4], e.target.value)
-            setStyle(s[4], e.target.value);
+        const s = e.currentTarget.dataset.style.split(' ');
+        const suffix = getSuffix(s, e.currentTarget.value, e.currentTarget);
+        if (e.currentTarget.value != '' && suffix) {
+            setStyle(s[4], e.currentTarget.value.replace(regexSuffix, '') + suffix)
+        } else if (e.currentTarget.value != '' && suffix == undefined) {
+            setStyle(s[4], e.currentTarget.value);
         } else {
-            console.log('remove')
             setStyle(s[4], '');
         };
     }
@@ -178,27 +184,29 @@ function findSelector(t) {
     return selector;
 }
 
-function setStyle(s, p) {
+function setStyle(st, p) {
 
     const cssom = findSelector(active.className);
     if (cssom) {
-        cssom.style[s] = p;
+        cssom.style[st] = p;
         // console.log(cssom);
+        getStyle(false);
     } else {
         if (!active.className) {
             active.classList.add(`${active.tagName}${Math.floor(Math.random()*1000)}`)
         }
         sheet.cssRules[sheetNum].insertRule(`.${active.className}{}`, 1);
-        findSelector(active.className).style[s] = p;
+        findSelector(active.className).style[st] = p;
+        getStyle(false);
     }
+
+    storeAllStyle();
 }
 
 
-function getStyle() {
+function getStyle(rewrite = true) {
     //intial
-    for (const cur in style) {
-        style[cur] = '';
-    }
+    style = '';
     resetActiveStyle();
     const cssom = findSelector(active.className);
 
@@ -212,49 +220,76 @@ function getStyle() {
         $('#countEle').parentElement.style.display = '';
 
         if (cssom) {
-            // console.log(sheet.cssRules[1].cssRules[i].style.cssText)
-            for (const cur in style) {
-                style[cur] = cssom.style[cur];
-            }
+            style = cssom.style;
         }
     }
-    viewStyle();
+    viewStyle(rewrite);
 
 }
 
-function viewStyle() {
+function viewStyle(rewrite = true) {
+    if (rewrite) {
+        if (style == '') {
+            $('[data-style]', true).forEach(ele => {
+                const s = ele.dataset.style.split(' ');
+                color(s, ele);
 
-    $('[data-style]', true).forEach(ele => {
-        const s = ele.dataset.style.split(' ');
-
-        //click
-        if (s[0] == true && style[s[4]] === s[5]) {
-            ele.classList.add('active_style');
+                //input
+                if (s[2] == true) {
+                    if (ele.tagName == 'SELECT') {
+                        ele.value = ele.querySelector('option').value;
+                    }
+                    if (ele.type == 'color') {
+                        ele.value = "#000000";
+                    }
+                }
+            })
+            return 0;
         }
 
-        //dblclick
-        if (s[1] == true) {
+        $('[data-style]', true).forEach(ele => {
+            const s = ele.dataset.style.split(' ');
+            color(s, ele);
 
-        }
-
-        //input
-        if (s[2] == true) {
-            if (style[s[4]] && ele.tagName == 'SELECT') {
-                ele.value = style[s[4]];
-            }else if(ele.tagName != 'SELECT'){
-                const suffix = getSuffix(s, style[s[4]], ele);
-                ele.value = style[s[4]].replace(suffix, '');
-            }else if(ele.tagName == 'SELECT'){
-                ele.value = ele.querySelector('option').value;
+            //click
+            if (s[0] == true && style[s[4]] === s[5]) {
+                ele.classList.add('active_style');
+                // console.log(ele.classList)
             }
-            
-        }
 
-        //drag
-        if (s[3] == true) {
+            //dblclick
+            if (s[1] == true) {
 
-        }
-    })
+            }
+
+            //input
+            if (s[2] == true) {
+                if (style[s[4]] && ele.tagName == 'SELECT') {
+                    ele.value = style[s[4]];
+                } else if (ele.tagName != 'SELECT') {
+                    const suffix = getSuffix(s, style[s[4]], ele);
+                    if (ele.type == 'color') {
+                        style[s[4]] != '' ? ele.value = rgbToHex(...style[s[4]].replace(/^rgba?\(|\s+|\)$/g, '').split(',')) : ele.value = "#000000";
+                    } else {
+                        ele.value = style[s[4]].replace(suffix, '');
+                    }
+                } else if (ele.tagName == 'SELECT') {
+                    ele.value = ele.querySelector('option').value;
+                }
+
+            }
+
+            //drag
+            if (s[3] == true) {
+
+            }
+        })
+    }else{
+        $('[data-style]', true).forEach(ele => {
+            const s = ele.dataset.style.split(' ');
+            color(s, ele);
+        })
+    }
 
 }
 
@@ -283,7 +318,6 @@ function getSuffix(s, p, e) {
         let a;
         e.style.borderColor = '';
         e.style.color = '';
-
 
         if (p != '') {
             const ptext = p.replace(removeNum, '');
@@ -315,7 +349,6 @@ function getSuffix(s, p, e) {
             }
         }
 
-
         setSuffix(s, a, e);
         return a;
     }
@@ -340,11 +373,71 @@ function setSuffix(s, v, e) {
             };
         }
     })
-    // console.log(b);
-    e.nextSibling.nextSibling.innerHTML = v;
-    // console.log(e.nextSibling.nextSibling)
+    e.nextElementSibling.innerHTML = v;
     e.dataset.style = b;
 }
+
+function color(s, ele, st = 1) {
+    if (!style[s[4]] || st == '') {
+        if (ele.previousElementSibling && ele.previousElementSibling.classList.contains('active_style_property')) {
+            ele.previousElementSibling.classList.remove('active_style_property');
+            // ele.previousElementSibling.removeEventListener()
+        } else if (ele.parentElement.previousElementSibling.classList.contains('active_style_property')) {
+            ele.parentElement.previousElementSibling.classList.remove('active_style_property');
+            // ele.parentElement.previousElementSibling.removeEventListener()
+        }
+    } else if (style[s[4]] != '') {
+        if (ele.previousElementSibling && ele.previousElementSibling.classList.contains('--light')) {
+            ele.previousElementSibling.classList.add('active_style_property');
+            // ele.previousElementSibling.addEventListener();
+        } else {
+            ele.parentElement.previousElementSibling.classList.add('active_style_property');
+            // ele.previousElementSibling.addEventListener();
+        }
+    }
+}
+
+
+
+
+////////////////////////////////////////
+
+
+
+function rgba2hex(orig) {
+    let a, isPercent,
+        rgb = orig.replace(/\s/g, '').match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
+        alpha = (rgb && rgb[4] || "").trim(),
+        hex = rgb ?
+        (rgb[1] | 1 << 8).toString(16).slice(1) +
+        (rgb[2] | 1 << 8).toString(16).slice(1) +
+        (rgb[3] | 1 << 8).toString(16).slice(1) : orig;
+
+    if (alpha !== "") {
+        a = alpha;
+    } else {
+        a = 1;
+    }
+    // multiply before convert to HEX
+    a = ((a * 255) | 1 << 8).toString(16).slice(1)
+    hex = hex + a;
+
+    return hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (parseInt(r) << 16) + (parseInt(g) << 8) + parseInt(b)).toString(16).slice(1);
+}
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+// console.log(rgbToHex(...'rgb(51,51,51)'.replace(/^rgba?\(|\s+|\)$/g, '').split(',')))
 
 
 export {
