@@ -51,6 +51,61 @@ function storeAllStyle() {
 }
 
 //eventListener
+$('.reveal_tab_btn',true).forEach(cur=>{
+    cur.addEventListener('click',tab);
+})
+
+$('.style .border>div',true).forEach(cur=>{
+    cur.addEventListener('click',(e)=>{
+        if(!active){return 0}
+        $('.active_border')?$('.active_border').classList.remove('active_border'):0;
+        e.currentTarget.classList.add('active_border'); 
+
+        //border style
+        $('.borderStyle',true).forEach(ele=>{
+            let b='';
+            const s=ele.dataset.style.split(' ');
+            s.forEach((c, i) => {
+                if(i != 4){
+                    i != s.length -1? b+=c+' ':b+=c;
+                }else{
+                    i != s.length -1? b+='border'+e.currentTarget.dataset.border+'Style'+' ':b+='border'+e.currentTarget.dataset.border+'Style';
+                }
+            })
+
+            ele.dataset.style =b;
+        })
+
+        //border width
+        let b='';
+        const bw=$('.borderWidth');
+        const sw=bw.dataset.style.split(' ');
+        sw.forEach((c, i) => {
+            if(i != 4){
+                i != sw.length -1? b+=c+' ':b+=c;
+            }else{
+                i != sw.length -1? b+='border'+e.currentTarget.dataset.border+'Width'+' ':b+='border'+e.currentTarget.dataset.border+'Width';
+            }
+        })
+        bw.dataset.style=b;
+
+        //border color
+        b='';
+        const bc=$('.borderColor');
+        const sc=bc.dataset.style.split(' ');
+        sc.forEach((c, i) => {
+            if(i != 4){
+                i != sc.length -1? b+=c+' ':b+=c;
+            }else{
+                i != sc.length -1? b+='border'+e.currentTarget.dataset.border+'Color'+' ':b+='border'+e.currentTarget.dataset.border+'Color';
+            }
+        })
+        bc.dataset.style=b;
+
+        getStyle();
+    });
+})
+
 $('[data-style]', true).forEach(cur => {
     const s = cur.dataset.style.split(' ');
 
@@ -229,32 +284,34 @@ function getStyle(rewrite = true) {
 
 function viewStyle(rewrite = true) {
     if (rewrite) {
-        if (style == '') {
-            $('[data-style]', true).forEach(ele => {
-                const s = ele.dataset.style.split(' ');
-                color(s, ele);
+        // if (style == '') {
+        //     $('[data-style]', true).forEach(ele => {
+        //         const s = ele.dataset.style.split(' ');
+        //         color(s, ele);
 
-                //input
-                if (s[2] == true) {
-                    if (ele.tagName == 'SELECT') {
-                        ele.value = ele.querySelector('option').value;
-                    }
-                    if (ele.type == 'color') {
-                        ele.value = "#000000";
-                    }
-                }
-            })
-            return 0;
-        }
+        //         //input
+        //         if (s[2] == true) {
+        //             if (ele.tagName == 'SELECT') {
+        //                 ele.value = ele.querySelector('option').value;
+        //             }
+        //             if (ele.type == 'color') {
+        //                 ele.value = "#000000";
+        //             }
+        //         }
+        //     })
+        //     return 0;
+        // }
 
         $('[data-style]', true).forEach(ele => {
             const s = ele.dataset.style.split(' ');
             color(s, ele);
+            
 
             //click
             if (s[0] == true && style[s[4]] === s[5]) {
                 ele.classList.add('active_style');
                 // console.log(ele.classList)
+                
             }
 
             //dblclick
@@ -264,18 +321,34 @@ function viewStyle(rewrite = true) {
 
             //input
             if (s[2] == true) {
-                if (style[s[4]] && ele.tagName == 'SELECT') {
-                    ele.value = style[s[4]];
-                } else if (ele.tagName != 'SELECT') {
+                //select tag
+                if (ele.tagName == 'SELECT') {
+                    if(style[s[4]]){
+                        ele.value = style[s[4]]
+                    }else{
+                        ele.value = ele.querySelector('option').value
+                        console.log(ele.value)
+                    }
+                    
+                } 
+
+                ////////////////////
+                if(style[s[4]] == undefined){return 0}
+                ///////////////////
+
+                // border width
+                else if(ele.classList.contains('borderWidth')){
+
+                }
+                // other tag
+                else{
                     const suffix = getSuffix(s, style[s[4]], ele);
                     if (ele.type == 'color') {
-                        style[s[4]] != '' ? ele.value = rgbToHex(...style[s[4]].replace(/^rgba?\(|\s+|\)$/g, '').split(',')) : ele.value = "#000000";
+                        ele.value = style[s[4]]!=''?rgbToHex(...style[s[4]].replace(/^rgba?\(|\s+|\)$/g, '').split(',')) : ele.value = "#000000";
                     } else {
                         ele.value = style[s[4]].replace(suffix, '');
                     }
-                } else if (ele.tagName == 'SELECT') {
-                    ele.value = ele.querySelector('option').value;
-                }
+                } 
 
             }
 
@@ -319,7 +392,7 @@ function getSuffix(s, p, e) {
         e.style.borderColor = '';
         e.style.color = '';
 
-        if (p != '') {
+        if (p) {
             const ptext = p.replace(removeNum, '');
             // console.log('inside')
 
@@ -373,8 +446,14 @@ function setSuffix(s, v, e) {
             };
         }
     })
-    e.nextElementSibling.innerHTML = v;
-    e.dataset.style = b;
+    e.nextElementSibling?e.nextElementSibling.innerHTML = v:0;
+
+    if(e.name != 'inherit'){
+        e.dataset.style = b
+    }else{
+        e.dataset.style = b ;
+        e.parentElement.parentElement.querySelector('input[type="range"]').dataset.style = b;
+    }
 }
 
 function color(s, ele, st = 1) {
@@ -397,7 +476,17 @@ function color(s, ele, st = 1) {
     }
 }
 
-
+function tab(e){
+    if(e.currentTarget.classList.contains('open')){
+        e.currentTarget.classList.remove('open');
+        e.currentTarget.parentElement.style.height='';
+        e.currentTarget.firstElementChild.firstElementChild?e.currentTarget.firstElementChild.firstElementChild.style.transform="":e.currentTarget.lastElementChild.style.transform="";
+    }else{
+        e.currentTarget.classList.add('open');
+        e.currentTarget.parentElement.style.height=e.currentTarget.getBoundingClientRect().height+2+'px';
+        e.currentTarget.firstElementChild.firstElementChild?e.currentTarget.firstElementChild.firstElementChild.style.transform="rotate(-90deg)":e.currentTarget.lastElementChild.style.transform="rotate(-90deg)";
+    }
+}
 
 
 ////////////////////////////////////////

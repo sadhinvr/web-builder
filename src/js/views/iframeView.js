@@ -101,7 +101,7 @@ idocument.write(`
 </html>`);
 
 
-iwindow.addEventListener('load', () => {
+window.addEventListener('load', () => {
     if (window.localStorage.getItem('DOM')) {
         idocument.body.insertAdjacentHTML('afterbegin', window.localStorage.getItem('DOM'));
     }

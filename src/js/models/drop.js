@@ -14,11 +14,15 @@ import {
     iwindow
 } from './iframe';
 
-setTimeout(()=>{
-    idocument.querySelectorAll('[data-drag="10"]').forEach(cur=>{
-        cur.addEventListener('mousedown',mousedown);
-    })
-},1000)
+
+window.addEventListener('load',()=>{
+    setTimeout(()=>{
+        idocument.querySelectorAll('[data-drag="10"]').forEach(cur=>{
+            cur.addEventListener('mousedown',mousedown);
+        })
+    },2000)
+})
+
 
 
 function drop(data, pos, d = true) {
