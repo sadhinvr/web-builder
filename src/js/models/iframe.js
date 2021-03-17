@@ -13,11 +13,14 @@ iwindow.scrollTo(0,0);
 iframe.id = "iframe";
 
 setInterval(() => {
-    // console.log(idocument.body.innerHTML.replace(/<!---->(.|\n)*?<!---->/g,''))
+    // let getDom="";
+    // idocument.body.querySelectorAll('* :not(#dev)').forEach(cur=>{
+    //     getDom+=cur.outerHTML+'\n';
+    // })
     if(window.localStorage.getItem('DOM') !== idocument.body.innerHTML.replace(/<!---->(.|\n)*?<!---->/g,'')){
         window.localStorage.setItem('DOM',idocument.body.innerHTML.replace(/<!---->(.|\n)*?<!---->/g,''));
         console.log('saved');
     }
-}, 5000);
+}, 2000);
 
 export {iframe,idocument,iwindow};

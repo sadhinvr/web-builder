@@ -58,7 +58,7 @@ function mousedown(e) {
         if (!ifr) {
             if (active) {
                 // console.log(active)
-                pos = mouseOver(e, active.dataset.ele,true);
+                // pos = mouseOver(e, active.dataset.ele,true);
             }
         } else {
             data.name.style.opacity='.5';
@@ -115,7 +115,7 @@ function appendPos(e) {
 
 function iappendPos(e) {
     window.removeEventListener('mousemove', drag);
-    p = idocument.body;
+    p = idocument.body.querySelector('#dev');
     iwindow.addEventListener('mousemove', drag);
 
 

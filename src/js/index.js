@@ -11,4 +11,4 @@ import './models/drop';
 // import './models/position';
 import './views/iframeView';
 import './views/resize';
-
+import './views/delete'

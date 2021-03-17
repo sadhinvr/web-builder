@@ -261,7 +261,7 @@ function setStyle(st, p) {
 
 function getStyle(rewrite = true) {
     //intial
-    style = '';
+    style = [];
     resetActiveStyle();
     const cssom = findSelector(active.className);
 
@@ -305,9 +305,8 @@ function viewStyle(rewrite = true) {
         $('[data-style]', true).forEach(ele => {
             const s = ele.dataset.style.split(' ');
             color(s, ele);
-            
-
-            //click
+            style[s[4]]?0:style[s[4]]='';
+           //click
             if (s[0] == true && style[s[4]] === s[5]) {
                 ele.classList.add('active_style');
                 // console.log(ele.classList)
@@ -330,16 +329,9 @@ function viewStyle(rewrite = true) {
                         console.log(ele.value)
                     }
                     
-                } 
-
-                ////////////////////
-                if(style[s[4]] == undefined){return 0}
-                ///////////////////
-
-                // border width
-                else if(ele.classList.contains('borderWidth')){
-
                 }
+
+
                 // other tag
                 else{
                     const suffix = getSuffix(s, style[s[4]], ele);

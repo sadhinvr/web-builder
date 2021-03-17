@@ -170,7 +170,7 @@ function mouseLeave() {
 }
 
 function iframeAppend(html, pos) {
-    pos.insertAdjacentElement('afterbegin', html);
+    pos[0].insertAdjacentElement(pos[1], html);
 }
 
 export {

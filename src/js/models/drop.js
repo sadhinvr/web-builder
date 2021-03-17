@@ -29,7 +29,7 @@ function drop(data, pos, d = true) {
 
     // ready
     const dataEle = data.name.dataset.ele;
-    if (pos && pos !== data.name && pos !== data.name.parentElement) {
+    if (pos && pos[0] && pos[1] && pos !== data.name && pos !== data.name.parentElement) {
         // console.log(pos,Math.random())
         if (d) {
             //clone
@@ -45,9 +45,6 @@ function drop(data, pos, d = true) {
                 top: clone.offsetTop,
                 behavior: 'smooth'
             })
-            clone.focus({
-                preventScroll: true
-            })
 
         } else {
             iframeAppend(data.name, pos);
@@ -55,9 +52,6 @@ function drop(data, pos, d = true) {
                 left: data.name.offsetLeft,
                 top: data.name.offsetTop,
                 behavior: 'smooth'
-            })
-            data.name.focus({
-                preventScroll: true
             })
 
         }
@@ -79,6 +73,7 @@ function drop(data, pos, d = true) {
             }
         })
     }
+
     if (idocument.getElementById('curPos')) {
         idocument.getElementById('curPos').remove();
     };

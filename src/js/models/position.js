@@ -1,13 +1,14 @@
 import {
-    on, setStyleData
+    on,
+    setStyleData
 } from '../views/iframeView';
 
 import {
-    idocument
+    idocument, iwindow
 } from './iframe';
 
 //variable
-let pos;
+let pos = [];
 
 //create boxes
 const curPos = idocument.createElement('div');
@@ -17,7 +18,7 @@ curPos.style = 'position:absolute;pointer-events: none;';
 const cantake = {
     body: ['all'],
     div: ['all'],
-    container:['all'],
+    container: ['all'],
     section: ['all', ['section']],
     heading: ['none'],
     paragraph: ['none'],
@@ -25,69 +26,187 @@ const cantake = {
 }
 
 //mouseover
-const mouseOver = (e, childEle,clicked=false) => {
-    if (on || clicked) {
-        console.log(e.target.dataset.ele)
-        // if(e.clientY >= top - offset || )
+const mouseOver = (e, childEle) => {
+    if (on) {
 
-        if (childEle) {
+        let parentEle, parentRect, top, height, offset,style,width,margin1,margin2;
+
+        if (childEle && e.target.dataset.ele) {
             // variable
-            const parentEle = cantake[e.target.dataset.ele]
-            // all
-            if (e.target.dataset.ele && parentEle.includes('all')) {
-                // console.log('all')
-                all(childEle, e.target, parentEle);
+            parentEle = cantake[e.target.dataset.ele];
+            parentRect = e.target.getBoundingClientRect();
+
+
+            top = parentRect.top;
+            height = parentRect.height;
+            width = parentRect.width;
+            offset = height * .15;
+
+            //top
+            if (e.clientY <= top + offset) {
+                pos[1] = "beforebegin"
+
+                // all
+                if (parentEle.includes('all')) {
+                    e.target.tagName != 'BODY' ? all(childEle, e.target.parentElement, parentEle) : all(childEle, e.target, parentEle);
+                }
+
+                //none
+                none(childEle, parentEle, e.target)
+
             }
 
-            //none
-            if (e.target.dataset.ele && parentEle.includes('none')) {
-                pos = e.target.parentNode;
+            //middle top
+            else if (e.clientY > top + offset && e.clientY <= (top + offset) + ((height - offset) / 2)) {
+                pos[1] = "afterbegin";
+                // all
+                if (parentEle.includes('all')) {
+                    all(childEle, e.target, parentEle);
+                }
+
+                //none
+                none(childEle, parentEle, e.target)
             }
+
+            //middle bottom
+            else if (e.clientY > (top + offset) + ((height - offset) / 2) && e.clientY <= top + height - offset) {
+                pos[1] = "beforeend"
+                // all
+                if (parentEle.includes('all')) {
+                    all(childEle, e.target, parentEle);
+                }
+
+                //none
+                none(childEle, parentEle, e.target)
+
+                //bottom
+            } else {
+                pos[1] = "afterend"
+
+                // all
+                if (parentEle.includes('all')) {
+                    e.target.tagName != 'BODY' ? all(childEle, e.target.parentElement, parentEle) : all(childEle, e.target, parentEle);
+                }
+
+                //none
+                none(childEle, parentEle, e.target)
+            }
+
+
         } else {
-            pos = idocument.body;
+            pos[0] = idocument.body;
+            pos[1] = 'afterbegin'
         }
 
-        //rect
-        if (pos) {
-            idocument.getElementById('dev').appendChild(curPos);
-            const rect = pos.getBoundingClientRect();
-            const offset = rect.height / 4;
-            const top = rect.top;
-            const bottom = rect.top + rect.height;
+        rect(top, width, height, offset);
 
-            if (e.clientY >= top + offset && e.clientY <= bottom - offset) {
-                // console.log(e.target, e.clientY, top, e.clientY, bottom)
-                setStyleData(pos,curPos,false,'#1e90ff8a')
+    } else {
+        pos[0] = idocument.body;
+        pos[1] = 'afterbegin';
+    }
+
+    // rect
+    if (pos[0]) {
+        idocument.getElementById('dev').appendChild(curPos);
+    }
+
+    pos[0] && pos[0].tagName == 'HTML'?pos[0]=null:0;
+
+    return pos;
+
+}
+
+
+
+function rect(top, width, height, offset) {
+    const s = curPos.style;
+    s.height = 20 + 'px';
+    s.width = width + 'px';
+
+    if (pos[1] == 'beforebegin') {
+        s.top =iwindow.scrollY+ top - 20 + 'px';
+    }
+
+    if (pos[1] == 'afterbegin') {
+        s.top =iwindow.scrollY+ top + offset + 'px';
+        s.height = height - (offset * 2) + 'px';
+    }
+
+    if (pos[1] == 'beforeend') {
+        s.top =iwindow.scrollY+ top + offset + 'px';
+        s.height = height - (offset * 2) + 'px';
+    }
+
+    if (pos[1] == 'afterend') {
+        s.top =iwindow.scrollY+ top + height + 'px';
+    }
+}
+
+
+
+function none(childEle, parentEle, et) {
+    if (parentEle.includes('none')) {
+        if (parentEle.tagName != "BODY") {
+            if(pos[1] == 'afterend' || pos[1] == 'beforebegin'){
+                if(et.parentElement.dataset.ele.includes('none')){
+                    curPos.style.background = "#e2121261";
+                    pos[0] = null;
+                }else{
+                    all(childEle,et.parentElement,parentEle);
+                }
+            }else{
+                curPos.style.background = "#e2121261";
+                pos[0] = null;
             }
         }
-
-
-    }else{
-        pos=null;
     }
-    // console.log(pos)
-    return pos;
 }
 
 
 function all(childEle, et, arr) {
-    // console.log(arr.length == 2);
     if (arr.length == 2) {
         sub(childEle, et, arr);
     } else {
-        pos = et;
+        pos[0] = et;
+        curPos.style.background = '#1e90ff8a';
     }
 }
 
 function sub(childEle, et, arr) {
     if (arr[1].includes(childEle)) {
-        pos = et.parentNode;
+        pos[0] = null;
+        curPos.style.background = "#e2121261";
     } else {
         pos = et;
+        curPos.style.background = '#1e90ff8a';
     }
 }
+
+
+
+
 
 
 export {
     mouseOver
 };
+
+// //top
+// if(n == 'top'){
+
+// }
+
+// //mtop
+// else if(n == 'mtop'){
+
+// }
+
+// //mbottom
+// else if(n == 'mbottom'){
+
+// }
+
+// //bottom
+// else if(n == 'bottom'){
+
+// }
