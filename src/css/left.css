@@ -1,6 +1,7 @@
 .left_holder {
     position: relative;
     height: 100vh;
+    display: flex;
 }
 
 .left {
@@ -8,7 +9,7 @@
     justify-self: start;
     height: 100%;
     background: #404040;
-
+    position: relative;
     -webkit-user-select: none;
     /* Chrome all / Safari all */
     -moz-user-select: none;
@@ -32,15 +33,21 @@
 }
 
 .right_menu {
-    display: flex;
+    position: absolute;
+    display: block;
     flex-direction: column;
-    max-width: 300px;
+    width: 300px;
     padding: 10px;
     border-right: #666666 4px solid;
     overflow-y: scroll;
+    background: #404040;
+    height: 100%;
+    left:100%;
+    z-index: 999999999999999999999;
 }
 
-.right_menu .right_menu_row {
+/* element */
+.right_menu .add_element {
     display: flex;
     flex-direction: column;
     max-width: 100%;
@@ -79,6 +86,46 @@
     pointer-events: none;
 }
 
+
+/* navigator */
+.navigator{
+    background: #404040;
+    border-right: #333 1px solid;
+    width: 200px;
+}
+.navigator>div{
+    padding: 8px;
+}
+.navigator_heading{
+    background: #222;
+}
+.navigator>.navigator_body{
+    background: #333;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.navigator>.navigator_elements{
+    display: block;
+    overflow: scroll;
+    height: 100%;
+    padding-right: 0;
+}
+.navigation_tab{
+    cursor: default;
+    margin-top: 5px;
+    padding-left: 5px;
+    border-left: #777 solid 1px;
+    height: 20px;
+    
+}
+.nav_ele{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* mode */
 .fade{
     opacity: .5;
     pointer-events: none;

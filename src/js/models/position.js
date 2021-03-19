@@ -27,8 +27,9 @@ const cantake = {
 
 //mouseover
 const mouseOver = (e, childEle) => {
-    if (on) {
+    if (on && e.target.dataset.ele && e.target.tagName != 'BODY') {
 
+        e.target.tagName == 'BODY'?console.log('lidkfjdkjfkdjsjhjshdjhsjhdjhsj'):0;
         let parentEle, parentRect, top, height, offset,style,width,margin1,margin2;
 
         if (childEle && e.target.dataset.ele) {
@@ -48,7 +49,13 @@ const mouseOver = (e, childEle) => {
 
                 // all
                 if (parentEle.includes('all')) {
-                    e.target.tagName != 'BODY' ? all(childEle, e.target.parentElement, parentEle) : all(childEle, e.target, parentEle);
+                    if(e.target.parentElement.dataset.ele.includes('none')){
+                        curPos.style.background = "#e2121261";
+                        pos[0] = null;
+                    }else if(e.target.parentElement.dataset.ele.includes('all')){
+                        all(childEle, e.target.parentElement, parentEle)
+                    }
+
                 }
 
                 //none
@@ -85,7 +92,12 @@ const mouseOver = (e, childEle) => {
 
                 // all
                 if (parentEle.includes('all')) {
-                    e.target.tagName != 'BODY' ? all(childEle, e.target.parentElement, parentEle) : all(childEle, e.target, parentEle);
+                    if(e.target.parentElement.dataset.ele.includes('none')){
+                        curPos.style.background = "#e2121261";
+                        pos[0] = null;
+                    }else if(e.target.parentElement.dataset.ele.includes('all')){
+                        all(childEle, e.target.parentElement, parentEle)
+                    }
                 }
 
                 //none
@@ -110,7 +122,10 @@ const mouseOver = (e, childEle) => {
         idocument.getElementById('dev').appendChild(curPos);
     }
 
-    pos[0] && pos[0].tagName == 'HTML'?pos[0]=null:0;
+    if(pos[0] && pos[0].tagName == 'HTML' || pos[0] && pos[0].tagName =='BODY'){
+        pos[0] = idocument.body;
+        pos[1] = 'afterbegin';
+    }
 
     return pos;
 
@@ -146,19 +161,19 @@ function rect(top, width, height, offset) {
 
 function none(childEle, parentEle, et) {
     if (parentEle.includes('none')) {
-        if (parentEle.tagName != "BODY") {
             if(pos[1] == 'afterend' || pos[1] == 'beforebegin'){
                 if(et.parentElement.dataset.ele.includes('none')){
                     curPos.style.background = "#e2121261";
                     pos[0] = null;
+                    pos[1] = 'afterbegin';
                 }else{
                     all(childEle,et.parentElement,parentEle);
                 }
             }else{
                 curPos.style.background = "#e2121261";
                 pos[0] = null;
+                pos[1] = 'afterbegin';
             }
-        }
     }
 }
 

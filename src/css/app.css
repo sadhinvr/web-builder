@@ -24,7 +24,7 @@ body{
     justify-content: center;
     align-items: center;
     padding: 10px ;
-    cursor: pointer;
+    cursor:pointer;
 }
 
 body.grabbing * ,body.grabbing {
@@ -42,6 +42,7 @@ body.grabbing.not_allowed * ,body.grabbing.not_allowed{
 
 ::-webkit-scrollbar {
     width: 4px;
+    height:4px;
 }
 
 ::-webkit-scrollbar-thumb {

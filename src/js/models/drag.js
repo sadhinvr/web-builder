@@ -37,6 +37,8 @@ dragable.forEach(cur => {
 
 function mousedown(e) {
     if (e.currentTarget.dataset.drag && e.button === 0) {
+        
+
         //set sate 
         if (e.currentTarget.dataset.drag === '10') {
             ifr = true;
@@ -79,6 +81,12 @@ function mousedown(e) {
         window.addEventListener('mouseover', appendPos);
         iwindow.addEventListener('mouseover', iappendPos);
 
+        //close menus
+        const right_menu=$('.left .right_menu');
+        right_menu.style.display='none';
+        [].forEach.call(right_menu.children,cur=>{
+            cur.style.display='none';
+        })
     }
 
     if (e.target.dataset.ele && e.target.dataset.ele === 'body') {

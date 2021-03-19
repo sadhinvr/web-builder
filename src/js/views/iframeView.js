@@ -33,6 +33,7 @@ idocument.write(`
 
         body::-webkit-scrollbar {
             width: 6px;
+            hieght:6px;
         }
 
         body::-webkit-scrollbar-thumb {
@@ -170,6 +171,7 @@ function mouseLeave() {
 }
 
 function iframeAppend(html, pos) {
+    if(pos[0])
     pos[0].insertAdjacentElement(pos[1], html);
 }
 

@@ -34,7 +34,7 @@ h2{
     font-weight: 400;
 }
 
-.left,p,h1,h2,h3,h4,h5,h6{
+.left,p,h1,h2,h3,h4,h5,h6,span{
     -webkit-user-select: none;
     /* Chrome all / Safari all */
     -moz-user-select: none;
