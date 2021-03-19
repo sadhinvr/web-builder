@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple builder</title>
+
     <!-- Primary Meta Tags -->
     <meta name="title" content="simple builder">
     <meta name="description" content="Webflow clone. Drag and drop web-builder">
@@ -20,18 +25,12 @@
     <meta property="twitter:description" content="Webflow clone. Drag and drop web-builder">
     <meta property="twitter:image" content="https://sadhinvr.github.io/web-builder/dist/assets/meta-img.jpeg">
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simple builder</title>
-
-    <!-- css links -->
+    <link rel="shortcut icon" href="https://sadhinvr.github.io/web-builder/dist/assets/web-design.svg"
+        type="image/x-icon">
 
 </head>
 
 <body>
-
-
     <div class="full">
         <div class="controller">
             <!-- top -->
@@ -840,7 +839,7 @@
                                     <p class="--light">Radius</p>
                                     <div class="style_input">
                                         <input type="range" data-style="0 0 1 0 borderRadius 0px"
-                                            oninput="document.getElementById('radius').value=this.value" value="0px">
+                                            oninput="document.getElementById('radius').value=this.value" value="0">
                                     </div>
                                     <div class="style_input">
                                         <input type="text" data-style="0 0 1 0 borderRadius 0px" placeholder="-"
@@ -1069,6 +1068,9 @@
                     <div class="navigator_elements">
                         <div class="navigation_tab">
                             <div class="nav_ele">
+                                <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+                                    <path d="M4 6l3 .01h2L12 6l-4 4-4-4z" fill="currentColor"></path>
+                                </svg>
                                 <p>H2 <span class="--light">heading 2</span></p>
                             </div>
                             <div class="navigation_tab">

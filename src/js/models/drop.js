@@ -26,7 +26,7 @@ window.addEventListener('load',()=>{
 
 
 function drop(data, pos, d = true) {
-
+    console.log('drop')
     // ready
     const dataEle = data.name.dataset.ele;
     if (pos && pos[0] && pos[1] && pos !== data.name && pos !== data.name.parentElement) {

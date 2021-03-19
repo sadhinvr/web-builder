@@ -26,20 +26,13 @@ idocument.write(`
             box-sizing: border-box;
         }
 
-        body::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 14px rgb(255 255 255 / 11%);
-            background-color: #777;
-        }
-
-        body::-webkit-scrollbar {
-            width: 6px;
-            hieght:6px;
-        }
-
-        body::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            background-color: #333;
-            
+        body:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
         }
 
         img {
@@ -91,7 +84,35 @@ idocument.write(`
         }
 
     </style>
+
+    <style>
+        /*change the thinkness of the scrollbar here*/
+        body::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0); 
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+        }
+        /*add a shadow to the scrollbar here*/
+        body::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0); 
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+        }
+        /*this is the little scrolly dealio in the bar*/ 
+        body::-webkit-scrollbar-thumb {
+            border-radius: 6px;
+            background: #0000007a;
+            height: 3px;
+        }
+        /*nobody needs this little scrollbar corner, I mean really, get rid of it haha*/  
+        body::-webkit-scrollbar-corner       { display: none; height: 0px; width: 0px; }
+        
+    </style> 
+
     <style id="main_style" rel="stylesheet"></style>
+
 </head>
 
 <body data-ele="body">
@@ -171,8 +192,11 @@ function mouseLeave() {
 }
 
 function iframeAppend(html, pos) {
-    if(pos[0])
-    pos[0].insertAdjacentElement(pos[1], html);
+    try {
+        pos[0].insertAdjacentElement(pos[1], html);
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export {

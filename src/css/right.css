@@ -165,6 +165,15 @@
     width:auto;
     max-width: 90px;
     padding: 0;
+    background: transparent;
+}
+.style input[type="range"]:focus{
+    border: none;
+}
+.style input[type="color"] {
+    width: 35px;
+    height: 24px;
+    padding: 0;
 }
 .style input:focus{
     border: 1px dodgerblue solid;

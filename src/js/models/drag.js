@@ -33,9 +33,11 @@ dragable.forEach(cur => {
     cur.addEventListener('mousedown', mousedown)
 })
 
-
+const dumb=document.createElement('div');
 
 function mousedown(e) {
+    e.preventDefault();
+
     if (e.currentTarget.dataset.drag && e.button === 0) {
         
 
@@ -54,7 +56,8 @@ function mousedown(e) {
         readyDragClone();
 
         // scroll position
-        data.winheight = iwindow.scrollY;
+        data.winY = iwindow.scrollY;
+        data.winX=iwindow.scrollX;
 
         // active
         if (!ifr) {
@@ -132,10 +135,9 @@ function iappendPos(e) {
 function drag(e) {
     if (!on) {
         document.body.classList.add('not_allowed');
-        idocument.body.classList.add('not_allowed');
+        document.body.click();
     } else {
         document.body.classList.remove('not_allowed');
-        idocument.body.classList.remove('not_allowed');
     }
 
     //position 
@@ -156,20 +158,39 @@ function drag(e) {
 function scrollWin(e) {
     let speed = 5;
     const ifrHeight = iwindow.innerHeight;
+    const ifrWidth = iwindow.innerWidth;
 
-    if (ifrHeight - 10 < e.clientY) {
-        iwindow.scrollTo(0, data.winheight);
-        data.winheight += speed;
-
-    } else if (90 > e.clientY) {
-        iwindow.scrollTo(0, data.winheight);
-        data.winheight -= speed;
+    //bottom
+    if (ifrHeight-50 < e.clientY) {
+        data.winY += speed;
     }
+    
+    //top
+    else if (50 > e.clientY) {
+        data.winY -= speed;
+    }
+
+    //right
+    else if (ifrWidth-50 < e.clientX) {
+        data.winX += speed;
+    }
+
+    //left
+    else if (50 > e.clientX) {
+        data.winX -= speed;
+    }
+    else{
+        data.winY=iwindow.scrollY;
+        data.winX=iwindow.scrollX;
+    }
+
+    iwindow.scrollTo(data.winX,data.winY);
 }
 
 function setDragData(e) {
     data = {
-        winheight: iwindow.scrollY,
+        winY: iwindow.scrollY,
+        winX:iwindow.scrollX,
         name: e.target,
         top: e.currentTarget.getClientRects()[0].top,
         left: e.currentTarget.getClientRects()[0].left,
@@ -240,12 +261,12 @@ function mouseup() {
         if (!ifr) {
             drop(data, pos);
         } else {
-            drop(data, pos, false)
+            drop(data, pos, false);
         }
     }
     dragging = false;
     ifr = false;
-
+    pos=[];
     // change cursor
     cCursor();
 }
