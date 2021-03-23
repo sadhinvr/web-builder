@@ -1,15 +1,16 @@
-body{
+body {
     font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     overflow: hidden;
     font-size: 12px;
-    font-weight: 400 ;
+    font-weight: 400;
 }
 
-.full{
+.full {
     position: relative;
+    overflow: hidden;
 }
 
-.controller{
+.controller {
     width: 100%;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -18,21 +19,23 @@ body{
     color: #d7d7d7;
 }
 
-.col{
+.col {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px ;
-    cursor:pointer;
+    padding: 10px;
+    cursor: pointer;
 }
 
-body.grabbing * ,body.grabbing {
-    cursor:grabbing !important;
+body.grabbing *,
+body.grabbing {
+    cursor: grabbing !important;
 }
 
-body.grabbing.not_allowed * ,body.grabbing.not_allowed{
-    cursor:not-allowed !important;
+body.grabbing.not_allowed *,
+body.grabbing.not_allowed {
+    cursor: not-allowed !important;
 }
 
 /*change the thinkness of the scrollbar here*/
@@ -65,3 +68,23 @@ body.grabbing.not_allowed * ,body.grabbing.not_allowed{
     width: 0px;
 }
 
+._help {
+    color: #fff;
+    background: dodgerblue;
+    position: absolute;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 30px;
+}
+
+._help::after {
+    content: '';
+    height: 18px;
+    width: 19px;
+    position: absolute;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: dodgerblue;
+}

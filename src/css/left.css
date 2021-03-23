@@ -23,10 +23,35 @@
     border-right: #333 1px solid;
 }
 
+
+
+
+
+
+
 .left_menu_row {
     padding: 10px;
     border-top: #333333 solid .5px;
+
+    opacity: .2;
+    cursor:default;
 }
+
+
+
+
+
+.left_menu_row:first-child {
+    opacity: 1; 
+    background-color: #777;
+    cursor:pointer;
+}
+
+
+
+
+
+
 
 .left_menu_row:last-child {
     border-bottom: #333333 solid .5px;
@@ -43,7 +68,7 @@
     background: #404040;
     height: 100%;
     left:100%;
-    z-index: 99999;
+    z-index: 1;
 }
 
 /* element */
@@ -88,11 +113,57 @@
 
 
 /* navigator */
+
+
+
+
+
+
+
+
+
+
+
+
 .navigator{
     background: #404040;
     border-right: #333 1px solid;
     width: 200px;
+
+    position: relative;
 }
+.navigator::after{
+    content: 'working on it';
+    position: absolute;
+    color: dodgerblue;
+    top:0px;
+    left: 0px;
+    right:0px;
+    bottom:0px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .6);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .navigator>div{
     padding: 8px;
 }

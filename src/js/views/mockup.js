@@ -19,7 +19,7 @@ const make={};
 
  //midia
  make.img=document.createElement('img');
- make.img.src="assets/picture.svg";
+ make.img.src="assets/picture.png";
  make.img.setAttribute('draggable','false')
  
 for(const i in make){

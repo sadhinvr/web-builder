@@ -5,6 +5,49 @@
     grid-column: span 2;
     width: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.top_holder::after{
+    content: 'working on it';
+    position: absolute;
+    color: dodgerblue;
+    top:0px;
+    left: 0px;
+    right:0px;
+    bottom:0px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .6);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .top{
     display: flex;
     align-items: center;

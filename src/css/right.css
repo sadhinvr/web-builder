@@ -32,8 +32,22 @@
     position: sticky;
     top:0;
     padding: 0;
-    z-index: 999999;
+    z-index: 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .right_tab{
     cursor: pointer;
@@ -45,7 +59,46 @@
     border-right: #292929 solid 1px;
     width: 100%;
     background: #343434;
+
+
+    position: relative;
 }
+
+.right_tab::after{
+    content: '';
+    position: absolute;
+    color: dodgerblue;
+    top:0px;
+    left: 0px;
+    right:0px;
+    bottom:0px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #404040f2;
+    cursor: default;
+}
+
+
+.right_tab.active_tab::after{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .active_tab{
     border-bottom-color: #333;
@@ -105,13 +158,65 @@
     border-bottom: #333 solid 1px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .selector_holder{
     background: #292929;
     width: 100%;
     justify-content: space-between;
     border-radius: 4px;
     padding: 4px;
+
+
+
+    position: relative;
 }
+
+
+            .selector_holder::after{
+                content: 'working on it';
+                position: absolute;
+                color: dodgerblue;
+                top:0px;
+                left: 0px;
+                right:0px;
+                bottom:0px;
+                font-size: 16px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: rgba(0, 0, 0, .6);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .selector_holder,.selector_holder div{
     align-items: center;
     display: flex;
@@ -210,6 +315,74 @@
 .style select option{
     border:none;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.style .margin{
+    position: relative;
+    display: inline-flex;
+}
+
+.style .margin::after{
+    content: 'working on it';
+    position: absolute;
+    color: dodgerblue;
+    top:0px;
+    left: 0px;
+    right:0px;
+    bottom:0px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .6);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .style .border{
     margin-top: 5px;

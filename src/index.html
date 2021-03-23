@@ -243,7 +243,7 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <div class="right_row" style="position: relative;display: inline-flex;">
+                                <div class="right_row margin">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="224" height="120"
                                         style="grid-area: 1 / 1 / -1 / -1;">
                                         <g style="">
@@ -839,11 +839,11 @@
                                     <p class="--light">Radius</p>
                                     <div class="style_input">
                                         <input type="range" data-style="0 0 1 0 borderRadius 0px"
-                                            oninput="document.getElementById('radius').value=this.value" value="0">
+                                            oninput="document.getElementById('radiusi').value=this.value" value="0" id="radiusr">
                                     </div>
                                     <div class="style_input">
                                         <input type="text" data-style="0 0 1 0 borderRadius 0px" placeholder="-"
-                                            id="radius" name="inherit">
+                                            id="radiusi" name="inherit" oninput="document.getElementById('radiusr').value=this.value?this.value.replace(/([a-z])+/gi, ''):0" onblur="document.getElementById('radiusr').value=this.value?this.value.replace(/([a-z])+/gi, ''):0">
                                         <p class="suffix">px</p>
                                     </div>
                                 </div>
@@ -971,7 +971,7 @@
                 <div class="left">
                     <div class="left_menu">
                         <div class="left_menu_row col" data-open="add_element">
-                            ➕
+                            <img src="assets/add (1).svg" alt="" width="20px">
                         </div>
 
                         <div class="left_menu_row col" data-open="symbol">
@@ -1091,6 +1091,14 @@
         </div>
     </div>
 
+
+<!-- ########### pop ups ##########-->
+
+    <div class="pop_ups">
+        <div class="enlarge_screen">
+            enlarge your screen or use screen larger than 768px.
+        </div>
+    </div>
 </body>
 
 </html>
