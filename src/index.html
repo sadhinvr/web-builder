@@ -25,8 +25,15 @@
     <meta property="twitter:description" content="Webflow clone. Drag and drop web-builder">
     <meta property="twitter:image" content="https://sadhinvr.github.io/web-builder/dist/assets/meta-img.jpeg">
 
-    <link rel="shortcut icon" href="https://sadhinvr.github.io/web-builder/dist/assets/favicon.svg"
-        type="image/x-icon">
+    <link rel="shortcut icon" href="https://sadhinvr.github.io/web-builder/dist/assets/favicon.svg" type="image/x-icon">
+    <script src="/js/codemirror.js"></script>
+    <script src="../../addon/selection/selection-pointer.js"></script>
+    <script src="../xml/xml.js"></script>
+    <script src="../javascript/javascript.js"></script>
+    <script src="../css/css.js"></script>
+    <script src="../vbscript/vbscript.js"></script>
+    <script src="/js/htmlmixed.js"></script>
+
 
 </head>
 
@@ -101,6 +108,9 @@
                         </div>
                         <div class="col">
                             <h2>992px</h2>
+                        </div>
+                        <div class="col">
+                            <img src="assets/bracket .svg" alt="" width="20" height="20">
                         </div>
                     </div>
                 </div>
@@ -839,11 +849,14 @@
                                     <p class="--light">Radius</p>
                                     <div class="style_input">
                                         <input type="range" data-style="0 0 1 0 borderRadius 0px"
-                                            oninput="document.getElementById('radiusi').value=this.value" value="0" id="radiusr">
+                                            oninput="document.getElementById('radiusi').value=this.value" value="0"
+                                            id="radiusr">
                                     </div>
                                     <div class="style_input">
                                         <input type="text" data-style="0 0 1 0 borderRadius 0px" placeholder="-"
-                                            id="radiusi" name="inherit" oninput="document.getElementById('radiusr').value=this.value?this.value.replace(/([a-z])+/gi, ''):0" onblur="document.getElementById('radiusr').value=this.value?this.value.replace(/([a-z])+/gi, ''):0">
+                                            id="radiusi" name="inherit"
+                                            oninput="document.getElementById('radiusr').value=this.value?this.value.replace(/([a-z])+/gi, ''):0"
+                                            onblur="document.getElementById('radiusr').value=this.value?this.value.replace(/([a-z])+/gi, ''):0">
                                         <p class="suffix">px</p>
                                     </div>
                                 </div>
@@ -1092,13 +1105,43 @@
     </div>
 
 
-<!-- ########### pop ups ##########-->
+    <!-- ########### pop ups ##########-->
+    <div class="code">
+        <form action="">
+            <textarea name="" id="html">
+
+            </textarea>
+        </form>
+    </div>
 
     <div class="pop_ups">
         <div class="enlarge_screen">
             enlarge your screen or use screen larger than 768px.
         </div>
     </div>
+    <!--  -->
+    <script defer>
+        // Define an extended mixed-mode that understands vbscript and
+        // leaves mustache/handlebars embedded templates in html mode
+        document.getElementById("html").value = `<div class="middle"></div>`;
+        var mixedMode = {
+            name: "htmlmixed",
+            scriptTypes: [{
+                    matches: /\/x-handlebars-template|\/x-mustache/i,
+                    mode: null
+                },
+                {
+                    matches: /(text|application)\/(x-)?vb(a|script)/i,
+                    mode: "vbscript"
+                }
+            ]
+        };
+        var editor = CodeMirror.fromTextArea(document.getElementById("html"), {
+            mode: mixedMode,
+            selectionPointer: true
+        });
+    </script>
+
 </body>
 
 </html>
