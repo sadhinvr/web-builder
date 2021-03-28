@@ -1,12 +1,12 @@
-.code {
+.right_pop {
     /* padding: 10px; */
     border: #333 10px solid;
     position: fixed;
     top: 45px;
-    left: 45%;
+    right: 250px;
     background-color: #404040;
     width: 35%;
-    min-width: 200px;
+    min-width: 100px;
 }
 
 .pop_ups {

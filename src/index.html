@@ -26,12 +26,12 @@
     <meta property="twitter:image" content="https://sadhinvr.github.io/web-builder/dist/assets/meta-img.jpeg">
 
     <link rel="shortcut icon" href="https://sadhinvr.github.io/web-builder/dist/assets/favicon.svg" type="image/x-icon">
+    
     <script src="/js/codemirror.js"></script>
-    <script src="../../addon/selection/selection-pointer.js"></script>
-    <script src="../xml/xml.js"></script>
-    <script src="../javascript/javascript.js"></script>
-    <script src="../css/css.js"></script>
-    <script src="../vbscript/vbscript.js"></script>
+    <script src="/mode/xml/xml.js"></script>
+    <script src="/mode/javascript/javascript.js"></script>
+    <script src="/mode/css/css.js"></script>
+    <script src="/mode/vbscript/vbscript.js"></script>
     <script src="/js/htmlmixed.js"></script>
 
 
@@ -1106,7 +1106,7 @@
 
 
     <!-- ########### pop ups ##########-->
-    <div class="code">
+    <div class="right_pop">
         <form action="">
             <textarea name="" id="html">
 
@@ -1119,29 +1119,6 @@
             enlarge your screen or use screen larger than 768px.
         </div>
     </div>
-    <!--  -->
-    <script defer>
-        // Define an extended mixed-mode that understands vbscript and
-        // leaves mustache/handlebars embedded templates in html mode
-        document.getElementById("html").value = `<div class="middle"></div>`;
-        var mixedMode = {
-            name: "htmlmixed",
-            scriptTypes: [{
-                    matches: /\/x-handlebars-template|\/x-mustache/i,
-                    mode: null
-                },
-                {
-                    matches: /(text|application)\/(x-)?vb(a|script)/i,
-                    mode: "vbscript"
-                }
-            ]
-        };
-        var editor = CodeMirror.fromTextArea(document.getElementById("html"), {
-            mode: mixedMode,
-            selectionPointer: true
-        });
-    </script>
-
 </body>
 
 </html>
