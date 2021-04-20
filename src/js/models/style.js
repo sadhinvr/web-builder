@@ -264,24 +264,27 @@ function setStyle(st, p) {
 function getStyle(rewrite = true) {
     //intial
     style = [];
-    resetActiveStyle();
     const cssom = findSelector(active.className);
 
-    $('#tagName').innerText = active.tagName + ' ';
-    $('#className').innerText = active.className ? active.className + ' ' : '-';
-    $('#countEle').parentElement.style.display = 'none';
+    if(rewrite){
+        resetActiveStyle();
+        $('#tagName').innerText = active.tagName + ' ';
+        $('#className').innerText = active.className ? active.className + ' ' : '-';
+        $('#countEle').parentElement.style.display = 'none';
 
+        if (active.className) {
+            $('#countEle').innerText = $('.' + active.className, true, true).length;
+            $('#countEle').parentElement.style.display = '';
+        }
+
+    }
 
     if (active.className) {
-        $('#countEle').innerText = $('.' + active.className, true, true).length;
-        $('#countEle').parentElement.style.display = '';
-
         if (cssom) {
             style = cssom.style;
         }
     }
     viewStyle(rewrite);
-
 }
 
 function viewStyle(rewrite = true) {

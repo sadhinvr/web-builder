@@ -35,7 +35,7 @@ idocument.write(`
             height: 0;
         }
 
-        img {
+        img,video {
             max-width: 100%;
         }
 

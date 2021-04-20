@@ -23,7 +23,10 @@ const cantake = {
     section: ['all', ['section']],
     heading: ['none'],
     paragraph: ['none'],
-    img: ['none']
+    link:['none'],
+    img: ['none'],
+    video:['none'],
+    audio:['none'],
 }
 
 //mouseover
