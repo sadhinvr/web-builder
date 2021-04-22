@@ -15,7 +15,6 @@ body {
     display: grid;
     grid-template-columns: auto 1fr auto;
     position: relative;
-    top: 3px;
     color: #d7d7d7;
 }
 

@@ -33,6 +33,7 @@
     <script src="https://sadhinvr.github.io/web-builder/dist/mode/css/css.js"></script>
     <script src="https://sadhinvr.github.io/web-builder/dist/mode/vbscript/vbscript.js"></script>
     <script src="https://sadhinvr.github.io/web-builder/dist/js/htmlmixed.js"></script>
+    <script src="https://sadhinvr.github.io/web-builder/dist/js/formatting.js"></script>
 
 
 </head>
@@ -109,7 +110,7 @@
                         <div class="col">
                             <h2>992px</h2>
                         </div>
-                        <div class="col">
+                        <div class="col" id="toggle_code">
                             <img src="assets/bracket .svg" alt="" width="20" height="20">
                         </div>
                     </div>
@@ -1124,11 +1125,18 @@
 
     <!-- ########### pop ups ##########-->
     <div class="right_pop">
-        <form action="">
-            <textarea name="" id="html">
-
-            </textarea>
-        </form>
+        <div class="code_holder">
+            <div class="opts">
+                <div class="opt o-html">HTML</div>
+                <div class="opt o-css">CSS</div>
+                <div class="opt o-js">JS</div>
+            </div>
+            <form action="">
+                <textarea name="" id="code">
+    
+                </textarea>
+            </form>
+        </div>
     </div>
 
     <div class="pop_ups">

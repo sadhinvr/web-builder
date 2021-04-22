@@ -65,6 +65,9 @@
 .top_col .col{
     border-left: #333333 solid .5px;
 }
+.active_col{
+    background: #333;
+}
 
 .top_col .col:last-child{
     border-right: #333333 solid .5px;

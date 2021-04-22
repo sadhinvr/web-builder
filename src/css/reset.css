@@ -151,3 +151,10 @@ input[type=range] {
 [contenteditable]{
     outline:none;
 }
+
+:is(.top p,.top h3,.left p,.left h3,img)::selection{
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}

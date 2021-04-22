@@ -2,37 +2,7 @@ import {
     $
 } from '../reuse';
 
-// ########  top  ########
-
-// code viewer
-
-var texta=document.getElementById("html");
-if(localStorage.getItem('DOM')){
-    texta.value=localStorage.getItem('DOM');
-}else{
-    texta.value='nothing yet..'
-}
-const mixedMode = {
-    name: "htmlmixed",
-    scriptTypes: [{
-            matches: /\/x-handlebars-template|\/x-mustache/i,
-            mode: null
-        },
-        {
-            matches: /(text|application)\/(x-)?vb(a|script)/i,
-            mode: null
-        }
-    ]
-};
-CodeMirror.fromTextArea(texta, {
-    mode: mixedMode,
-    selectionPointer: true,
-    theme: 'material-palenight',
-});
-
-
-
-// ########  left  ########
+import './codeView';
 
 // left menu 
 const right_menu = $('.left .right_menu');

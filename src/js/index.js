@@ -6,6 +6,7 @@ import '../css/left.css';
 import '../css/right.css';
 import '../css/middle.css';
 import '../css/pop-ups.css';
+import '../css/codeview.css';
 import '../css/code viewer theme/material-palenight.css';
 import '../css/codemirror.css';
 
