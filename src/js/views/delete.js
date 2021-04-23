@@ -1,5 +1,6 @@
 import{active} from '../models/drag';
 import { idocument, iwindow } from '../models/iframe';
+import { $ } from '../reuse';
 
 window.addEventListener('keyup',deleteEle)
 
@@ -24,5 +25,13 @@ function deleteEle(e){
                 }
             }
         })
+
+        $('.reveal_tab',true).forEach((cur)=>{
+            cur.style.display='none'
+        })
+
+        $('#tagName').innerText = 'Tagname';
+        $('#className').innerText = 'classname';
+        $('#countEle').parentElement.style.display = 'none';
     }
 }

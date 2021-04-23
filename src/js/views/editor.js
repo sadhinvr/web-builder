@@ -15,3 +15,8 @@ function rightMenu(e) {
     const o = $('.' + e.currentTarget.dataset.open).style;
     o.display != '' ? o.display = '' : o.display = 'none';
 }
+
+// right menu
+$('.reveal_tab',true).forEach((cur)=>{
+    cur.style.display='none';
+})

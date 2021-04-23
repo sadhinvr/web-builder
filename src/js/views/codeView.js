@@ -36,7 +36,7 @@ css.addEventListener('click',()=>{
 })
 
 js.addEventListener('click',()=>{
-    state="js";
+    state="javascript";
     loadCode();
 })
 
@@ -51,13 +51,23 @@ function loadCode(){
             texta.value='nothing yet..'
         }
     }else if(state == 'css'){
+        texta.value = '';
+
         if(localStorage.getItem('stylesheet')){
-            texta.value=localStorage.getItem('stylesheet');
+            const tempCss=JSON.parse(localStorage.getItem('stylesheet'));
+            for(let i=0;i<Object.keys(tempCss).length;i++){
+                texta.value+=tempCss[i];
+            }
         }else{
             texta.value='nothing yet..'
         }
+
     }else{
-        texta.value='nothing yet..'
+        texta.value=`try{
+            $('.CodeMirror').remove();
+        }catch(e){
+            console.log('no thing')
+        }`
     }
 
     beautify();
@@ -83,12 +93,19 @@ function beautify(){
             }
         ]
     };
+
+
     var editor = CodeMirror.fromTextArea(texta, {
-        mode: mixedMode,
+        mode: state == 'html'?mixedMode:state,
         selectionPointer: true,
         theme: 'material-palenight',
     });
     
+    indentCode(editor);
+}
+
+
+function indentCode(editor){
     CodeMirror.commands["selectAll"](editor);
     
     function getSelectedRange() {
@@ -110,7 +127,6 @@ function beautify(){
     
     autoFormatSelection();
 }
-
 
 rightPop.style.display="none";
 codeHolder.style.display="none";

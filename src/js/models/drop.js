@@ -33,7 +33,6 @@ function drop(data, pos, d = true) {
         // console.log(pos,Math.random())
         if (d) {
             //clone
-            console.log(htmlMockup);
             htmlMockup[dataEle].setAttribute('data-ele', data.name.dataset.ele)
 
             const clone = htmlMockup[dataEle].cloneNode(true);

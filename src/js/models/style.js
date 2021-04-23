@@ -265,6 +265,9 @@ function getStyle(rewrite = true) {
     //intial
     style = [];
     const cssom = findSelector(active.className);
+    $('.reveal_tab',true).forEach((cur)=>{
+        cur.style.display=''
+    })
 
     if(rewrite){
         resetActiveStyle();
@@ -331,7 +334,7 @@ function viewStyle(rewrite = true) {
                         ele.value = style[s[4]]
                     } else {
                         ele.value = ele.querySelector('option').value
-                        console.log(ele.value)
+                        // console.log(ele.value)
                     }
 
                 } else if (ele.type == 'color') {
@@ -525,7 +528,6 @@ function hexToRgb(hex) {
     } : null;
 }
 // console.log(rgbToHex(...'rgb(51,51,51)'.replace(/^rgba?\(|\s+|\)$/g, '').split(',')))
-
 
 export {
     getStyle
