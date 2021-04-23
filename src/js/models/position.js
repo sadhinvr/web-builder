@@ -22,7 +22,7 @@ curPos.style = 'position:absolute;pointer-events: none;';
 const cantake = {
     body: ['all'],
     div: ['all'],
-    container: ['all',['section','container']],
+    container: ['all', ['section', 'container']],
     section: ['all', ['section']],
     heading: ['none'],
     paragraph: ['none'],
@@ -34,67 +34,45 @@ const cantake = {
 
 //mouseover
 const mouseOver = (e, childEle) => {
-    if (on && e.target.dataset.ele && e.target.tagName != 'BODY' && childEle && pos[0] != e.target) {
+    if (on && e.target.dataset.ele && e.target.tagName != 'BODY' && childEle) {
         let parentArr, parentRect, top, height, offset, width, left;
 
-            // variable
-            parentArr = cantake[e.target.dataset.ele];
-            parentRect = e.target.getBoundingClientRect();
+        // variable
+        parentArr = cantake[e.target.dataset.ele];
+        parentRect = e.target.getBoundingClientRect();
 
-            left = parentRect.left;
-            top = parentRect.top;
-            height = parentRect.height;
-            width = parentRect.width;
-            offset = height * .15;
+        left = parentRect.left;
+        top = parentRect.top;
+        height = parentRect.height;
+        width = parentRect.width;
+        offset = height * .15;
 
-            //top
-            if (e.clientY <= top + offset) {
-                pos[1] = "beforebegin"
+        //top
+        if (e.clientY <= top + offset) {
+            pos[1] = "beforebegin"
+        }
 
-                // all
-                all(childEle,e.target.parentElement);
+        //middle top
+        else if (e.clientY > top + offset && e.clientY <= (top + offset) + ((height - offset) / 2)) {
+            pos[1] = "afterbegin";
+        }
 
-                //none
-
-
-            }
-
-            //middle top
-            else if (e.clientY > top + offset && e.clientY <= (top + offset) + ((height - offset) / 2)) {
-                pos[1] = "afterbegin";
-                // all
-
-                all(childEle,e.target);
-
-                //none
-                // none(childEle, parentEle, e.target)
-            }
-
-            //middle bottom
-            else if (e.clientY > (top + offset) + ((height - offset) / 2) && e.clientY <= top + height - offset) {
-                pos[1] = "beforeend"
-                // all
+        //middle bottom
+        else if (e.clientY > (top + offset) + ((height - offset) / 2) && e.clientY <= top + height - offset) {
+            pos[1] = "beforeend"
 
 
-                //none
-                // none(childEle, parentEle, e.target)
+        } else {
+            pos[1] = "afterend"
 
-                //bottom
-            } else {
-                pos[1] = "afterend"
+        }
 
-                // all
-
-
-                //none
-                // none(childEle, parentEle, e.target)
-            }
-
+        getPos(childEle, e.target);
         rect(top, width, height, left, offset);
         console.log('process')
 
 
-    } else if(pos[0] != e.target){
+    } else if (pos[0] != e.target) {
         bodyTag();
         console.log('bodytag')
     }
@@ -103,7 +81,7 @@ const mouseOver = (e, childEle) => {
         bodyTag();
     }
 
-    //pos[0] ? console.log(pos[0].tagName + ':' + pos[1]) : 0;
+    pos[0] ? console.log(pos[0].tagName + ':' + pos[1]) : 0;
 
     // rect
     if (pos[0]) {
@@ -134,12 +112,7 @@ function rect(top, width, height, left, offset) {
         s.top = iwindow.scrollY + top - 20 + 'px';
     }
 
-    if (pos[1] == 'afterbegin') {
-        s.top = iwindow.scrollY + top + offset + 'px';
-        s.height = height - (offset * 2) + 'px';
-    }
-
-    if (pos[1] == 'beforeend') {
+    if (pos[1] == 'afterbegin' || pos[1] == 'beforeend') {
         s.top = iwindow.scrollY + top + offset + 'px';
         s.height = height - (offset * 2) + 'px';
     }
@@ -147,62 +120,61 @@ function rect(top, width, height, left, offset) {
     if (pos[1] == 'afterend') {
         s.top = iwindow.scrollY + top + height + 'px';
     }
+
+    if (pos[0]) {
+        curPos.style.background = colorBlue;
+    } else {
+        curPos.style.background = colorRed;
+    }
 }
 
 
 
-function none(childEle, parentEle, et) {
-    if (parentEle.includes('none')) {
+function getPos(childEle, parent) {
+    if (cantake[parent.dataset.ele].includes('all')) {
         if (pos[1] == 'afterend' || pos[1] == 'beforebegin') {
-            if (et.parentElement.dataset.ele.includes('none')) {
-                curPos.style.background = "#e2121261";
-                pos[0] = null;
-                pos[1] = 'afterbegin';
-            } else {
-                all(childEle, et, parentEle);
+            if (parentCheck(parent.parentElement, childEle)) {
+                pos[0] = parent;
             }
         } else {
-            curPos.style.background = "#e2121261";
-            pos[0] = null;
-            pos[1] = 'afterbegin';
-        }
-    }
-}
-
-
-function all(childEle, parent) {
-    if (cantake[parent.dataset.ele].includes('all')) {
-        if(parentCheck(parent, childEle)){
-            pos[0] = parent;
-            curPos.style.background = colorBlue;
-        }
-    }
-}
-
-function parentCheck(parent,childEle) {
-    let parentTemp = parent;
-    while (parentTemp.tagName != "BODY") {
-        // console.log(cantake[parentTemp.dataset.ele][1].includes(childEle));
-        if (parentTemp.dataset.ele && cantake[parentTemp.dataset.ele][1]) {
-            if (cantake[parentTemp.dataset.ele][1].includes(childEle)) {
-                pos[0] = null;
-                curPos.style.background = colorRed;
-                parentTemp=false;
-                console.log(parentTemp)
-                break;
+            if (parentCheck(parent, childEle)) {
+                pos[0] = parent;
             }
         }
-
-        if(parentTemp !== false){
-            // console.log(parentTemp)
-            parentTemp = parentTemp.parentElement;
+    } else if (cantake[parent.dataset.ele].includes('none')) {
+        if (pos[1] == 'afterend' || pos[1] == 'beforebegin') {
+            if (parentCheck(parent.parentElement, childEle)) {
+                pos[0] = parent;
+            }
+        } else {
+            if (parent.dataset.ele && cantake[parent.dataset.ele][1] && cantake[parent.dataset.ele][1].includes(childEle)){
+                pos[0] = parent;
+            }
+            else{
+                pos[0] = null;
+            }
         }
     }
 
-    // console.log(parentTemp)
-    return parentTemp;
 }
 
+function parentCheck(parent, childEle) {
+    let parentTemp = parent;
+    while (parentTemp.tagName != "BODY") {
+        if (parentTemp.dataset.ele && cantake[parentTemp.dataset.ele][1] && cantake[parentTemp.dataset.ele][1].includes(childEle)) {
+            pos[0] = null;
+            curPos.style.background = colorRed;
+            parentTemp = false;
+            console.log(parentTemp)
+            break;
+        }
+
+        parentTemp = parentTemp.parentElement;
+
+    }
+
+    return parentTemp;
+}
 
 
 
