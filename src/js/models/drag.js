@@ -66,9 +66,9 @@ function mousedown(e) {
                 // pos = mouseOver(e, active.dataset.ele,true);
             }
         } else {
-            data.name.style.opacity='.5';
+            data.node.style.opacity='.5';
             //active
-            active = data.name;
+            active = data.node;
             idocument.getElementById('dev').appendChild(activeBox);
             setStyleData(active, activeBox, '1px solid #00ff13')
 
@@ -141,7 +141,7 @@ function drag(e) {
     }
 
     //position 
-    pos = mouseOver(e, data.name.dataset.ele);
+    pos = mouseOver(e, data.node);
     // append child
 
     if (!ifr) {
@@ -191,13 +191,13 @@ function setDragData(e) {
     data = {
         winY: iwindow.scrollY,
         winX:iwindow.scrollX,
-        name: e.target,
+        node: e.target,
         top: e.currentTarget.getClientRects()[0].top,
         left: e.currentTarget.getClientRects()[0].left,
     };
 
     if (!ifr) {
-        data.name = e.currentTarget,
+        data.node = e.currentTarget,
             data.clone = e.currentTarget.cloneNode(true);
         data.height = e.currentTarget.getClientRects()[0].height;
         data.width = e.currentTarget.getClientRects()[0].width;
@@ -235,7 +235,7 @@ function resetDrag() {
 
 
     } else {
-        data.name.style.opacity='';
+        data.node.style.opacity='';
         idocument.body.classList.remove('cursor_dragging');
         // iwindow.removeEventListener('mousemove', drag);
 

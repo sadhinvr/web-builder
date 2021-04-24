@@ -47,6 +47,7 @@ const make={};
  
 for(const i in make){
     make[i].setAttribute('data-drag','10');
+    make[i].setAttribute('data-sb_key','')
 }
 
  const htmlMockup = {

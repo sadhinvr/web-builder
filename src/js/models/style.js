@@ -250,7 +250,7 @@ function setStyle(st, p) {
         getStyle(false);
     } else {
         if (!active.className) {
-            active.classList.add(`${active.tagName}${Math.floor(Math.random()*1000)}`)
+            active.classList.add(active.dataset.ele+(active.dataset.sb_key == 1?'':active.dataset.sb_key));
         }
         sheet.cssRules[sheetNum].insertRule(`.${active.className}{}`, 1);
         findSelector(active.className).style[st] = p;
@@ -265,6 +265,8 @@ function getStyle(rewrite = true) {
     //intial
     style = [];
     const cssom = findSelector(active.className);
+    $('#className').innerText = active.className ? active.className + ' ' : '-';
+    
     $('.reveal_tab',true).forEach((cur)=>{
         cur.style.display=''
     })
@@ -272,7 +274,6 @@ function getStyle(rewrite = true) {
     if(rewrite){
         resetActiveStyle();
         $('#tagName').innerText = active.tagName + ' ';
-        $('#className').innerText = active.className ? active.className + ' ' : '-';
         $('#countEle').parentElement.style.display = 'none';
 
         if (active.className) {

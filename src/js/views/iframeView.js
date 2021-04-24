@@ -192,11 +192,7 @@ function mouseLeave() {
 }
 
 function iframeAppend(html, pos) {
-    try {
         pos[0].insertAdjacentElement(pos[1], html);
-    } catch (error) {
-        console.log(error)
-    }
 }
 
 export {

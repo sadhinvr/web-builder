@@ -13,14 +13,17 @@ import {
     idocument,
     iwindow
 } from './iframe';
+import {
+    $
+} from '../reuse';
 
 
-window.addEventListener('load',()=>{
-    setTimeout(()=>{
-        idocument.querySelectorAll('[data-drag="10"]').forEach(cur=>{
-            cur.addEventListener('mousedown',mousedown);
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        idocument.querySelectorAll('[data-drag="10"]').forEach(cur => {
+            cur.addEventListener('mousedown', mousedown);
         })
-    },2000)
+    }, 2000)
 })
 
 
@@ -28,15 +31,27 @@ window.addEventListener('load',()=>{
 function drop(data, pos, d = true) {
     console.log('drop')
     // ready
-    const dataEle = data.name.dataset.ele;
+    const dataEle = data.node.dataset.ele;
     if (pos && pos[0] && pos[1]) {
         // console.log(pos,Math.random())
         if (d) {
             //clone
-            htmlMockup[dataEle].setAttribute('data-ele', data.name.dataset.ele)
+            htmlMockup[dataEle].setAttribute('data-ele', data.node.dataset.ele)
 
             const clone = htmlMockup[dataEle].cloneNode(true);
             clone.addEventListener('mousedown', mousedown);
+
+            let key = [...$(`[data-ele="${clone.dataset.ele}"]`, true, true)].reduce((a, c) => {
+                if (typeof (a) == 'object') {
+                    return a.dataset.sb_key < c.dataset.sb_key ? c : a;
+                }
+                return c;
+            }, 0)
+
+            typeof (key) == 'object' ? key = parseInt(key.dataset.sb_key) + 1: 0;
+
+            clone.dataset.sb_key = key;
+
             // append
             iframeAppend(clone, pos);
 
@@ -47,23 +62,23 @@ function drop(data, pos, d = true) {
             })
 
         } else {
-            iframeAppend(data.name, pos);
+            iframeAppend(data.node, pos);
             iwindow.scrollTo({
-                left: data.name.offsetLeft,
-                top: data.name.offsetTop,
+                left: data.node.offsetLeft,
+                top: data.node.offsetTop,
                 behavior: 'smooth'
             })
 
         }
 
         // changing style
-        if(idocument.body.children <2){
-            idocument.body.style.height="100vh";
-        }else{
-            idocument.body.style.height="";
+        if (idocument.body.children < 2) {
+            idocument.body.style.height = "100vh";
+        } else {
+            idocument.body.style.height = "";
         }
 
-        idocument.querySelectorAll('div,section').forEach(cur => {
+        $('div,section', true, true).forEach(cur => {
             if (cur.dataset.drag) {
                 if (cur.children.length > 0) {
                     cur.removeAttribute("style")
@@ -77,7 +92,7 @@ function drop(data, pos, d = true) {
     if (idocument.getElementById('curPos')) {
         idocument.getElementById('curPos').remove();
     };
-    
+
 }
 
 export {
