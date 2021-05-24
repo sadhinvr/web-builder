@@ -246,7 +246,6 @@ function setStyle(st, p) {
     const cssom = findSelector(active.className);
     if (cssom) {
         cssom.style[st] = p;
-        // console.log(cssom);
         getStyle(false);
     } else {
         if (!active.className) {

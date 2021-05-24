@@ -114,55 +114,11 @@
 
 /* navigator */
 
-
-
-
-
-
-
-
-
-
-
-
 .navigator{
     background: #404040;
     border-right: #333 1px solid;
     width: 200px;
-
-    position: relative;
 }
-.navigator::after{
-    content: 'working on it';
-    position: absolute;
-    color: dodgerblue;
-    top:0px;
-    left: 0px;
-    right:0px;
-    bottom:0px;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, .6);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .navigator>div{
     padding: 8px;
@@ -183,17 +139,21 @@
 }
 .navigation_tab{
     cursor: default;
-    margin-top: 5px;
     padding-left: 5px;
     border-left: #777 solid 1px;
-    height: 20px;
-    
+    overflow: hidden;
 }
 .nav_ele{
     display: flex;
     align-items: center;
-    height: 100%;
+    height: 24px;
     width: 100%;
+}
+
+.hide_arrow .nav_ele>svg{
+    /* visibility: hidden; */
+    display: none;
+    pointer-events: none;
 }
 
 /* mode */

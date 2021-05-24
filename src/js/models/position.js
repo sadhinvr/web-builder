@@ -184,22 +184,24 @@ function parentCheck(parent, child) {
 
     // console.log(child.children.length );
 
-    if(child.children.length != 0 && parentTemp){
-        for(let i=0;i < child.children.length;i++){
-            parentTemp = parent;
+    if(parentTemp){
+        [].forEach.call(child.children, (child)=>parentCheck(parent, child));
 
-            while (parentTemp.tagName != "BODY") {
-                if (parentTemp.dataset.ele && cantake[parentTemp.dataset.ele][1] && cantake[parentTemp.dataset.ele][1].includes(child.children[i].dataset.ele)) {
-                    pos[0] = null;
-                    parentTemp = false;
-                    console.log('step 2')
-                    break;
-                }
-                parentTemp = parentTemp.parentElement;
-            }
+        // for(let i=0;i < child.children.length;i++){
+        //     parentTemp = parent;
+
+        //     while (parentTemp.tagName != "BODY") {
+        //         if (parentTemp.dataset.ele && cantake[parentTemp.dataset.ele][1] && cantake[parentTemp.dataset.ele][1].includes(child.children[i].dataset.ele)) {
+        //             pos[0] = null;
+        //             parentTemp = false;
+        //             console.log('step 2')
+        //             break;
+        //         }
+        //         parentTemp = parentTemp.parentElement;
+        //     }
     
-            if(!parentTemp){break}
-        }
+        //     if(!parentTemp){break}
+        // }
     }
 
     return parentTemp;

@@ -20,6 +20,7 @@ import {
     setStyleData
 } from '../views/iframeView';
 import { getStyle } from './style';
+import { navOn } from './navigator';
 
 const dragable = $('.dragable', true);
 let data, dragging = false,
@@ -133,11 +134,10 @@ function iappendPos(e) {
 }
 
 function drag(e) {
-    if (!on) {
-        document.body.classList.add('not_allowed');
-        document.body.click();
-    } else {
+    if (on || navOn) {
         document.body.classList.remove('not_allowed');
+    } else {
+        document.body.classList.add('not_allowed');
     }
 
     //position 
@@ -202,12 +202,7 @@ function setDragData(e) {
         data.height = e.currentTarget.getClientRects()[0].height;
         data.width = e.currentTarget.getClientRects()[0].width;
     }
-    // else {
-    //     data.inside = $(`.element[data-ele="${e.currentTarget.dataset.ele}"]`);
-    //     data.height = data.inside.getClientRects()[0].height;
-    //     data.width = data.inside.getClientRects()[0].width;
-    //     data.clone = data.inside.cloneNode(true);
-    // }
+    
 
 }
 
