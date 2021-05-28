@@ -1,6 +1,7 @@
 import {
     $
 } from "../reuse";
+import { mousedown } from "./drag";
 import {
     idocument
 } from "./iframe";
@@ -23,9 +24,9 @@ navElms.addEventListener('mouseleave', () => {
 
 var getDOM = (function () {
     var depth = 0,
-    pp=navElms,
-    p,
-    pd = 0;
+        pp = navElms,
+        p,
+        pd = 0;
 
     return function (node) {
         if (node.id == 'dev') {
@@ -38,25 +39,30 @@ var getDOM = (function () {
             });
             return 0;
         }
-        p =createMock(node);
+        p = createMock(node);
 
-        if(depth == 0){
+        if (depth == 0) {
             navElms.appendChild(p);
-        }else{
+        } else {
             pp.appendChild(p);
-            pp.classList.remove('hide_arrow')
+            if (depth > pd) {
+                pp.classList.remove('hide_arrow');
+                pp.addEventListener('click', navDrag);
+                pp.querySelector('svg').addEventListener('click', hideChild);
+            }
         }
 
-        pp = p;
 
-        if(depth != 0 && depth == pd){
+
+        pp = p;
+        pd = depth;
+        if (depth != 0 && depth == pd) {
+
             pp = pp.parentElement;
         }
 
-        pd = depth;
-
-            // code
-            // $(`[data-sb_depth="${depth-1}"][data-sb_nav_key=${node}]`).insertAdjacentHTML('beforeend',navMock(node,depth))
+        // code
+        // $(`[data-sb_depth="${depth-1}"][data-sb_nav_key=${node}]`).insertAdjacentHTML('beforeend',navMock(node,depth))
 
         depth++;
 
@@ -73,10 +79,12 @@ setTimeout(() => getDOM(idocument.body), 1000)
 function createMock(node) {
     const nTab = document.createElement('div');
     nTab.className = ('navigation_tab hide_arrow');
-    nTab.dataset.sb_nav_key=node.dataset.ele+' '+node.dataset.sb_key;
+    nTab.dataset.sb_nav_key = node.dataset.ele + ' ' + node.dataset.sb_key;
+    nTab.dataset.drag = "10";
+    nTab.addEventListener('mousedown', mousedown)
     nTab.innerHTML = `
                 <div class="nav_ele">
-                <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+                <svg style="margin-left:-8px" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
                     <path d="M4 6l3 .01h2L12 6l-4 4-4-4z" fill="currentColor"></path>
                 </svg>
                 <p>${node.tagName.toLowerCase()} 
@@ -103,6 +111,16 @@ function navMock(node, depth) {
                  </p>
                 </div>
             </div>`
+}
+
+function navDrag(e) {
+
+
+}
+
+function hideChild(e) {
+    e.stopPropagation();
+    this.parentElement.parentElement.classList.toggle('hide_child_nav');
 }
 
 {
