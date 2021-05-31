@@ -41,6 +41,9 @@ var getDOM = (function () {
         }
         p = createMock(node);
 
+
+
+
         if (depth == 0) {
             navElms.appendChild(p);
         } else {
@@ -53,11 +56,14 @@ var getDOM = (function () {
         }
 
 
+        if(pd > depth){
+            pp = pp.parentElement.parentElement;
+        }else{
+            pp = p;
+        }
 
-        pp = p;
         pd = depth;
         if (depth != 0 && depth == pd) {
-
             pp = pp.parentElement;
         }
 
