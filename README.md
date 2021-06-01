@@ -3,7 +3,8 @@ A simple drag and drop web builder
 
 ## Add HTML Elements
 Drag any element to add to your Website.
-![Add element & See code][git-basic]
+
+![Add element & See code][gif-basic]
 
 
 
@@ -11,7 +12,7 @@ Drag any element to add to your Website.
 ## ❗ It's not ready yet.please don't use it now.
 
 
-[gif-basic]: https://sadhinvr.github.io/web-builder/dist/assets/gitshot/basic.gif "add element & see code"
+[gif-basic]: https://sadhinvr.github.io/web-builder/dist/assets/gitshot/basic3.gif "add element & see code"
 [img]: https://sadhinvr.github.io/web-builder/dist/assets/gitshot/code.png "Logo Title Text 2"
 
 [code-html]: https://sadhinvr.github.io/web-builder/dist/assets/gitshot/code-html.png "HTML code preview"
