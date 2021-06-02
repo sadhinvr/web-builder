@@ -39,33 +39,57 @@ var getDOM = (function () {
             });
             return 0;
         }
-        p = createMock(node);
+        p = createMock(node,depth);
 
 
-
-
-        if (depth == 0) {
+        if(depth == 0){
             navElms.appendChild(p);
-        } else {
-            pp.appendChild(p);
-            if (depth > pd) {
-                pp.classList.remove('hide_arrow');
-                pp.addEventListener('click', navDrag);
-                pp.querySelector('svg').addEventListener('click', hideChild);
+        }else{
+            if(pp.dataset.sb_nav_depth>depth){
+                const godownNum =(pp.dataset.sb_nav_depth - depth) +1;
+                let godownNode= pp;
+                for(let i=0;i<godownNum;i++){
+                    godownNode = godownNode.parentNode;
+                //    console.log(i,godownNode)
+                }
+                godownNode.appendChild(p);
+                // console.log(godownNode)
+            }else{
+                pp.appendChild(p);
             }
         }
 
-
-        if(pd > depth){
-            pp = pp.parentElement.parentElement;
-        }else{
-            pp = p;
+        if(pp.dataset.sb_nav_depth<depth){
+            pp.classList.remove('hide_arrow');
+            pp.addEventListener('click', navDrag);
+            pp.querySelector('svg').addEventListener('click', hideChild);
         }
+
+        pp = p;
 
         pd = depth;
-        if (depth != 0 && depth == pd) {
-            pp = pp.parentElement;
-        }
+        // if (depth == 0) {
+        //     navElms.appendChild(p);
+        // } else {
+        //     pp.appendChild(p);
+        //     if (depth > pd) {
+        //         pp.classList.remove('hide_arrow');
+        //         pp.addEventListener('click', navDrag);
+        //         pp.querySelector('svg').addEventListener('click', hideChild);
+        //     }
+        // }
+
+
+        // if(pd > depth){
+        //     pp = pp.parentElement.parentElement;
+        // }else{
+        //     pp = p;
+        // }
+
+        // pd = depth;
+        // if (depth != 0 && depth == pd) {
+        //     pp = pp.parentElement;
+        // }
 
         // code
         // $(`[data-sb_depth="${depth-1}"][data-sb_nav_key=${node}]`).insertAdjacentHTML('beforeend',navMock(node,depth))
@@ -82,11 +106,12 @@ var getDOM = (function () {
 
 setTimeout(() => getDOM(idocument.body), 1000)
 
-function createMock(node) {
+function createMock(node,depth) {
     const nTab = document.createElement('div');
     nTab.className = ('navigation_tab hide_arrow');
     nTab.dataset.sb_nav_key = node.dataset.ele + ' ' + node.dataset.sb_key;
-    nTab.dataset.drag = "10";
+    nTab.dataset.drag = "12";
+    nTab.dataset.sb_nav_depth = depth;
     nTab.addEventListener('mousedown', mousedown)
     nTab.innerHTML = `
                 <div class="nav_ele">
