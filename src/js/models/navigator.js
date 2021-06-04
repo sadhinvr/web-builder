@@ -54,8 +54,10 @@ var getDOM = (function () {
                 }
                 godownNode.appendChild(p);
                 // console.log(godownNode)
-            }else{
+            }else if(pp.dataset.sb_nav_depth<depth){
                 pp.appendChild(p);
+            }else{
+                pp.parentNode.appendChild(p)
             }
         }
 

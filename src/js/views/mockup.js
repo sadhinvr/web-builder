@@ -25,15 +25,15 @@ const make={};
  make.heading.innerText="this is a heading";
 
  make.paragraph=document.createElement('p');
- make.paragraph.innerText="this is a paragraph";
-
+ make.paragraph.innerText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo minima rerum delectus qui natus blanditiis fugiat quibusdam aliquid quos autem, assumenda accusantium asperiores animi, rem itaque. Quidem sint cumque ipsum!";
+ 
  make.link=document.createElement('a');
  make.link.href='javascript: void(0)';
  make.link.innerText="click me";
 
  //midia
  make.img=document.createElement('img');
- make.img.src="assets/picture.png";
+ make.img.src="assets/picture.svg";
  make.img.setAttribute('draggable','false');
 
  make.video=document.createElement('video');

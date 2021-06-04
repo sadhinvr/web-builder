@@ -98,7 +98,10 @@
 
 
 
-
+.right_tab img{
+    height:45%;
+    width: 45%;
+}
 
 .active_tab{
     border-bottom-color: #333;
