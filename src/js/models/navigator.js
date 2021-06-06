@@ -24,15 +24,21 @@ navElms.addEventListener('mouseleave', () => {
 
 // function
 
-var getDOM = (function () {
+const getDOM = (function () {
     var depth = 0,
         pp = navElms,
         p,
         pd = 0;
 
-    navElms.innerHTML = '';
+    const empDiv = () => navElms.innerHTML = '';
 
     return function (node) {
+        let toemp = false;
+        if(!p){
+            console.log(p)
+            empDiv()
+        }
+
         if (node.id == 'dev') {
             return 0;
         }
@@ -74,31 +80,6 @@ var getDOM = (function () {
         pp = p;
 
         pd = depth;
-        // if (depth == 0) {
-        //     navElms.appendChild(p);
-        // } else {
-        //     pp.appendChild(p);
-        //     if (depth > pd) {
-        //         pp.classList.remove('hide_arrow');
-        //         pp.addEventListener('click', navDrag);
-        //         pp.querySelector('svg').addEventListener('click', hideChild);
-        //     }
-        // }
-
-
-        // if(pd > depth){
-        //     pp = pp.parentElement.parentElement;
-        // }else{
-        //     pp = p;
-        // }
-
-        // pd = depth;
-        // if (depth != 0 && depth == pd) {
-        //     pp = pp.parentElement;
-        // }
-
-        // code
-        // $(`[data-sb_depth="${depth-1}"][data-sb_nav_key=${node}]`).insertAdjacentHTML('beforeend',navMock(node,depth))
 
         depth++;
 
@@ -110,7 +91,12 @@ var getDOM = (function () {
     };
 })();
 
-setTimeout(() => getDOM(idocument.body), 2000)
+const displayNav = ()=>{
+    navElms.innerHTML = '';
+    getDOM(idocument.body);
+}
+
+setTimeout(() => displayNav(), 2000)
 
 function createMock(node, depth) {
     const nTab = document.createElement('div');
@@ -168,5 +154,5 @@ function hideChild(e) {
 
 export {
     navOn,
-    getDOM
+    displayNav
 }
