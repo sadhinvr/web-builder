@@ -30,6 +30,8 @@ var getDOM = (function () {
         p,
         pd = 0;
 
+    navElms.innerHTML = '';
+
     return function (node) {
         if (node.id == 'dev') {
             return 0;
