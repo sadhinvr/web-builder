@@ -1,7 +1,9 @@
 import {
     $
 } from "../reuse";
-import { mousedown } from "./drag";
+import {
+    mousedown
+} from "./drag";
 import {
     idocument
 } from "./iframe";
@@ -39,29 +41,29 @@ var getDOM = (function () {
             });
             return 0;
         }
-        p = createMock(node,depth);
+        p = createMock(node, depth);
 
 
-        if(depth == 0){
+        if (depth == 0) {
             navElms.appendChild(p);
-        }else{
-            if(pp.dataset.sb_nav_depth>depth){
-                const godownNum =(pp.dataset.sb_nav_depth - depth) +1;
-                let godownNode= pp;
-                for(let i=0;i<godownNum;i++){
+        } else {
+            if (pp.dataset.sb_nav_depth > depth) {
+                const godownNum = (pp.dataset.sb_nav_depth - depth) + 1;
+                let godownNode = pp;
+                for (let i = 0; i < godownNum; i++) {
                     godownNode = godownNode.parentNode;
-                //    console.log(i,godownNode)
+                    //    console.log(i,godownNode)
                 }
                 godownNode.appendChild(p);
                 // console.log(godownNode)
-            }else if(pp.dataset.sb_nav_depth<depth){
+            } else if (pp.dataset.sb_nav_depth < depth) {
                 pp.appendChild(p);
-            }else{
+            } else {
                 pp.parentNode.appendChild(p)
             }
         }
 
-        if(pp.dataset.sb_nav_depth<depth){
+        if (pp.dataset.sb_nav_depth < depth) {
             pp.classList.remove('hide_arrow');
             pp.addEventListener('click', navDrag);
             pp.querySelector('svg').addEventListener('click', hideChild);
@@ -106,13 +108,13 @@ var getDOM = (function () {
     };
 })();
 
-setTimeout(() => getDOM(idocument.body), 1000)
+setTimeout(() => getDOM(idocument.body), 2000)
 
-function createMock(node,depth) {
+function createMock(node, depth) {
     const nTab = document.createElement('div');
     nTab.className = ('navigation_tab hide_arrow');
     nTab.dataset.sb_nav_key = node.dataset.ele + ' ' + node.dataset.sb_key;
-    nTab.dataset.drag = "12";
+    // nTab.dataset.drag = "22";
     nTab.dataset.sb_nav_depth = depth;
     nTab.addEventListener('mousedown', mousedown)
     nTab.innerHTML = `
@@ -163,5 +165,6 @@ function hideChild(e) {
 }
 
 export {
-    navOn
+    navOn,
+    getDOM
 }

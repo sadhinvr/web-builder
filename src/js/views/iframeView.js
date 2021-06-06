@@ -6,6 +6,9 @@ import {
     idocument,
     iwindow
 } from '../models/iframe';
+import {
+    getDOM
+} from '../models/navigator';
 
 
 
@@ -192,7 +195,8 @@ function mouseLeave() {
 }
 
 function iframeAppend(html, pos) {
-        pos[0].insertAdjacentElement(pos[1], html);
+    pos[0].insertAdjacentElement(pos[1], html);
+    getDOM(idocument.body)
 }
 
 export {
