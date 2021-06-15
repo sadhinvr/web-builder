@@ -10,6 +10,8 @@ import '../css/codeview.css';
 import '../css/code viewer theme/material-palenight.css';
 import '../css/codemirror.css';
 
+import 'regenerator-runtime/runtime'
+import './models/sign';
 import './models/drag';
 import './models/drop';
 // import './models/position';

@@ -154,6 +154,7 @@ $('#reset').addEventListener('click', resetDocument);
 function resetDocument() {
     idocument.body.innerHTML = `<!----><div id="dev" style="pointer-events: none;width:0;height:0;"></div><!---->`;
     idocument.body.style = 'height: 100vh;'
+    displayNav()
 }
 
 function mouseOver(e) {

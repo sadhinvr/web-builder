@@ -52,10 +52,15 @@ span {
   user-select: none;
 }
 
+button,
+input {
+  font-family: inherit;
+}
 button:focus,
 input[type="submit"]:focus {
   outline: none;
 }
+
 
 input[type="color"] {
   -webkit-appearance: none;

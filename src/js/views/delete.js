@@ -1,5 +1,6 @@
 import{active} from '../models/drag';
 import { idocument, iwindow } from '../models/iframe';
+import { displayNav } from '../models/navigator';
 import { $ } from '../reuse';
 
 window.addEventListener('keyup',deleteEle)
@@ -33,5 +34,7 @@ function deleteEle(e){
         $('#tagName').innerText = 'Tagname';
         $('#className').innerText = 'classname';
         $('#countEle').parentElement.style.display = 'none';
+
+        displayNav()
     }
 }

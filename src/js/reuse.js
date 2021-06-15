@@ -1,3 +1,5 @@
+const b_URL = 'https://webflow-back-end.herokuapp.com';
+
 const $ = function (q, a = false ,i = false) {
     if(i){
         if (a) {
@@ -26,5 +28,6 @@ const elements = {
 
 export {
     $,
-    elements
+    elements,
+    b_URL
 };
