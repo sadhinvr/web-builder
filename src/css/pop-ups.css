@@ -27,7 +27,7 @@
 
 .pop_ups button {
     border: none;
-    background: linear-gradient(45deg, rgb(52 52 218) 16%, rgb(169 0 255) 100%);
+    background: coral;
     color: #fff;
     font-size: 14px;
     padding: 12px 14px;
@@ -78,7 +78,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, rgb(52 52 218) 16%, rgb(169 0 255) 100%);
+    background: antiquewhite;
 }
 
 .sign form {
@@ -131,7 +131,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(45deg, rgb(52 52 218) 16%, rgb(169 0 255) 100%);
+    background: #222;
 }
 
 .full_loading .full_loading_img {
@@ -139,12 +139,20 @@
 }
 
 .full_loading .full_loading_text{
-    font-size: 18px;
+    font-size: 16px;
 }
 
 
 @media only screen and (max-width: 768px) {
     .enlarge_screen {
         display: block;
+    }
+}
+
+@keyframes fullloading {
+    0%{
+        transform: rotateZ(0deg);
+    }100%{
+        transform: rotateZ(360deg);
     }
 }

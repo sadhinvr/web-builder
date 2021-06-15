@@ -27,19 +27,41 @@
 
     <link rel="shortcut icon" href="https://sadhinvr.github.io/web-builder/dist/assets/favicon.svg" type="image/x-icon">
 
-    <script src="https://sadhinvr.github.io/web-builder/dist/js/codemirror.js"></script>
-    <script src="https://sadhinvr.github.io/web-builder/dist/mode/xml/xml.js"></script>
-    <script src="https://sadhinvr.github.io/web-builder/dist/mode/javascript/javascript.js"></script>
-    <script src="https://sadhinvr.github.io/web-builder/dist/mode/css/css.js"></script>
-    <script src="https://sadhinvr.github.io/web-builder/dist/mode/vbscript/vbscript.js"></script>
-    <script src="https://sadhinvr.github.io/web-builder/dist/js/htmlmixed.js"></script>
-    <script src="https://sadhinvr.github.io/web-builder/dist/js/formatting.js"></script>
-
+    <script>
+        window.addEventListener('load', (e) => {
+            document.querySelector('.full_loading').style.display = 'none';
+        })
+    </script>
 
 </head>
 
 <body>
-    <div class="full">
+    <div class="full_loading" title="loading" style="font-family: Roboto, Open Sans, Helvetica Neue, Bangla201, sans-serif;row-gap: 15px;
+        z-index: 10;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: #111;">
+
+        <svg style="width: 80px;height: auto;animation: fullloading 1s infinite linear;" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            style="margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px"
+            viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <circle cx="50" cy="50" fill="none" stroke="#f3b72e" stroke-width="10" r="35"
+                stroke-dasharray="164.93361431346415 56.97787143782138">
+            </circle>
+        </svg>
+        <!-- <img class="full_loading_img" src="assets/loading.svg" alt="Loading..."> -->
+        <p class="full_loading_text" style="font-size: 16px;color:#fff">loading data</p>
+    </div>
+
+    <div class="full" style="visibility: hidden;">
         <div class="controller">
             <!-- top -->
             <div class="top_holder">
@@ -1134,12 +1156,20 @@
             enlarge your screen or use screen larger than 768px.
         </div>
         <div class="sign" style="display: none;"></div>
-
-        <div class="full_loading" title="loading">
-            <img class="full_loading_img" src="assets/loading.svg" alt="Loading...">
-            <p class="full_laoding_text">loading data</p>
-        </div>
     </div>
+
+
+
+    <!-- scripts -->
+
+    <script async src="https://sadhinvr.github.io/web-builder/dist/js/codemirror.js"></script>
+    <script async src="https://sadhinvr.github.io/web-builder/dist/mode/xml/xml.js"></script>
+    <script async src="https://sadhinvr.github.io/web-builder/dist/mode/javascript/javascript.js"></script>
+    <script async src="https://sadhinvr.github.io/web-builder/dist/mode/css/css.js"></script>
+    <script async src="https://sadhinvr.github.io/web-builder/dist/mode/vbscript/vbscript.js"></script>
+    <script async src="https://sadhinvr.github.io/web-builder/dist/js/htmlmixed.js"></script>
+    <script async src="https://sadhinvr.github.io/web-builder/dist/js/formatting.js"></script>
+
 </body>
 
 </html>
