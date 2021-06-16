@@ -68,6 +68,25 @@
     background: #000000be;
 }
 
+.form_message{
+    color: dodgerblue;
+    background: #1e90ff20;
+    padding: 4px;
+    border-left: dodgerblue 2px solid;
+}
+.form_message--error{
+    color: #f00;
+    background: #ff000020;
+    padding: 4px;
+    border-left: #ff4b4b 2px solid;
+}
+.form_message--success{
+    color: #0abf63;
+    background: #0abf6320;
+    padding: 4px;
+    border-left: #0abf63 2px solid;
+}
+
 .sign {
     z-index: 1;
     position: fixed;
@@ -82,7 +101,7 @@
 }
 
 .sign form {
-
+    position: relative;
     color: #222;
     background: #fff;
     padding: 30px;
@@ -94,6 +113,14 @@
     row-gap: 20px;
     flex-direction: column;
     min-width: 427px;
+    box-shadow: 0 0 30px rgb(255 141 0 / 30%);
+}
+
+.sign .cross{
+    width: 16px;
+    position:absolute;
+    right:30px;
+    cursor: pointer;
 }
 
 .sign form div div {
@@ -116,6 +143,12 @@
     display: inline-block;
     /* margin-top: 20px; */
     align-self: flex-end
+}
+
+.sign_loading{
+    width: 30px;
+    position: absolute;
+    bottom:20px;
 }
 
 

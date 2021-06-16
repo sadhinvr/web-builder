@@ -8,9 +8,12 @@ import {
 import {
     createSign
 } from "../views/signView";
+import formLoading from "./formLoading";
 
 const getUserData = async (sid) => {
     const add = `/user/data/${getCookie('sb_session')}`
+    formLoading();
+
     try {
         const data = await axios.get(b_URL + add).then().catch((err) => {
             if (err.response) {
@@ -22,9 +25,12 @@ const getUserData = async (sid) => {
             }
         })
         console.log(data)
+        
     } catch {
         console.log('error getting somedata')
     }
+    
+    formLoading(false)
 }
 
 const errResponse = (r) => {

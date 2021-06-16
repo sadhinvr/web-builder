@@ -10,7 +10,9 @@ import {
 import {
     getCookie
 } from "../utils/cookie";
+import {formMessageMock} from "./formMessageView";
 
+const loading = document.createElement('img');
 
 function createSign(state) {
     const sign = $('.sign');
@@ -18,7 +20,7 @@ function createSign(state) {
     sign.style.display = "flex";
     //mockup
     const m = `
-    <div class="pop_up_heading"><span>Sign ${state} </span> </div>
+        <div class="pop_up_heading"><span>Sign ${state} </span> </div>
         <div class="div">
             <legend>${state === 'up'?'Name & ':''}Username</legend>
             <div>
@@ -40,16 +42,31 @@ function createSign(state) {
     p.innerText = `sign ${state === 'up'?'in':'up'}`;
     p.addEventListener('click', () => state === 'up' ? createSign('in') : createSign('up'))
 
+    const cross = document.createElement('img');
+    cross.src = "assets/cross.svg";
+    cross.className ="cross";
+    cross.title ='close';
+    cross.addEventListener('click',()=>sign.style.display="none");
+
+    loading.src = "assets/loading.svg";
+    loading.className ="sign_loading";
+    loading.title ='loading';
+    loading.style.display = 'none';
+
     // set form
     const form = document.createElement('form');
     form.dataset.sign = state;
     form.innerHTML = m;
     form.appendChild(p);
+    form.appendChild(cross);
+    form.appendChild(loading);
+    form.appendChild(formMessageMock)
     form.addEventListener('submit', state === 'up' ? signup : signin)
     sign.innerHTML = '';
-    sign.appendChild(form)
+    sign.appendChild(form);
 }
 
 export {
-    createSign
+    createSign,
+    loading
 };
