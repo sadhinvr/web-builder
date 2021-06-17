@@ -28,8 +28,8 @@
     <link rel="shortcut icon" href="https://sadhinvr.github.io/web-builder/dist/assets/favicon.svg" type="image/x-icon">
 
     <script>
-        window.addEventListener('load', (e) => {
-            document.body.children[1].style.visibility="";
+        window.addEventListener('DOMContentLoaded', (e) => {
+            document.querySelector('.full').style.visibility="";
             setTimeout(()=>{
                 document.querySelector('.full_loading').style.display = 'none';
             },200)
@@ -52,8 +52,8 @@
         flex-direction: column;
         background: antiquewhite">
 
-        <svg style="width: 80px;height: auto;animation: fullloading 1s infinite linear;" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+        <svg style="width: 80px;height: auto;animation: fullloading 1s infinite linear;"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             style="margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px"
             viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
             <circle cx="50" cy="50" fill="none" stroke="#ff5050" stroke-width="10" r="35"
@@ -63,6 +63,14 @@
         <!-- <img class="full_loading_img" src="assets/loading.svg" alt="Loading..."> -->
         <p class="full_loading_text" style="font-size: 16px;color:#000">loading data</p>
     </div>
+
+    <script defer src="https://sadhinvr.github.io/web-builder/dist/js/codemirror.js"></script>
+    <script defer src="https://sadhinvr.github.io/web-builder/dist/mode/xml/xml.js"></script>
+    <script defer src="https://sadhinvr.github.io/web-builder/dist/mode/javascript/javascript.js"></script>
+    <script defer src="https://sadhinvr.github.io/web-builder/dist/mode/css/css.js"></script>
+    <script defer src="https://sadhinvr.github.io/web-builder/dist/mode/vbscript/vbscript.js"></script>
+    <script defer src="https://sadhinvr.github.io/web-builder/dist/js/htmlmixed.js"></script>
+    <script defer src="https://sadhinvr.github.io/web-builder/dist/js/formatting.js"></script>
 
     <div class="full" style="visibility: hidden;">
         <div class="controller">
@@ -1172,7 +1180,6 @@
     <script async src="https://sadhinvr.github.io/web-builder/dist/mode/vbscript/vbscript.js"></script>
     <script async src="https://sadhinvr.github.io/web-builder/dist/js/htmlmixed.js"></script>
     <script async src="https://sadhinvr.github.io/web-builder/dist/js/formatting.js"></script> -->
-
 </body>
 
 </html>
