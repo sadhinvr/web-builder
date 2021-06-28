@@ -49,11 +49,6 @@ function mousedown(e) {
         dragState = e.currentTarget.dataset.drag;
         // set data
         setDragData(e);
-        data.winY = iwindow.scrollY;
-        data.winX = iwindow.scrollX;
-
-
-
 
         //check drag 10/11/20
         if (dragState === '10') {
@@ -66,8 +61,14 @@ function mousedown(e) {
             getStyle(active);
         } else if (dragState === '11') {
 
-        } else if (dragState === '12') {
-
+        } else if (dragState === '20') {
+            data.node.style.background = 'dodgerblue';
+            //active
+            active = 'k';
+            idocument.getElementById('dev').appendChild(activeBox);
+            setStyleData(active, activeBox, '1px solid #00ff13')
+            //active style
+            getStyle(active);
         }
 
         // mouse over
@@ -180,17 +181,27 @@ function setDragData(e) {
     data = {
         winY: iwindow.scrollY,
         winX: iwindow.scrollX,
-        node: e.target,
-        top: e.currentTarget.getClientRects()[0].top,
-        left: e.currentTarget.getClientRects()[0].left,
+        node: e.currentTarget,
+        top: data.node.getClientRects()[0].top,
+        left: data.node.getClientRects()[0].left,
     };
 
     if (dragState === '11') {
-        data.node = e.currentTarget,
-            data.clone = e.currentTarget.cloneNode(true);
+        data.node = e.currentTarget;
+        data.clone = e.currentTarget.cloneNode(true);
         data.height = e.currentTarget.getClientRects()[0].height;
         data.width = e.currentTarget.getClientRects()[0].width;
         readyDragClone();
+    }
+
+    if (dragState === '20') {
+        data.node = e.currentTarget;
+        const keyArr = data.node.dataset.sb_nav_key.split(' ')
+        data.ele = keyArr[0];
+        data.key = keyArr[1];
+        data.selectedNode = $(`[data-sb_key="${data.key}][data-ele="${data.ele}"]"`);
+        data.top = data.node.getClientRects()[0].top;
+        data.left = data.node.getClientRects()[0].left;
     }
 }
 

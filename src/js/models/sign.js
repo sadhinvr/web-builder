@@ -1,18 +1,24 @@
-import { getUserData } from "../controller/userdata";
-import { getCookie } from "../utils/cookie";
-import { createSign } from "../views/signView";
+import {
+    getUserData
+} from "../controller/userdata";
+import {
+    getCookie
+} from "../utils/cookie";
+import {
+    createSign
+} from "../views/signView";
 
-const  signModel = ()=>{
+const signModel = () => {
     //check cookie
     const cookie = getCookie('sb_session');
 
-    if(!cookie){
+    if (!cookie) {
         createSign('up');
-    }else{
+    } else {
         getUserData(cookie);
     }
 }
 
-signModel()
+// signModel()
 
 export default signModel;
