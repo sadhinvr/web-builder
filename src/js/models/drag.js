@@ -39,6 +39,7 @@ dragable.forEach(cur => {
 
 
 function mousedown(e) {
+    e.stopPropagation();
     e.preventDefault();
 
     if (e.currentTarget.dataset.drag && e.button === 0) {
@@ -182,8 +183,8 @@ function setDragData(e) {
         winY: iwindow.scrollY,
         winX: iwindow.scrollX,
         node: e.currentTarget,
-        top: data.node.getClientRects()[0].top,
-        left: data.node.getClientRects()[0].left,
+        top: e.currentTarget.getClientRects()[0].top,
+        left: e.currentTarget.getClientRects()[0].left,
     };
 
     if (dragState === '11') {
