@@ -1,3 +1,4 @@
+import { $ } from '../reuse';
 import {
     on,
     setStyleData
@@ -7,6 +8,7 @@ import {
     idocument,
     iwindow
 } from './iframe';
+import { navOn } from './navigator';
 
 //variable
 let pos = [],
@@ -34,6 +36,14 @@ const cantake = {
 
 //mouseover
 const mouseOver = (e, child) => {
+    if(navOn){
+        //get vartual node 
+        const vn= e.target;
+
+        if(vn.dataset.navDrag){
+            e= $(``)
+        }
+    }
     if (on && e.target.tagName != 'BODY' && e.target != child) {
 
         let parentArr, parentRect, top, height, offset, width, left;

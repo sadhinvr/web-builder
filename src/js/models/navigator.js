@@ -73,7 +73,6 @@ const getDOM = (function () {
 
         if (pp.dataset.sb_nav_depth < depth) {
             pp.classList.remove('hide_arrow');
-            pp.addEventListener('click', navDrag);
             pp.querySelector('svg').addEventListener('click', hideChild);
         }
 
@@ -102,11 +101,11 @@ function createMock(node, depth) {
     const nTab = document.createElement('div');
     nTab.className = ('navigation_tab hide_arrow');
     nTab.dataset.sb_nav_key = node.dataset.ele + ' ' + node.dataset.sb_key;
-    // nTab.dataset.drag = "22";
+    nTab.dataset.navDrag = "10";
     nTab.dataset.sb_nav_depth = depth;
     nTab.addEventListener('mousedown', mousedown)
     nTab.innerHTML = `
-                <div class="nav_ele">
+                <div class="nav_ele ">
                 <svg style="margin-left:-8px" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
                     <path d="M4 6l3 .01h2L12 6l-4 4-4-4z" fill="currentColor"></path>
                 </svg>
@@ -121,25 +120,20 @@ function createMock(node, depth) {
 }
 
 
-function navMock(node, depth) {
-    return `<div class="navigation_tab" data-sb_depth="${depth}">
-                <div class="nav_ele">
-                    <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
-                        <path d="M4 6l3 .01h2L12 6l-4 4-4-4z" fill="currentColor"></path>
-                    </svg>
-                 <p>${node.tagName.toLowerCase()} 
-                 <span class="--light">
-                    -${node.dataset.ele + (node.dataset.sb_key == 0?'':node.dataset.sb_key)}
-                 </span>
-                 </p>
-                </div>
-            </div>`
-}
-
-function navDrag(e) {
-
-
-}
+// function navMock(node, depth) {
+//     return `<div class="navigation_tab" data-sb_depth="${depth}" data-sb_drag="10">
+//                 <div class="nav_ele">
+//                     <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+//                         <path d="M4 6l3 .01h2L12 6l-4 4-4-4z" fill="currentColor"></path>
+//                     </svg>
+//                  <p>${node.tagName.toLowerCase()} 
+//                  <span class="--light">
+//                     -${node.dataset.ele + (node.dataset.sb_key == 0?'':node.dataset.sb_key)}
+//                  </span>
+//                  </p>
+//                 </div>
+//             </div>`;
+// }
 
 function hideChild(e) {
     e.stopPropagation();
