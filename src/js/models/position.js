@@ -223,23 +223,3 @@ function parentCheck(parent, child) {
 export {
     mouseOver
 };
-
-// //top
-// if(n == 'top'){
-
-// }
-
-// //mtop
-// else if(n == 'mtop'){
-
-// }
-
-// //mbottom
-// else if(n == 'mbottom'){
-
-// }
-
-// //bottom
-// else if(n == 'bottom'){
-
-// }
