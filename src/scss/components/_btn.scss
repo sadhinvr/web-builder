@@ -1,0 +1,19 @@
+.btn{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid $color-dark-2;
+    border-top: transparent;
+    border-bottom: transparent;
+
+    &:first-child{
+        border-left-color:transparent;
+        border-right-color:transparent;
+    }
+
+    &:last-child{
+        border-right-color:transparent;
+        border-left-color:transparent;
+    }
+}

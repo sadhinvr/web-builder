@@ -1,12 +1,18 @@
 .container{
-    padding:10px;
+    
 }
 
 .row{
     display: flex;
+    align-items: center;
 }
 
 .col{
     // background: #000;
     // padding: 10px;
+}
+
+header{
+    background: $color-dark-3;
+    color: #fff;
 }
