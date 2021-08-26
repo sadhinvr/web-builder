@@ -4,6 +4,7 @@ main {
 
     .left-sidebar {
         width: 42px;
+        min-width: 42px;
         background: $color-dark-3;
         border-right: 1px solid $color-dark-2;
         border-left: 1px solid $color-dark-2;
@@ -48,7 +49,7 @@ main {
 
         .i-holder {
             flex-grow: 1;
-            height: calc(100vh - (41px * 2));
+            height: calc(100vh - (41px * 2) - 1px);
 
             iframe {
                 width: 100%;
@@ -57,6 +58,7 @@ main {
     }
 
     .bottom-sidebar {
+        border-top: 1px solid $color-dark-2;
         background: $color-dark-3;
     }
 

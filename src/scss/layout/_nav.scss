@@ -1,11 +1,21 @@
-.navigator{
+.navigator {
     @extend .bg-dark-3;
     max-width: 420px;
     min-width: 200px;
     width: 240px;
-    border-bottom: 2px solid $color-dark-5;
-    padding: 10px;
-    &_heading{
+    border-right: 2px solid $color-dark-1;
+
+    &_heading {
         @extend .bg-dark-2;
     }
+
+    &_body {
+        @extend .bg-dark-4;
+    }
+
+    &>div {
+        padding: 8px;
+    }
+
+
 }
