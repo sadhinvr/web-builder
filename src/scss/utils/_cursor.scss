@@ -1,0 +1,12 @@
+.cursor{
+    &-pointer{
+        cursor: pointer;
+    }
+    &-grab{
+        cursor: grab;
+    }
+
+    &-na{
+        cursor: not-allowed;
+    }
+}

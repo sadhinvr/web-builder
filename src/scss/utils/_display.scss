@@ -1,14 +1,19 @@
-.d-flex {
-    display: flex;
+.d{
+    &-flex {
+        display: flex;
+    }
+    
+    &-block {
+        display: block;
+    }
+    
+    &-none {
+        display: none;
+    }
 }
 
-.d-block {
-    display: block;
-}
 
-.d-none {
-    display: none;
-}
+
 
 .hidden {
     visibility: hidden;

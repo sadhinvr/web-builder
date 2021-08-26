@@ -1,0 +1,25 @@
+main {
+    height: calc(100vh - 41px);
+    background: $color-dark-6;
+
+    .left-sidebar {
+        width: 42px;
+        overflow: hidden;
+        background: $color-dark-3;
+        border-right:1px solid $color-dark-2;
+        border-left:1px solid $color-dark-2;
+    }
+
+    .right-sidebar{
+        @extend .left-sidebar;
+    }
+
+    .middle{
+        flex-grow: 1;
+        iframe{
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    }
+}

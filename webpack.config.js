@@ -25,22 +25,39 @@ module.exports = {
         }, {
             test: /\.s[ac]ss$/i,
             use: [
-                // Creates `style` nodes from JS strings
-                MiniCssExtractPlugin.loader,
-                // Translates CSS into CommonJS
-                "css-loader",
-                // Compiles Sass to CSS
-                "sass-loader",
+                "style-loader",
+                {
+                    loader: "css-loader",
+                    options: {
+                        sourceMap: true,
+                    },
+                },
+                {
+                    loader: "sass-loader",
+                    options: {
+                        sourceMap: true,
+                    },
+                },
             ],
         }, ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/index.html'
+            template: './src/index.html',
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                useShortDoctype: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true
+            }
         }),
         new MiniCssExtractPlugin({
-            filename: "css/style.css"
+            filename: "css/style.css",
         })
     ],
 }

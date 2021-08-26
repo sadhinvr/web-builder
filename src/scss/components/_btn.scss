@@ -3,17 +3,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border:1px solid $color-dark-2;
-    border-top: transparent;
-    border-bottom: transparent;
+    border-right:1px solid $color-dark-2;
+    background: $color-dark-3;
+    @extend .cursor-pointer;
 
-    &:first-child{
-        border-left-color:transparent;
-        border-right-color:transparent;
+    &:hover{
+        background: lighten($color-dark-3,5%);
     }
 
-    &:last-child{
-        border-right-color:transparent;
-        border-left-color:transparent;
+    svg,img{
+        width: 20px;
+        height: 20px;
     }
 }
+
