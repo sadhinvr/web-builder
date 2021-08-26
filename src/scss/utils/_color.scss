@@ -1,0 +1,104 @@
+//bg
+.bg{
+    background-color: #fff;
+
+    &-dark{
+        background-color: #000;
+
+        &-1{
+            background-color: $color-dark-1;
+        }
+        &-2{
+            background-color: $color-dark-2;
+        }
+        &-3{
+            background-color: $color-dark-3;
+        }
+        &-4{
+            background-color: $color-dark-4;
+        }
+        &-5{
+            background-color: $color-dark-5;
+        }
+        &-6{
+            background-color: $color-dark-6;
+        }
+    }
+
+    &-white{
+        background-color: #fff;
+
+        &-1{
+            background-color: darken(#fff,5%);
+        }
+        &-2{
+            background-color: darken(#fff,10%);
+        }
+        &-3{
+            background-color: darken(#fff,15%);
+        }
+        &-4{
+            background-color: darken(#fff,25%);
+        }
+        &-5{
+            background-color: darken(#fff,35%);
+        }
+        &-6{
+            background-color: darken(#fff,50%);
+        }
+    }
+
+
+}
+
+//color
+.color{
+    color: #000;
+
+    &-white{
+        color: #fff;
+
+        &-1{
+            color: darken(#fff,5%);
+        }
+        &-2{
+            color: darken(#fff,10%);
+        }
+        &-3{
+            color: darken(#fff,15%);
+        }
+        &-4{
+            color: darken(#fff,25%);
+        }
+        &-5{
+            color: darken(#fff,35%);
+        }
+        &-6{
+            color: darken(#fff,50%);
+        }
+    }
+
+    &-dark{
+        color: #fff;
+
+        &-1{
+            color: $color-dark-1;
+        }
+        &-2{
+            color: $color-dark-2;
+        }
+        &-3{
+            color: $color-dark-3;
+        }
+        &-4{
+            color: $color-dark-4;
+        }
+        &-5{
+            color: $color-dark-5;
+        }
+        &-6{
+            color: $color-dark-6;
+        }
+    }
+
+}

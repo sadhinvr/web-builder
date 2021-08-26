@@ -1,0 +1,8 @@
+.vr{
+    width: 3px;
+    background: $color-dark-6;
+    &:hover{
+        background: $color-8;
+    }
+    @extend .cursor-eresize;
+}

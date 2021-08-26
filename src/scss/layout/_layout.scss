@@ -1,5 +1,7 @@
 @import './header';
 @import './main';
+@import './elements';
+@import './nav';
 
 .container{
     
@@ -12,7 +14,6 @@
 }
 
 .col{
-    // background: #000;
-    // padding: 10px;
+    flex-grow: 1;
 }
 

@@ -3,8 +3,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right:1px solid $color-dark-2;
-    background: $color-dark-3;
     @extend .cursor-pointer;
 
     &:hover{
@@ -14,6 +12,16 @@
     svg,img{
         width: 20px;
         height: 20px;
+        position: relative;
+        z-index: 5;
+    }
+
+    &--rounded{
+        border-radius: 5px;
+    }
+
+    &--pill{
+        border-radius: 100px;
     }
 }
 

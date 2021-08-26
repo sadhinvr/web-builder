@@ -4,22 +4,65 @@ main {
 
     .left-sidebar {
         width: 42px;
-        overflow: hidden;
         background: $color-dark-3;
-        border-right:1px solid $color-dark-2;
-        border-left:1px solid $color-dark-2;
-    }
+        border-right: 1px solid $color-dark-2;
+        border-left: 1px solid $color-dark-2;
+        position: relative;
 
-    .right-sidebar{
-        @extend .left-sidebar;
-    }
+        .popup {
+            min-width: 300px;
+            max-width: 420px;
+            width: 300px;
+            position: absolute;
+            background: $color-dark-4;
+            top: 0;
+            bottom: 41px;
+            left: calc(100% + 1px);
+            z-index: 1000;
+            overflow: auto;
+            overflow-x: visible;
+            border-right: 5px solid $color-dark-6;
 
-    .middle{
-        flex-grow: 1;
-        iframe{
-            width: 100%;
-            height: 100%;
-            border: none;
+            .pops {
+                padding: 10px;
+            }
         }
+    }
+
+    .right-sidebar {
+        @extend .left-sidebar;
+
+        .popup {
+            right: calc(100% + 1px);
+            left: auto;
+        }
+    }
+
+
+    .middle {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        background: #fff;
+
+        .i-holder {
+            flex-grow: 1;
+            height: calc(100vh - (41px * 2));
+
+            iframe {
+                width: 100%;
+            }
+        }
+    }
+
+    .bottom-sidebar {
+        background: $color-dark-3;
+    }
+
+    .btn {
+        border-bottom: 1px solid $color-dark-2;
+        background: $color-dark-3;
+        position: relative;
     }
 }
