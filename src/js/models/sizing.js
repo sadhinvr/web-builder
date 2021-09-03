@@ -1,5 +1,9 @@
 import Action from './Action';
-const action = new Action();
+// const action = new Action(window);
 
-action.mouseMove(domEle.iresize,()=>console.log('hello'));
+// action.on('mousemove',action.mousePos).resetPos();
+// iframe.addEventListener('')
+window.addEventListener('mousemove',()=>console.log('k'))
+
+
 
