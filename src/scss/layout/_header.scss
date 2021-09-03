@@ -6,6 +6,12 @@ header {
     border: 1px solid $color-dark-2;
     overflow: hidden;
 
+    .container{
+        &>.row{
+            justify-content: space-between;
+        }
+    }
+
     .btn {
         border-right: 1px solid $color-dark-2;
         background: $color-dark-3;

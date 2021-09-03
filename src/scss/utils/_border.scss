@@ -6,4 +6,8 @@
         border-top: none;
         border-bottom: none;
     }
+
+    &-left{
+        border-left: 1px solid $color-dark-2;
+    }
 }

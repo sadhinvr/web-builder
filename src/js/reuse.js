@@ -1,11 +1,17 @@
 const b_URL = 'https://webflow-back-end.herokuapp.com';
+const iframe = document.getElementById('iframe');
+const d = {
+    ibody:iframe.contentDocument,
+    body:document.body,
+}
 
 const $ = function (q, a = false ,i = false) {
     if(i){
+
         if (a) {
-            return document.getElementById('iframe').contentDocument.querySelectorAll(q);
+            return d.ibody.querySelectorAll(q);
         }
-        return document.getElementById('iframe').contentDocument.querySelector(q);
+        return d.ibody.querySelector(q);
     }
 
     if (a) {
@@ -14,20 +20,9 @@ const $ = function (q, a = false ,i = false) {
     return document.querySelector(q);
 }
 
-const elements = {
-    top_holder: $('.top_holder'),
-    top: $('.top'),
-    left_holder: $('.left_holder'),
-    left: $('.left'),
-    right_holder: $('.right_holder'),
-    right: $('.right'),
-    middle: $('.middle'),
-
-}
-
 
 export {
     $,
-    elements,
+    d,
     b_URL
 };
