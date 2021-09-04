@@ -8,8 +8,8 @@ export default class Action {
         return this;
     }
 
-    removeEvent(ele=this.ele,eName, f) {
-        ele.removeEventListener(eName, f);
+    removeEvent(eName, f,ele=this.ele,uc = false) {
+        ele.removeEventListener(eName, f,uc);
         return this;
     }
 
@@ -36,7 +36,7 @@ export default class Action {
         if (this.rY != obj.rY) {
             this.rY = obj.rY;
             obj.bY = true;
-            console.log(obj);
+            // console.log(obj);
         }
 
 
@@ -45,20 +45,12 @@ export default class Action {
         return obj;
     }
 
-    resetPos() {
+    resetPos(ele=this.ele) {
         this.on('mouseleave',e=>{
             this.x = undefined;
             this.y = undefined;
             console.log("reset");
-        },document)
-    }
-
-    drag() {
-
-    }
-
-    drop() {
-
+        },(ele==window?document:ele))
     }
 
 }
