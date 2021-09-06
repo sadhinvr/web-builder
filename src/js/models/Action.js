@@ -3,14 +3,28 @@ export default class Action {
         this.ele = ele;
     }
 
-    on(eName, f,ele=this.ele,uc = false) {
+    on(eName, f, ele = this.ele, uc = false) {
         ele.addEventListener(eName, f, uc);
         return this;
     }
 
-    removeEvent(eName, f,ele=this.ele,uc = false) {
-        ele.removeEventListener(eName, f,uc);
+    removeEvent(eName, f, ele = this.ele, uc = false) {
+        ele.removeEventListener(eName, f, uc);
         return this;
+    }
+
+    eventSettings = (e, set = {
+        pd: false,
+        stpro: false,
+        point: false
+    }, exFun = [{
+        f: () => {},
+        ar: []
+    },]) => {
+        set.pd && e.preventDefault();
+        set.stpro && e.stopPropagation();
+        set.point && (iframe.style.pointerEvents = 'none');
+        exFun.forEach(o => o.f(...o.ar));
     }
 
     mousePos(e) {
@@ -41,16 +55,18 @@ export default class Action {
 
 
         this.rY = obj.rY;
-        
+
         return obj;
     }
 
-    resetPos(ele=this.ele) {
-        this.on('mouseleave',e=>{
+
+
+    resetPos(ele = this.ele) {
+        this.on('mouseleave', e => {
             this.x = undefined;
             this.y = undefined;
             console.log("reset");
-        },(ele==window?document:ele))
+        }, (ele == window ? document : ele))
     }
 
 }
