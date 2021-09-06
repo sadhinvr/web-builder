@@ -45,17 +45,13 @@ function mousemove(e) {
 
 
         if (dragAction.vrLeft) {
-            // console.log(dragAction.initwidth);
             s.w = dragAction.initwidth - (pos.x - (rect2.left+offset/2))*2;
-            console.log('kd')
-
-            
 
         } else {
             s.w = dragAction.initwidth - ((rect2.right-offset/2) - pos.x)*2;
         }
 
-        if(totalSpace <= s.w || totalSpace < iwidth){
+        if(totalSpace <= iwidth){
             if (dragAction.vrLeft) {
                 s.w = iwidth + Math.sign((dragAction.pX || pos.x) - pos.x)*speed;
             
@@ -63,9 +59,9 @@ function mousemove(e) {
             } else {
                 s.w = iwidth + Math.sign(pos.x - (dragAction.pX || pos.x))*speed;
             }
-            
+
             s.s= totalSpace/s.w;
-            console.log(iwidth + Math.sign((dragAction.pX || pos.x) - pos.x)*speed)
+
         }
 
         iframe.style.width = s.w + 'px';
@@ -83,7 +79,4 @@ function mousemove(e) {
 dragAction.on('mouseup', e => {
     iframe.style.pointerEvents = '';
     dragAction.removeEvent('mousemove', mousemove);
-
-    
-
 })
