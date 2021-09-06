@@ -15,5 +15,9 @@ header {
     .btn {
         border-right: 1px solid $color-dark-2;
         background: $color-dark-3;
+
+        &.js-isize{
+            min-width: 140px;
+        }
     }
 }

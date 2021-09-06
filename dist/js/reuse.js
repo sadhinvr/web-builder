@@ -6,6 +6,7 @@ const domEle = {
     iresize:$('.iresize',true),
     i:$('.i'),
     i_holder:$('.i-holder'),
+    i_size:$('.js-isize')
 }
 
 function $(q, a = false ,i = false) {

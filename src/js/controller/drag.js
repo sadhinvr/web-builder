@@ -10,7 +10,7 @@ dragAction.on('mousedown', e => {
         e.preventDefault();
         e.stopPropagation();
         dragAction.vrLeft = false;
-        e.target.classList.contains('vr-left') && (dragAction.vrLeft = true);
+        e.target.classList.contains('js-iresize_left') && (dragAction.vrLeft = true);
         dragAction.on('mousemove', mousemove)
     }
 
@@ -22,7 +22,13 @@ function mousemove(e) {
     const pos = dragAction.mousePos(e);
     const rules = {
         maxW: 240,
+        minSc:.3
     }
+
+    const istyle = getComputedStyle(iframe);
+    const iwidth = istyle.width.split('px').join('')*1;
+    const scale = new WebKitCSSMatrix(istyle.transform).a;
+
 
     if (pos.bX) {
         const rect = domEle.i.getBoundingClientRect();
@@ -30,13 +36,15 @@ function mousemove(e) {
         const rect3 = iframe.getBoundingClientRect();
         const offset = 3;
         const speed = 5;
-        const iwidth = getComputedStyle(iframe).width.split('px').join('')*1;
+        
 
         const totalSpace = rect2.width - offset * 2;
         domEle.i.style.maxWidth = totalSpace + 'px';
 
         !dragAction.initheight && (dragAction.initheight = rect3.height);
         !dragAction.initwidth && (dragAction.initwidth = rect3.width);
+
+        domEle.iresize[0].style.background= '';
 
         const s = {
             w: 1,
@@ -61,15 +69,20 @@ function mousemove(e) {
             }
 
             s.s= totalSpace/s.w;
+            domEle.iresize[0].style.background= 'green';
 
         }
 
+        totalSpace == iwidth && (domEle.iresize[0].style.background= 'red');
+        
         iframe.style.width = s.w + 'px';
         iframe.style.height = dragAction.initheight/s.s + 'px';
         domEle.i.style.width = s.w + 'px';
         iframe.style.transform = `scale(${s.s})`;
 
         dragAction.pX= pos.x;
+
+        domEle.i_size.innerHTML = `${s.w}px  ( ${Math.round(s.s*100)} %)`
 
     }
 
