@@ -44,7 +44,8 @@ main {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        overflow:hidden;
+        // overflow:hidden;
+        background: #fff;
 
         // background: rgb(0, 0, 0);
 
@@ -54,7 +55,8 @@ main {
             justify-content: center;
 
             .i{
-                width: 100%;
+                width: 1110px;
+                overflow: hidden;
 
                 iframe {
                     width: 100%;

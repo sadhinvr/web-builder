@@ -9,34 +9,72 @@ dragAction.on('mousedown', e => {
     if (arr.includes(e.target)) {
         e.preventDefault();
         e.stopPropagation();
+        dragAction.vrLeft = false;
+        e.target.classList.contains('vr-left') && (dragAction.vrLeft = true);
         dragAction.on('mousemove', mousemove)
     }
 
 });
 
+
 function mousemove(e) {
-    console.log('moved');
+    // console.log('moved');
     const pos = dragAction.mousePos(e);
+    const rules = {
+        maxW: 240,
+    }
+
     if (pos.bX) {
         const rect = domEle.i.getBoundingClientRect();
         const rect2 = domEle.i_holder.getBoundingClientRect();
-        // const rect3 = domEle.iresize.getBoundingClientRect();
+        const rect3 = iframe.getBoundingClientRect();
+        const offset = 3;
+        const speed = 5;
+        const iwidth = getComputedStyle(iframe).width.split('px').join('')*1;
 
-        let scale = 1;
-        let iwidth;
-        dragAction.pX < 0 ? iwidth = rect.width - (dragAction.pX-pos.rX)*2 : iwidth = rect.width + pos.rX;
-        console.log(iwidth, pos.rX,dragAction.pX);
+        const totalSpace = rect2.width - offset * 2;
+        domEle.i.style.maxWidth = totalSpace + 'px';
 
-        if ((rect2.width - 6) <= iwidth) {
-            scale = rect.width / iwidth;
-            iframe.style.width = iwidth + 'px';
-        } else {
-            iframe.style.width = '100%';
-            domEle.i.style.width = iwidth + 'px';
+        !dragAction.initheight && (dragAction.initheight = rect3.height);
+        !dragAction.initwidth && (dragAction.initwidth = rect3.width);
+
+        const s = {
+            w: 1,
+            s: 1
         }
 
-        iframe.style.transform = `scale(${scale})`;
-        dragAction.pX = pos.rX;
+
+        if (dragAction.vrLeft) {
+            // console.log(dragAction.initwidth);
+            s.w = dragAction.initwidth - (pos.x - (rect2.left+offset/2))*2;
+            console.log('kd')
+
+            
+
+        } else {
+            s.w = dragAction.initwidth - ((rect2.right-offset/2) - pos.x)*2;
+        }
+
+        if(totalSpace <= s.w || totalSpace < iwidth){
+            if (dragAction.vrLeft) {
+                s.w = iwidth + Math.sign((dragAction.pX || pos.x) - pos.x)*speed;
+            
+
+            } else {
+                s.w = iwidth + Math.sign(pos.x - (dragAction.pX || pos.x))*speed;
+            }
+            
+            s.s= totalSpace/s.w;
+            console.log(iwidth + Math.sign((dragAction.pX || pos.x) - pos.x)*speed)
+        }
+
+        iframe.style.width = s.w + 'px';
+        iframe.style.height = dragAction.initheight/s.s + 'px';
+        domEle.i.style.width = s.w + 'px';
+        iframe.style.transform = `scale(${s.s})`;
+
+        dragAction.pX= pos.x;
+
     }
 
 
@@ -46,12 +84,6 @@ dragAction.on('mouseup', e => {
     iframe.style.pointerEvents = '';
     dragAction.removeEvent('mousemove', mousemove);
 
-    // if(arr.includes(e.target)){
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     dragAction.on('mousemove',()=>{
-    //         console.log('mousemove')
-    //     })
-    // }
+    
 
 })
