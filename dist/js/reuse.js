@@ -6,7 +6,10 @@ const domEle = {
     iresize:$('.iresize',true),
     i:$('.i'),
     i_holder:$('.i-holder'),
-    i_size:$('.js-isize')
+    i_size:$('.js-isize'),
+    btns:$('.btn',true),
+    popBody:$('.pops'),
+    popup:$('.js-lpop')
 }
 
 function $(q, a = false ,i = false) {

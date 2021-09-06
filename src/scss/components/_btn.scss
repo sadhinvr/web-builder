@@ -23,5 +23,9 @@
     &--pill{
         border-radius: 100px;
     }
+
+    *{
+        pointer-events: none;
+    }
 }
 
