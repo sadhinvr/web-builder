@@ -19,5 +19,9 @@ header {
         &.js-isize{
             min-width: 140px;
         }
+
+        &.js-activeBreakPoint{
+            background: $color-blue-1;
+        }
     }
 }
