@@ -1,8 +1,8 @@
 .vr{
     min-width: 3px;
-    background: $color-9;
+    background: $color-blue;
     &:hover{
-        background: $color-8;
+        background: $color-blue-1;
     }
     @extend .cursor-eresize;
 }

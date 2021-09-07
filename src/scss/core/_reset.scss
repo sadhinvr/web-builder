@@ -65,12 +65,20 @@
     font-weight: 400;
   }
   
+button{
+  cursor: pointer;
+}
+
   button,
   input {
     font-family: inherit;
+    border: none;
+    padding: 8px;
+    
   }
+
   button:focus,
-  input[type="submit"]:focus {
+  input:focus {
     outline: none;
   }
   

@@ -1,0 +1,56 @@
+.pops {
+    .image {
+        .search {
+            input {
+                background: #fff;
+                flex: 1;
+            }
+
+            button {
+                background: $color-blue-1;
+                color: #fff
+            }
+        }
+
+        .images {
+            margin-top: 1rem;
+            display: flex;
+            row-gap: 1rem;
+            column-gap: 1rem;
+            flex-wrap: wrap;
+
+            .img_wraper {
+                min-width: 100px;
+                width: calc(50% - .5rem);
+                height: 140px;
+                overflow: hidden;
+                position: relative;
+                @extend .cursor-grab;
+                border: solid $color-dark-1 1px;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+
+                .img_details {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                    background: #000000a9;
+                    color: #fff;
+                    padding: .5rem;
+                    opacity: 0;
+                    transition: opacity .3s;
+
+                }
+
+                &:hover .img_details {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
