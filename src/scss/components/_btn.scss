@@ -28,5 +28,12 @@
     *{
         pointer-events: none;
     }
+
+    &.js-lbarActive{
+        background: #ddd;
+    }
+    &.js-activePopBox{
+        background: $color-blue-2;
+    }
 }
 

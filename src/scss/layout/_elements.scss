@@ -30,6 +30,7 @@
                 border-right: none;
                 padding: 10px;
                 flex-grow: 1;
+                width: 33.33%;
                 @extend .cursor-grab;
                 @extend .bg-dark-5;
 
@@ -39,6 +40,10 @@
 
                 &:hover{
                     @extend .bg-dark-6;
+                }
+
+                & *{
+                    pointer-events: none;
                 }
             }
         }

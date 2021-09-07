@@ -30,6 +30,26 @@ function $(q, a = false ,i = false) {
     return document.querySelector(q);
 }
 
+function btnActive(e, clsName, funs = {}, toggle = true) {
+    const eCls = e.target.classList;
+    clsName = 'js-' + clsName;
+    const ele = $("." + clsName);
+
+    if (eCls.contains(clsName)) {
+        toggle && eCls.remove(clsName);
+        funs.containsFun && funs.containsFun();
+    } else {
+        if (ele) {
+            ele.classList.remove(clsName);
+        }
+
+        eCls.add(clsName);
+        funs.elsefun && funs.elsefun();
+    }
+
+    funs.efun && funs.efun();
+}
+
 
 // function setStyleData(e, box, bor = false, bg = false) {
 //     box.setAttribute('focusable', "false");

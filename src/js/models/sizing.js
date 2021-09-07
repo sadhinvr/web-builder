@@ -69,6 +69,40 @@ const iResize = (e, da) => {
 
 }
 
+function breakPoints(e, br = "xlg") {
+    const rules = {
+        sm: {
+            min: 240,
+            max: 480,
+            d: 'max'
+        },
+        md: {
+            min: 481,
+            max: 768,
+            d: 'max'
+        },
+        lg: {
+            min: 769,
+            max: 922,
+            d: 'min'
+        },
+        xlg: {
+            min: 923,
+            max: 1280,
+            d: 'min'
+        }
+    }
+
+    btnActive(e, 'activeBreakPoint', {}, false)
+
+    processIresize({
+        w: rules[br][rules[br].d],
+        s: 1
+    });
+    
+
+}
+
 function processIresize(s) {
     s.w = Math.round(s.w);
     s.w >= state.totalSpace && (s.s = state.totalSpace / s.w);
@@ -86,5 +120,5 @@ function viewIresize(s) {
 
 
 export {
-    iResize,viewIresize,processIresize
+    iResize,breakPoints
 }
