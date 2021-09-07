@@ -9,7 +9,10 @@ const domEle = {
     i_size:$('.js-isize'),
     btns:$('.btn',true),
     popBody:$('.pops'),
-    popup:$('.js-lpop')
+    popup:$('.js-lpop'),
+    pop_box:$('.pop-box'),
+    pop_box_body:$('.pop-box-body'),
+    activatePopBox:$('.js-activePopBox')
 }
 
 function $(q, a = false ,i = false) {

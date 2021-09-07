@@ -12,6 +12,11 @@
     /* IE 10+ */
     user-select: none;
   }
+
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
   
   body {
     font-family: 'Poppins',sans-serif !important;

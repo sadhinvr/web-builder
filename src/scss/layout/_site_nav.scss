@@ -1,0 +1,25 @@
+nav{
+    .row{
+        padding: 3px 10px;
+        // row-gap: .5rem;
+        column-gap: .5rem;
+        // align-items: center;
+        border-bottom: 1px solid $color-dark-2;
+        margin-bottom: .3rem;
+        transition: color .4s;
+
+        &:hover{
+            color: $color-yellow-1;
+        }
+
+        img{
+            height: 16px;
+            margin-top: 2px;
+        }
+
+        &:last-child{
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+    }
+}

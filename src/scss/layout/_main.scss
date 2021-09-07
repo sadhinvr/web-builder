@@ -22,7 +22,7 @@ main {
             z-index: 1000;
             overflow: auto;
             overflow-x: visible;
-            border-right: 5px solid $color-dark-6;
+            border-right: 5px solid $color-dark-3;
 
             .pops {
                 padding: 10px;
@@ -54,7 +54,7 @@ main {
             height: calc(100vh - (41px * 2) - 1px);
             justify-content: center;
 
-            .i{
+            .i {
                 width: 1110px;
                 overflow: hidden;
 

@@ -13,6 +13,7 @@ clickAction.on('click', e => {
     if ([...domEle.btns].includes(e.target)) {
         e.target.classList.contains('js-elebar') && eleBar(e);
         e.target.classList.contains('js-img') && img(e);
+        e.target.classList.contains('js-siteNav') && nav(e);
         e.target.dataset.sb_br && breakPoints(e, e.target.dataset.sb_br);
     }
 
@@ -82,7 +83,7 @@ function eleBar(e) {
     `
 }
 
-function btnActive(e, clsName, funs = {},toggle=true) {
+function btnActive(e, clsName, funs = {}, toggle = true) {
     const eCls = e.target.classList;
     clsName = 'js-' + clsName;
     const ele = $("." + clsName);
@@ -170,7 +171,7 @@ function breakPoints(e, br = "xlg") {
         }
     }
 
-    btnActive(e, 'activeBreakPoint',{},false)
+    btnActive(e, 'activeBreakPoint', {}, false)
 
     processIresize({
         w: rules[br][rules[br].d],
@@ -179,3 +180,33 @@ function breakPoints(e, br = "xlg") {
     // console.log(rules[br][rules[br].d])
 
 }
+
+function nav(e) {
+    const popCls = domEle.pop_box.classList;
+
+    btnActive(e, 'activePopBox', {
+        containsFun: () => {
+            popCls.add('d-none');
+
+        },
+        elsefun: () => {
+            popCls.remove('d-none');
+        }
+    })
+    domEle.pop_box_body.innerHTML = `<nav>
+        <a class="row" href="#">
+            <img src="assets/images/user.svg" alt="">
+            <p>About me</p>
+        </a>
+        <a class="row" href="#">
+            <img src="assets/images/layers.svg" alt="">
+            Showcase
+        </a>
+        <a class="row" href="#">
+            Help??
+        </a>
+    </nav>`;
+
+}
+
+
