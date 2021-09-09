@@ -1,8 +1,7 @@
 const iframe = document.getElementById('iframe');
 
 const domEle = {
-    ibody:iframe.contentDocument,
-    body:document.body,
+    idoc:iframe.contentDocument,
     iresize:$('.iresize',true),
     i:$('.i'),
     i_holder:$('.i-holder'),
@@ -19,9 +18,9 @@ function $(q, a = false ,i = false) {
     if(i){
 
         if (a) {
-            return d.ibody.querySelectorAll(q);
+            return d.idoc.querySelectorAll(q);
         }
-        return d.ibody.querySelector(q);
+        return d.idoc.querySelector(q);
     }
 
     if (a) {

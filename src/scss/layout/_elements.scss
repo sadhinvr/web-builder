@@ -25,27 +25,29 @@
         
         .row{
             margin-top: 10px;
-            .element{
-                border:1px solid $color-dark-2;
-                border-right: none;
-                padding: 10px;
-                flex-grow: 1;
-                width: 33.33%;
-                @extend .cursor-grab;
-                @extend .bg-dark-5;
-
-                &:last-child{
-                    border-right:1px solid $color-dark-2;
-                }
-
-                &:hover{
-                    @extend .bg-dark-6;
-                }
-
-                & *{
-                    pointer-events: none;
-                }
-            }
+            
         }
+    }
+}
+
+.element{
+    border:1px solid $color-dark-2;
+    border-right: none;
+    padding: 10px;
+    flex-grow: 1;
+    width: 33.33%;
+    @extend .cursor-grab;
+    @extend .bg-dark-5;
+
+    &:last-child{
+        border-right:1px solid $color-dark-2;
+    }
+
+    &:hover{
+        @extend .bg-dark-6;
+    }
+
+    & *{
+        pointer-events: none;
     }
 }
