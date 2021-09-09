@@ -80,7 +80,7 @@ function img(e) {
         let text = '';
         for (let i = 1; i < 11; i++) {
             text += `<div class="img_wraper">
-            <img src="assets/images/sample/${i}.jpg" draggable="false" loading="lazy" alt="">
+            <img src="assets/images/sample/resized/${i}.jpg" draggable="false" loading="lazy" alt="">
             <div class="img_details">
                 ${i}.jpg
             </div>
