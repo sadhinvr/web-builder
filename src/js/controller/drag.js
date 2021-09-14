@@ -87,9 +87,10 @@ dragAction.on('mousedown', e => {
             div.remove();
             $('[data-sb="curpos"]',false,true)?.remove();
 
-            if(pos[1] && pos[0]){
-                pos[0].insertAdjacentHTML(pos[1],htmlMockup[child.dataset.sb_ele])
-            }
+            // if(pos[1] && pos[0]){
+            //     const ele = htmlMockup[child.dataset.sb_ele].outerHTML;
+            //     pos[0].insertAdjacentHTML(pos[1],ele);
+            // }
             pos = false;
         }).on('mouseup', e => {
             dragAction.removeEvent('mousemove', dpi,domEle.idoc);
@@ -99,7 +100,8 @@ dragAction.on('mousedown', e => {
             div.remove();
             $('[data-sb="curpos"]',false,true)?.remove();
             if(pos[1] && pos[0]){
-                pos[0].insertAdjacentElement(pos[1],htmlMockup[child.dataset.sb_ele]);
+                const ele = htmlMockup[child.dataset.sb_ele].outerHTML;
+                pos[0].insertAdjacentHTML(pos[1],ele);
             }
 
             pos = false;
