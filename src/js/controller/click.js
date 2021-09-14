@@ -20,4 +20,4 @@ clickAction.on('click', e => {
 
 });
 
-$('.js-elebar').click();
+// $('.js-elebar').click();

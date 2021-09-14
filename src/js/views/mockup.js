@@ -33,21 +33,21 @@ const make={};
 
  //midia
  make.img=document.createElement('img');
- make.img.src="assets/picture.svg";
+ make.img.src="assets/images/sample/11.jpg";
  make.img.setAttribute('draggable','false');
 
  make.video=document.createElement('video');
- make.video.src="assets/video.mp4";
+ make.video.src="assets/media/video.mp4";
  make.video.controls='controls';
 
  make.audio=document.createElement('audio');
- make.audio.src='assets/audio.mp3';
+ make.audio.src='assets/media/audio.mp3';
  make.audio.controls='controls';
 
  
 for(const i in make){
-    make[i].setAttribute('data-drag','10');
-    make[i].setAttribute('data-sb_key','')
+    // make[i].setAttribute('data-drag','10');
+    make[i].setAttribute('data-sb_ele',i)
 }
 
  const htmlMockup = {

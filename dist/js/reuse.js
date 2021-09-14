@@ -2,6 +2,7 @@ const iframe = document.getElementById('iframe');
 
 const domEle = {
     idoc:iframe.contentDocument,
+    iwin:iframe.contentWindow,
     iresize:$('.iresize',true),
     i:$('.i'),
     i_holder:$('.i-holder'),
@@ -14,13 +15,49 @@ const domEle = {
     activatePopBox:$('.js-activePopBox')
 }
 
+domEle.idoc.body.innerHTML= `
+<style>
+    *{
+        box-sizing:border-box;
+    }
+
+    img{
+        max-width:100%;
+    }
+
+    /*change the thinkness of the scrollbar here*/
+    ::-webkit-scrollbar {
+    width: 5px;
+    box-shadow: inset 0 0 6px rgba(54, 54, 54, 0);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    }
+
+    /*add a shadow to the scrollbar here*/
+    ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px rgba(255, 255, 255, .5);
+    background: #444857;
+    }
+
+    /*this is the little scrolly dealio in the bar*/
+    ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #8b8f9e;
+    height: 3px;
+    }
+
+</style>
+<div data-sb=dev style=position:absolute;pointer-event:none></div><h1 data-sb_ele=heading> ghgg </h1>
+<img src="assets/images/sample/11.jpg" draggable="false" data-sb_ele="img">
+`
+
 function $(q, a = false ,i = false) {
     if(i){
 
         if (a) {
-            return d.idoc.querySelectorAll(q);
+            return domEle.idoc.querySelectorAll(q);
         }
-        return d.idoc.querySelector(q);
+        return domEle.idoc.querySelector(q);
     }
 
     if (a) {

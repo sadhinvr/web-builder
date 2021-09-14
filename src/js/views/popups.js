@@ -30,11 +30,11 @@ function eleBar(e) {
 
     <div class="wraper">
         <div class="row">
-            <div class="element" data-sb_ele="h">
+            <div class="element" data-sb_ele="heading">
                 <p class="color-white" style="font-size: 30px;">h1</p>
                 <p>heading</p>
             </div>
-            <div class="element" data-sb_ele="p">
+            <div class="element" data-sb_ele="paragraph">
                 <p class="color-white" style="font-size: 30px;">p</p>
                 <p>paragraph</p>
             </div>

@@ -1,14 +1,3 @@
-import { $ } from '../reuse';
-import {
-    on,
-    setStyleData
-} from '../views/iframeView';
-
-import {
-    idocument,
-    iwindow
-} from './iframe';
-import { navOn } from './navigator';
 
 //variable
 let pos = [],
@@ -17,8 +6,8 @@ let pos = [],
 
 
 //create boxes
-const curPos = idocument.createElement('div');
-curPos.id = 'curPos';
+const curPos = domEle.idoc.createElement('div');
+curPos.dataset.sb = 'curpos';
 curPos.style = 'position:absolute;pointer-events: none;';
 
 const cantake = {
@@ -36,20 +25,21 @@ const cantake = {
 
 //mouseover
 const mouseOver = (e, child) => {
-    if(navOn){
-        //get vartual node 
-        const vn= e.target;
+    // console.log(e.target);
+    // if(navOn){
+    //     //get vartual node 
+    //     const vn= e.target;
 
-        if(vn.dataset.navDrag){
-            e= $(``)
-        }
-    }
-    if (on && e.target.tagName != 'BODY' && e.target != child) {
-
+    //     if(vn.dataset.navDrag){
+    //         e= $(``)
+    //     }
+    // }
+    if (e.target.tagName != 'BODY' && e.target.tagName != 'HTML' && e.target != child) {
+        // console.log('not-body')
         let parentArr, parentRect, top, height, offset, width, left;
 
         // variable
-        parentArr = cantake[e.target.dataset.ele];
+        parentArr = cantake[e.target.dataset.sb_ele];
         parentRect = e.target.getBoundingClientRect();
 
         left = parentRect.left;
@@ -58,23 +48,28 @@ const mouseOver = (e, child) => {
         width = parentRect.width;
         offset = height * .15;
 
+        console.log(e.clientY)
         //top
         if (e.clientY <= top + offset) {
+            console.log('beforebegin')
             pos[1] = "beforebegin"
         }
 
         //middle top
         else if (e.clientY > top + offset && e.clientY <= (top + offset) + ((height - offset) / 2)) {
             pos[1] = "afterbegin";
+            console.log('afterbegin')
         }
 
         //middle bottom
         else if (e.clientY > (top + offset) + ((height - offset) / 2) && e.clientY <= top + height - offset) {
             pos[1] = "beforeend"
+            console.log('beforeend')
 
 
         } else {
             pos[1] = "afterend"
+            console.log('afterend')
 
         }
 
@@ -98,22 +93,24 @@ const mouseOver = (e, child) => {
 
     // rect
     if (pos[0]) {
-        idocument.getElementById('dev').appendChild(curPos);
+        $('[data-sb="dev"]',false,true).appendChild(curPos);
     }else if(!pos){
         curPos.remove();
     }
+
+    console.log(pos)
 
     return pos;
 
 }
 
 function bodyTag() {
-    pos[0] = idocument.body;
+    pos[0] = domEle.idoc.body;
     pos[1] = 'afterbegin';
-    curPos.style.height = idocument.body.offsetHeight + 'px';
-    curPos.style.width = idocument.body.offsetWidth + 'px';
-    curPos.style.top = idocument.body.offsetTop + 'px';
-    curPos.style.left = idocument.body.offsetLeft + 8 + 'px';
+    curPos.style.height = domEle.idoc.body.offsetHeight + 'px';
+    curPos.style.width = domEle.idoc.body.offsetWidth + 'px';
+    curPos.style.top = domEle.idoc.body.offsetTop + 'px';
+    curPos.style.left = domEle.idoc.body.offsetLeft + 8 + 'px';
     curPos.style.background = '#1e90ff8a';
 }
 
@@ -124,16 +121,16 @@ function rect(top, width, height, left, offset) {
     s.left = left + 'px';
 
     if (pos[1] == 'beforebegin') {
-        s.top = iwindow.scrollY + top - 20 + 'px';
+        s.top = domEle.iwin.scrollY + top - 20 + 'px';
     }
 
     if (pos[1] == 'afterbegin' || pos[1] == 'beforeend') {
-        s.top = iwindow.scrollY + top + offset + 'px';
+        s.top = domEle.iwin.scrollY + top + offset + 'px';
         s.height = height - (offset * 2) + 'px';
     }
 
     if (pos[1] == 'afterend') {
-        s.top = iwindow.scrollY + top + height + 'px';
+        s.top = domEle.iwin.scrollY + top + height + 'px';
     }
 
     if (pos[0]) {
@@ -146,7 +143,7 @@ function rect(top, width, height, left, offset) {
 
 
 function getPos(child, parent) {
-    if (cantake[parent.dataset.ele].includes('all')) {
+    if (cantake[parent.dataset.sb_ele].includes('all')) {
         if (pos[1] == 'afterend' || pos[1] == 'beforebegin') {
             if (parentCheck(parent.parentElement, child)) {
                 pos[0] = parent;
@@ -156,13 +153,13 @@ function getPos(child, parent) {
                 pos[0] = parent;
             }
         }
-    } else if (cantake[parent.dataset.ele].includes('none')) {
+    } else if (cantake[parent.dataset.sb_ele].includes('none')) {
         if (pos[1] == 'afterend' || pos[1] == 'beforebegin') {
             if (parentCheck(parent.parentElement, child)) {
                 pos[0] = parent;
             }
         } else {
-            if (parent.dataset.ele && cantake[parent.dataset.ele][1] && cantake[parent.dataset.ele][1].includes(child.dataset.ele)){
+            if (parent.dataset.sb_ele && cantake[parent.dataset.sb_ele][1] && cantake[parent.dataset.sb_ele][1].includes(child.dataset.sb_ele)){
                 pos[0] = parent;
             }
             else{
@@ -177,7 +174,7 @@ function parentCheck(parent, child) {
     let parentTemp = parent;
 
     while (parentTemp.tagName != "BODY") {
-        if (parentTemp.dataset.ele && cantake[parentTemp.dataset.ele][1] && cantake[parentTemp.dataset.ele][1].includes(child.dataset.ele)) {
+        if (parentTemp.dataset.sb_ele && cantake[parentTemp.dataset.sb_ele][1] && cantake[parentTemp.dataset.sb_ele][1].includes(child.dataset.sb_ele)) {
             pos[0] = null;
             parentTemp = false;
             break;
@@ -192,26 +189,8 @@ function parentCheck(parent, child) {
         parentTemp = parentTemp.parentElement;
     }
 
-    // console.log(child.children.length );
-
     if(parentTemp){
         [].forEach.call(child.children, (child)=>parentCheck(parent, child));
-
-        // for(let i=0;i < child.children.length;i++){
-        //     parentTemp = parent;
-
-        //     while (parentTemp.tagName != "BODY") {
-        //         if (parentTemp.dataset.ele && cantake[parentTemp.dataset.ele][1] && cantake[parentTemp.dataset.ele][1].includes(child.children[i].dataset.ele)) {
-        //             pos[0] = null;
-        //             parentTemp = false;
-        //             console.log('step 2')
-        //             break;
-        //         }
-        //         parentTemp = parentTemp.parentElement;
-        //     }
-    
-        //     if(!parentTemp){break}
-        // }
     }
 
     return parentTemp;
