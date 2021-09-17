@@ -1,3 +1,5 @@
+import resizeFuns from "../controller/resize";
+
 export default class Box {
     constructor(bor = '', bg = '') {
         this.bor = bor;
@@ -12,11 +14,12 @@ export default class Box {
         this.bor && (this.box.style.border = this.bor);
         this.bg && (this.box.style.background = this.bg);
 
+        resizeFuns.ir.push(()=>this.boxStyle());
     }
 
-    BoxStyle(et) {
-        et && (this.ele= et);
-        if(!this.ele)
+    boxStyle(et) {
+        et && (this.ele = et);
+        if (!this.ele)
             return;
         const style = this.ele.currentStyle || window.getComputedStyle(this.ele);
         const ds = {
@@ -53,11 +56,11 @@ export default class Box {
     crud(obj = {
         del: false,
         append: false,
-        dis: false
+        dis: ''
     }) {
         obj.del && this.box.remove();
         obj.append && domEle.idev.appendChild(this.box);
-        obj.dis && (this.box.style.display = dis);
+        obj.dis && (this.box.style.display = obj.dis);
     }
 
 }

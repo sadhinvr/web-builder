@@ -54,5 +54,3 @@ dragAction.on('mousedown', e => {
     }
 }, domEle.idoc.body);
 
-
-

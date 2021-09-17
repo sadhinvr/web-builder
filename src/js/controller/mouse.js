@@ -14,13 +14,7 @@ imouseover.on('mouseenter',e=>{
 
 imouseover.on('mouseover',e=>{
     //hover box
-    hBox.BoxStyle(e.target);
+    hBox.boxStyle(e.target);
 
     //selected box
 })
-
-const risizeBox=()=>{
-    hBox.BoxStyle();
-}
-
-export {risizeBox};

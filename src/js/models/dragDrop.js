@@ -1,11 +1,14 @@
 import {
     mouseOver
 } from "../models/position";
+import Box from "../views/Box";
 import {
     htmlMockup
 } from "../views/mockup";
 
 let data;
+const activeBox = new Box('solid 1px purple');
+activeBox.crud({append:true,dis:'none'});
 
 function idrag(e,dragAction){
     //dragaction
@@ -23,6 +26,7 @@ function idrag(e,dragAction){
 
     const child = e.target;
 
+    activeBox.boxStyle(e.target);
 
     child.style.opacity = '0.5';
     child.style.pointerEvents = 'none';
@@ -128,6 +132,7 @@ function drag(e,dragAction){
     div.style.width = rect.width + 'px';
     div.style.height = rect.height + 'px';
     div.style.display = 'flex';
+
     const dp = e => {
         $('js-eleHolder') || document.body.appendChild(div);
         div.style.top = `${e.clientY}px`;
@@ -161,10 +166,6 @@ function drag(e,dragAction){
         div.remove();
         $('[data-sb="curpos"]', false, true) ?.remove();
 
-        // if(pos && pos[1] && pos[0]){
-        //     const ele = htmlMockup[child.dataset.sb_ele].outerHTML;
-        //     pos[0].insertAdjacentHTML(pos[1],ele);
-        // }
         pos = false;
     }).on('mouseup', e => {
         dragAction.removeEvent('mousemove', dpi, domEle.idoc);
@@ -185,6 +186,7 @@ function drag(e,dragAction){
     $('.js-elebar').click();
 }
 
+Box
 
 function scrollWin(e) {
     let speed = 5;

@@ -1,3 +1,5 @@
+import resizeFuns from "../controller/resize";
+
 const state = {
     rect2: domEle.i_holder.getBoundingClientRect(),
     offset: 3,
@@ -133,7 +135,8 @@ function viewIresize(s) {
     domEle.i_size.innerHTML = `${Math.round(s.w)}px  ( ${Math.round(s.s*100)} %)`;
 }
 
+resizeFuns.r.push(onResize);
 
 export {
-    iResize,breakPoints,onResize
+    iResize,breakPoints
 }

@@ -1,14 +1,14 @@
 import Action from "../models/Action";
-import { onResize } from "../models/sizing";
-import {risizeBox} from "./mouse";
 
+const resizeFuns= {r:[],ir:[]}
 const resize = new Action(window);
 
 resize.on('resize',e=>{
-    onResize();
-    // console.log('dkj')
+    resizeFuns.r.forEach(cur=>cur());
 })
 
 resize.on('resize',e=>{
-    risizeBox();
+    resizeFuns.ir.forEach(cur=>cur());
 },domEle.iwin);
+
+export default resizeFuns;
