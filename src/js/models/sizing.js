@@ -19,15 +19,17 @@ function onResize(){
     state.rect3= iframe.getBoundingClientRect();
     state.rect2= domEle.i_holder.getBoundingClientRect();
     initResize();
-    state.rect3= iframe.getBoundingClientRect();
+    // state.rect3= iframe.getBoundingClientRect();
 }
 
 function initResize() {
+    iframe.style.height = state.rect2.height+'px';
     domEle.i.style.width = `${domEle.i_holder.getBoundingClientRect().width-6}px`;
     const s ={w:domEle.i_holder.getBoundingClientRect().width-6};
     s.s = 1;
     state.totalSpace = state.rect2.width - state.offset * 2;
     s.w >= state.totalSpace && (s.s = state.totalSpace / s.w);
+    state.rect3= iframe.getBoundingClientRect();
     viewIresize(s)
 }
 
