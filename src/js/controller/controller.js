@@ -1,6 +1,6 @@
-import '../models/sizing';
 import './drag';
 import './click';
+import './resize';
 //init
 
 //iresize
