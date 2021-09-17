@@ -1,6 +1,5 @@
 const state = {
     rect2: domEle.i_holder.getBoundingClientRect(),
-    rect3: iframe.getBoundingClientRect(),
     offset: 3,
     speed: 5,
     irules: {
@@ -11,11 +10,16 @@ const state = {
 }
 
 state.totalSpace = state.rect2.width - state.offset * 2;
-
+state.rect3= iframe.getBoundingClientRect();
 initResize();
 
+state.rect3= iframe.getBoundingClientRect();
+
 function initResize() {
-    domEle.i_size.innerHTML = `${state.rect3.width}px  ( ${100} %)`
+    domEle.i.style.width = `${domEle.i_holder.getBoundingClientRect().width-6}px`;
+    const s ={w:domEle.i_holder.getBoundingClientRect().width-6};
+    s.w >= state.totalSpace && (s.s = state.totalSpace / s.w);
+    viewIresize(s)
 }
 
 const iResize = (e, da) => {
@@ -115,7 +119,7 @@ function viewIresize(s) {
     iframe.style.height = state.rect3.height / s.s + 'px';
     domEle.i.style.width = s.w + 'px';
     iframe.style.transform = `scale(${s.s})`;
-    domEle.i_size.innerHTML = `${s.w}px  ( ${Math.round(s.s*100)} %)`;
+    domEle.i_size.innerHTML = `${Math.round(s.w)}px  ( ${Math.round(s.s*100)} %)`;
 }
 
 
