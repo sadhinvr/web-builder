@@ -93,7 +93,7 @@ const mouseOver = (e, child) => {
 
     // rect
     if (pos[0]) {
-        $('[data-sb="dev"]',false,true).appendChild(curPos);
+        domEle.idev.appendChild(curPos);
     }else if(!pos){
         curPos.remove();
     }

@@ -12,7 +12,7 @@ const domEle = {
     popup:$('.js-lpop'),
     pop_box:$('.pop-box'),
     pop_box_body:$('.pop-box-body'),
-    activatePopBox:$('.js-activePopBox')
+    activatePopBox:$('.js-activePopBox'),
 }
 
 domEle.idoc.body.innerHTML= `
@@ -28,8 +28,8 @@ domEle.idoc.body.innerHTML= `
     /*change the thinkness of the scrollbar here*/
     ::-webkit-scrollbar {
     width: 5px;
+    height: 5px;
     box-shadow: inset 0 0 6px rgba(54, 54, 54, 0);
-    -webkit-border-radius: 5px;
     border-radius: 5px;
     }
 
@@ -39,6 +39,8 @@ domEle.idoc.body.innerHTML= `
     background: #444857;
     }
 
+    ::-webkit-scrollbar-corner { background: #444857; }
+
     /*this is the little scrolly dealio in the bar*/
     ::-webkit-scrollbar-thumb {
     border-radius: 5px;
@@ -47,9 +49,13 @@ domEle.idoc.body.innerHTML= `
     }
 
 </style>
-<div data-sb=dev style=position:absolute;pointer-event:none></div><h1 data-sb_ele=heading> ghgg </h1>
+<div data-sb="dev" style="pointer-events:none;"></div>
+
+<h1 data-sb_ele=heading> ghgg </h1>
 <img src="assets/images/sample/11.jpg" draggable="false" data-sb_ele="img">
 `
+
+domEle.idev=$('[data-sb="dev"]',false,true);
 
 function $(q, a = false ,i = false) {
     if(i){

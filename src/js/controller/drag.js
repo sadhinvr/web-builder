@@ -18,6 +18,8 @@ const rmm = e => {
     console.log('up');
 }
 
+let data;
+
 dragAction.pX = 0;
 
 dragAction.on('mousedown', e => {
@@ -47,6 +49,12 @@ dragAction.on('mousedown', e => {
 
             const child = e.target;
 
+            data = {
+                winY: domEle.iwin.scrollY,
+                winX: domEle.iwin.scrollX,
+            }
+    
+
             const rect = e.target.getBoundingClientRect();
             const irect = iframe.getBoundingClientRect();
             const div = document.createElement('div');
@@ -65,6 +73,7 @@ dragAction.on('mousedown', e => {
                 div.style.top = `${e.clientY}px`;
                 div.style.left = `${e.clientX}px`;
                 // console.log(e.clientX);
+                scrollWin(e)
             }
             const dpi = e => {
                 $('js-eleHolder') || document.body.appendChild(div);
@@ -72,6 +81,7 @@ dragAction.on('mousedown', e => {
                 div.style.left = `${irect.left+e.clientX}px`;
                 pos = mouseOver(e, child);
                 // console.log(e.clientX);
+                scrollWin(e)
             }
 
             const mo = e => {
@@ -127,12 +137,13 @@ dragAction.on('mousedown', e => {
             point: false
         }, []);
 
-        const data = {
-            winY: iwindow.scrollY,
-            winX: iwindow.scrollX,
+        data = {
+            winY: domEle.iwin.scrollY,
+            winX: domEle.iwin.scrollX,
         }
 
         const child = e.target;
+
 
         child.style.opacity = '0.5';
         child.style.pointerEvents = 'none';
@@ -146,6 +157,7 @@ dragAction.on('mousedown', e => {
                 stpro: true,
                 point: false
             }, []);
+            scrollWin(e)
         }
         const dpi = e => {
             dragAction.eventSettings(e, {
@@ -154,6 +166,7 @@ dragAction.on('mousedown', e => {
                 point: false
             }, []);
             pos = mouseOver(e, child);
+            scrollWin(e)
         }
 
         const mo = e => {
