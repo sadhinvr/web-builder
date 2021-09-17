@@ -1,4 +1,4 @@
-# [web-builder](https://sadhinvr.github.io/web-builder/dist/index.html)
+# [web-builder](https://sadhinvr.github.io/web-builder/releases/1/index.html)
 A simple drag and drop web builder
 
 ## Add HTML Elements
