@@ -23,5 +23,9 @@ header {
         &.js-activeBreakPoint{
             background: $color-blue-1;
         }
+
+        &--rbar{
+            width: calc(209px / 3);
+        }
     }
 }

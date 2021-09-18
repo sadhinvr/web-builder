@@ -32,7 +32,8 @@ function initResize() {
     state.totalSpace = state.rect2.width - state.offset * 2;
     s.w >= state.totalSpace && (s.s = state.totalSpace / s.w);
     state.rect3= iframe.getBoundingClientRect();
-    viewIresize(s)
+    viewIresize(s);
+    domEle.i.style.maxWidth = state.totalSpace + 'px';
 }
 
 const iResize = (e, da) => {

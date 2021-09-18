@@ -7,7 +7,7 @@ import {
 } from "../views/mockup";
 
 let data;
-const activeBox = new Box('solid 1px purple');
+const activeBox = new Box('solid 1px #4353ff');
 activeBox.crud({append:true,dis:'none'});
 
 function idrag(e,dragAction){
@@ -26,7 +26,11 @@ function idrag(e,dragAction){
 
     const child = e.target;
 
-    activeBox.boxStyle(e.target);
+    if(e.target.tagName != 'HTML'){
+        activeBox.boxStyle(child);
+        activeBox.crud({dis:'block'});
+    }
+
 
     child.style.opacity = '0.5';
     child.style.pointerEvents = 'none';

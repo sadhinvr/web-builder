@@ -32,11 +32,7 @@ main {
 
     .right-sidebar {
         @extend .left-sidebar;
-
-        .popup {
-            right: calc(100% + 1px);
-            left: auto;
-        }
+        width: 250px;
     }
 
 
@@ -51,7 +47,7 @@ main {
 
         .i-holder {
             flex-grow: 1;
-            height: calc(100vh - (41px * 2) - 1px);
+            height: calc(100vh - 42px - 30px);
             justify-content: center;
 
             .i {
@@ -69,8 +65,40 @@ main {
     }
 
     .bottom-sidebar {
+        padding: 0 5px;
         border-top: 1px solid $color-dark-2;
-        background: $color-dark-3;
+        border-bottom: 1px solid $color-dark-2;
+        background: $color-dark-4;
+        color: #fff;
+        overflow-x: auto;
+        overflow-y: hidden;
+        // transform: rotate(-90deg);
+        // transform-origin: right top;
+        width: calc(100vw - 42px - 250px);
+
+
+        .nodes {
+            align-items: center;
+            font-size: 12px;
+            
+            // flex-direction: column;
+            // transform: rotate(90deg);
+            // transform-origin: right top;
+        }
+
+        .node {
+            
+            padding: 5px 2px;
+            @extend .cursor-pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 4px;
+
+            &:hover {
+                background: $color-dark-5;
+            }
+        }
     }
 
     .btn {

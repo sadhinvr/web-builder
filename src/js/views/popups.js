@@ -30,6 +30,21 @@ function eleBar(e) {
 
     <div class="wraper">
         <div class="row">
+            <div class="element" data-sb_ele="div">
+                <p class="color-white" style="font-size: 30px;">div</p>
+                <p>div</p>
+            </div>
+            <div class="element" data-sb_ele="section">
+                <p class="color-white" style="font-size: 30px;">section</p>
+                <p>section</p>
+            </div>
+            <div class="element" data-sb_ele="container">
+                <p class="color-white" style="font-size: 30px;">container</p>
+                <p>container</p>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="element" data-sb_ele="heading">
                 <p class="color-white" style="font-size: 30px;">h1</p>
                 <p>heading</p>
@@ -43,6 +58,8 @@ function eleBar(e) {
                 <p>image</p>
             </div>
         </div>
+
+        
      </div>
     </div>
     `
