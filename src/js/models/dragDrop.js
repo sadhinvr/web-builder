@@ -8,11 +8,14 @@ import {
 
 let data;
 const activeBox = new Box('solid 1px #4353ff');
-activeBox.crud({append:true,dis:'none'});
+activeBox.crud({
+    append: true,
+    dis: 'none'
+});
 
-function idrag(e,dragAction){
+function idrag(e, dragAction) {
     //dragaction
-    
+
     dragAction.eventSettings(e, {
         pd: true,
         stpro: true,
@@ -26,9 +29,11 @@ function idrag(e,dragAction){
 
     const child = e.target;
 
-    if(e.target.tagName != 'HTML'){
+    if (e.target.tagName != 'HTML') {
         activeBox.boxStyle(child);
-        activeBox.crud({dis:'block'});
+        activeBox.crud({
+            dis: 'block'
+        });
     }
 
 
@@ -73,7 +78,7 @@ function idrag(e,dragAction){
         dragAction.removeEvent('mousemove', dp);
         dragAction.removeEvent('mouseover', mo);
         // div.remove();
-        $('[data-sb="curpos"]', false, true) ?.remove();
+        $('[data-sb="curpos"]', false, true)?.remove();
 
         // if(pos[1] && pos[0]){
         //     const ele = htmlMockup[child.dataset.sb_ele].outerHTML;
@@ -84,6 +89,7 @@ function idrag(e,dragAction){
         domEle.idoc.body.style.cursor = '';
         child.style.opacity = '';
         child.style.pointerEvents = '';
+        activeBox.boxStyle();
 
     }).on('mouseup', e => {
         dragAction.removeEvent('mousemove', dpi, domEle.idoc);
@@ -91,7 +97,7 @@ function idrag(e,dragAction){
         dragAction.removeEvent('mousemove', dp);
         dragAction.removeEvent('mouseover', mo);
         // div.remove();
-        $('[data-sb="curpos"]', false, true) ?.remove();
+        $('[data-sb="curpos"]', false, true)?.remove();
         if (pos && pos[1] && pos[0]) {
 
             pos[0].insertAdjacentElement(pos[1], child);
@@ -102,13 +108,14 @@ function idrag(e,dragAction){
         child.style.opacity = '';
         child.style.pointerEvents = '';
         pos = false;
+        activeBox.boxStyle();
     }, domEle.idoc)
 
 
 }
 
-function drag(e,dragAction){
-    
+function drag(e, dragAction) {
+
     dragAction.eventSettings(e, {
         pd: true,
         stpro: true,
@@ -168,22 +175,26 @@ function drag(e,dragAction){
         dragAction.removeEvent('mousemove', dp);
         dragAction.removeEvent('mouseover', mo);
         div.remove();
-        $('[data-sb="curpos"]', false, true) ?.remove();
+        $('[data-sb="curpos"]', false, true)?.remove();
 
         pos = false;
+        activeBox.boxStyle();
     }).on('mouseup', e => {
         dragAction.removeEvent('mousemove', dpi, domEle.idoc);
         dragAction.removeEvent('mouseover', mo, domEle.idoc);
         dragAction.removeEvent('mousemove', dp);
         dragAction.removeEvent('mouseover', mo);
         div.remove();
-        $('[data-sb="curpos"]', false, true) ?.remove();
+        $('[data-sb="curpos"]', false, true)?.remove();
         if (pos && pos[1] && pos[0]) {
             const ele = htmlMockup[child.dataset.sb_ele].outerHTML;
             pos[0].insertAdjacentHTML(pos[1], ele);
         }
 
         pos = false;
+
+        activeBox.boxStyle();
+
     }, domEle.idoc)
 
 
@@ -223,4 +234,7 @@ function scrollWin(e) {
     domEle.iwin.scrollTo(data.winX, data.winY);
 }
 
-export {idrag,drag};
+export {
+    idrag,
+    drag
+};

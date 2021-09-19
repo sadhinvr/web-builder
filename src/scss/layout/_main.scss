@@ -47,7 +47,7 @@ main {
 
         .i-holder {
             flex-grow: 1;
-            height: calc(100vh - 42px - 30px);
+            height: calc(100vh - 42px - 29px);
             justify-content: center;
 
             .i {
@@ -65,7 +65,6 @@ main {
     }
 
     .bottom-sidebar {
-        padding: 0 5px;
         border-top: 1px solid $color-dark-2;
         border-bottom: 1px solid $color-dark-2;
         background: $color-dark-4;
@@ -97,6 +96,14 @@ main {
 
             &:hover {
                 background: $color-dark-5;
+            }
+
+            &:first-child{
+                padding-left: 5px;
+            }
+
+            &:last-child{
+                padding-right: 5px;
             }
         }
     }
