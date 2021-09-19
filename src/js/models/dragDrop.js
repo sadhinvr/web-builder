@@ -5,6 +5,7 @@ import Box from "../views/Box";
 import {
     htmlMockup
 } from "../views/mockup";
+import { branch } from "../views/Navigation";
 
 let data;
 const activeBox = new Box('solid 1px #4353ff');
@@ -34,6 +35,8 @@ function idrag(e, dragAction) {
         activeBox.crud({
             dis: 'block'
         });
+
+        branch(child);
     }
 
 
@@ -194,14 +197,13 @@ function drag(e, dragAction) {
         pos = false;
 
         activeBox.boxStyle();
+        
 
     }, domEle.idoc)
 
 
     $('.js-elebar').click();
 }
-
-Box
 
 function scrollWin(e) {
     let speed = 5;

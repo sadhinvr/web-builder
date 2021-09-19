@@ -13,6 +13,7 @@ const domEle = {
     pop_box:$('.pop-box'),
     pop_box_body:$('.pop-box-body'),
     activatePopBox:$('.js-activePopBox'),
+    nodes:$('.nodes'),
 }
 
 domEle.idoc.body.innerHTML= `
