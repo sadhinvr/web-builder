@@ -5,8 +5,11 @@ export const branch = ele => {
     while (ele != domEle.idoc.firstElementChild) {
         const node = document.createElement('div');
         node.classList.add('node');
-        node.dataset.node = ele;
-        node.innerHTML = `${ele.tagName.toLowerCase()}<img src="assets/images/right-arrow.svg" alt="">`;
+        // node.dataset.node = ele; 
+        node.innerHTML = `
+        <p>${ele.tagName.toLowerCase()}</p> 
+        <img src="assets/images/right-arrow.svg" alt="">
+        `;
         arr.push(node);
         ele = ele.parentElement; 
     }
