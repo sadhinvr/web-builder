@@ -4,50 +4,57 @@
     .heading {
         text-align: center;
         column-gap: 1px;
-        border:1px solid $color-dark-2;
+        border: 1px solid $color-dark-2;
 
         .col {
             background: $color-dark-2;
             @extend .cursor-pointer;
-            padding: 8px ;
+            padding: 8px;
 
-            &.active{
-            background: $color-dark-4;
+            &.active {
+                background: $color-dark-4;
             }
 
-            &:hover:not(.active){
+            &:hover:not(.active) {
                 background: $color-dark-1;
             }
         }
     }
 
-    .wraper{
-        
-        .row{
+    .wraper {
+
+        .row {
             margin-top: 10px;
-            
+
         }
     }
 }
 
-.element{
-    border:1px solid $color-dark-2;
+.element {
+    border: 1px solid $color-dark-2;
     border-right: none;
     padding: 10px;
     flex-grow: 1;
     width: 33.33%;
+    text-align: center;
+
     @extend .cursor-grab;
     @extend .bg-dark-5;
 
-    &:last-child{
-        border-right:1px solid $color-dark-2;
+    &:last-child {
+        border-right: 1px solid $color-dark-2;
     }
 
-    &:hover{
+    &:hover {
         @extend .bg-dark-6;
     }
 
-    & *{
+    & * {
         pointer-events: none;
+    }
+
+    img {
+        height: 50px;
+        margin-bottom: 5px;
     }
 }
