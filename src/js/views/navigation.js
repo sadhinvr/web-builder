@@ -7,13 +7,42 @@ export const branch = ele => {
         node.classList.add('node');
         // node.dataset.node = ele; 
         node.innerHTML = `
+
         <p>${ele.tagName.toLowerCase()}</p> 
         <img src="assets/images/right-arrow.svg" alt="">
         `;
         arr.push(node);
-        ele = ele.parentElement; 
+        ele = ele.parentElement;
     }
 
-    domEle.nodes.append(...arr.reverse());
+    setTimeout(()=>{
+        domEle.nodes.innerHTML='';
+        domEle.nodes.append(...arr.reverse());
+    })
 
 }
+
+const bb= domEle.bottom_bar;
+let pre = -1;
+let moveto = bb.scrollLeft;
+bb.addEventListener("wheel", (evt) => {
+    evt.preventDefault();
+    let limit = bb.scrollWidth - bb.clientWidth;
+    const sign =Math.sign(evt.deltaY);
+
+    if ((sign < 0 || limit!= pre) && (0!= pre || sign > 0)) {
+        moveto += evt.deltaY;
+        moveto <0 && (moveto = 0)
+        bb.scroll({
+            left: moveto,
+            behavior: "smooth"
+        });
+
+        // console.log(bb.scrollLeft,moveto);
+    }
+
+    pre= bb.scrollLeft;
+
+});
+
+// console.log(domEle.bottom_bar.scroll)

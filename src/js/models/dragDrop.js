@@ -5,7 +5,7 @@ import Box from "../views/Box";
 import {
     htmlMockup
 } from "../views/mockup";
-import { branch } from "../views/Navigation";
+import { branch } from "../views/navigation";
 
 let data;
 const activeBox = new Box('solid 1px #4353ff');
