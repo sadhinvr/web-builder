@@ -3,11 +3,10 @@ main {
     background: $color-dark-6;
 
     .left-sidebar {
-        width: 42px;
-        min-width: 42px;
+        width: 41px;
+        min-width: 41px;
         background: $color-dark-3;
         border-right: 1px solid $color-dark-2;
-        border-left: 1px solid $color-dark-2;
         position: relative;
 
         .popup {
@@ -32,6 +31,7 @@ main {
 
     .right-sidebar {
         @extend .left-sidebar;
+        border-left: 1px solid $color-dark-2;
         width: 250px;
     }
 
@@ -75,15 +75,48 @@ main {
         // transform-origin: right top;
         width: calc(100vw - 42px - 250px);
 
+        /*change the thinkness of the scrollbar here*/
+        &::-webkit-scrollbar {
+            width: 5px;
+            height: 1px;
+            box-shadow: inset 0 0 6px rgba(54, 54, 54, 0);
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        /*add a shadow to the scrollbar here*/
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 0px rgba(179, 179, 179, 0);
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        /*this is the little scrolly dealio in the bar*/
+        &::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            // background: $color-dark-2;
+            background: #fff;
+            height: 3px;
+        }
+
+        /*nobody needs this little scrollbar corner, I mean really, get rid of it haha*/
+        &::-webkit-scrollbar-corner {
+            display: none;
+            height: 0px;
+            width: 0px;
+        }
+
 
         .nodes {
             align-items: center;
             font-size: 12px;
             column-gap: 2px;
-            
-            img{
+            min-width: max-content;
+
+            img {
                 height: 1em;
             }
+
             // flex-direction: column;
             // transform: rotate(90deg);
             // transform-origin: right top;
@@ -101,11 +134,11 @@ main {
                 background: $color-dark-5;
             }
 
-            &:first-child{
+            &:first-child {
                 padding-left: 5px;
             }
 
-            &:last-child{
+            &:last-child {
                 padding-right: 5px;
             }
         }
