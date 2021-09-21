@@ -14,6 +14,7 @@ const domEle = {
     pop_box_body:$('.pop-box-body'),
     activatePopBox:$('.js-activePopBox'),
     nodes:$('.nodes'),
+    bottom_bar:$('.bottom-sidebar')
 }
 
 domEle.idoc.body.innerHTML= `
