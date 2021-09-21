@@ -18,44 +18,49 @@ function eleBar(e) {
     <div class="elements">
     <div class="row heading">
         <div class="col active color-white">
-            HTML
+            Rife
         </div>
         <div class="col color-white">
-            Pre-build
+            Custom
         </div>
         <div class="col color-white">
-            Mine
+            Vendor
         </div>
     </div>
 
     <div class="wraper">
+
+    <div class="row"><p class="color-white">box</p></div>
+
         <div class="row">
             <div class="element" data-sb_ele="div">
-                <p class="color-white" style="font-size: 30px;">div</p>
-                <p>div</p>
+                <img src="assets/images/div.svg"/>
+                <p class="color-white">div</p>
             </div>
             <div class="element" data-sb_ele="section">
-                <p class="color-white" style="font-size: 30px;">section</p>
-                <p>section</p>
+                <img src="assets/images/section.svg"/>
+                <p class="color-white">section</p>
             </div>
             <div class="element" data-sb_ele="container">
-                <p class="color-white" style="font-size: 30px;">container</p>
-                <p>container</p>
+                <img src="assets/images/frame.svg"/>
+                <p class="color-white">.container</p>
             </div>
         </div>
 
+        <div class="row"><p class="color-white">Text</p></div>
+
         <div class="row">
             <div class="element" data-sb_ele="heading">
-                <p class="color-white" style="font-size: 30px;">h1</p>
-                <p>heading</p>
+                <img src="assets/images/heading.svg"/>
+                <p class="color-white">h1</p>
             </div>
             <div class="element" data-sb_ele="paragraph">
-                <p class="color-white" style="font-size: 30px;">p</p>
-                <p>paragraph</p>
+                <img src="assets/images/paragraph.svg"/>
+                <p class="color-white">p</p>
             </div>
             <div class="element" data-sb_ele="img">
-                <p class="color-white" style="font-size: 30px;">img</p>
-                <p>image</p>
+                <img src="assets/images/image.svg"/>
+                <p class="color-white">img</p>
             </div>
         </div>
 
