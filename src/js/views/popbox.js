@@ -1,3 +1,20 @@
+//not stable
+const nav = document.createElement('nav');
+nav.innerHTML=`
+<a class="row" href="#">
+            <img src="assets/images/user.svg" alt="">
+            <p>About me</p>
+        </a>
+        <a class="row" href="#">
+            <img src="assets/images/layers.svg" alt="">
+            Showcase
+        </a>
+        <a class="row" href="#">
+            Help??
+        </a>
+`
+
+
 function viewSiteNav(e) {
     const popCls = domEle.pop_box.classList;
     const popstyle = domEle.pop_box.style;
@@ -14,19 +31,21 @@ function viewSiteNav(e) {
             popCls.remove('d-none');
         }
     })
-    domEle.pop_box_body.innerHTML = `<nav>
-        <a class="row" href="#">
-            <img src="assets/images/user.svg" alt="">
-            <p>About me</p>
-        </a>
-        <a class="row" href="#">
-            <img src="assets/images/layers.svg" alt="">
-            Showcase
-        </a>
-        <a class="row" href="#">
-            Help??
-        </a>
-    </nav>`;
+
+    domEle.pop_box_body.innerHTML ='';
+    
+    `<nav><a class="row" href="#">
+    <img src="assets/images/user.svg" alt="">
+    <p>About me</p>
+</a>
+<a class="row" href="#">
+    <img src="assets/images/layers.svg" alt="">
+    Showcase
+</a>
+<a class="row" href="#">
+    Help??
+</a></nav>`;
+    domEle.pop_box.append(nav);
 
 }
 
