@@ -30,7 +30,17 @@
     }
 
     &.js-lbarActive{
-        background: #ddd;
+        background: $color-dark-4;
+        position: relative;
+    }
+    &.js-lbarActive::after{
+        content: '';
+        width: 1px;
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 100%;
+        background: $color-dark-4;
     }
     &.js-activePopBox{
         background: $color-blue-2;
