@@ -30,7 +30,8 @@
     }
 
     &.js-lbarActive{
-        background: $color-dark-4;
+        // background: $color-dark-4 ;
+        background: $color-dark-4 url('https://sadhinvr.github.io/web-builder/dist/assets/images/drop.svg') no-repeat right center;
         position: relative;
     }
     &.js-lbarActive::after{
