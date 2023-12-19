@@ -1,21 +1,117 @@
-import { useState } from 'react';
-import './style.css';
+import { useState } from "react";
+import "./styles/app.scss";
 
 function App() {
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  return (
-    <div className='app'>
-      <div className="left_bar">
-        <div className="left_option"></div>
-      </div>
-      <div className="left_col">
+    return (
+        <div className='app'>
+            <div className='left_bar'>
+                <div className='left_options'>
+                    <div className='left_option'>
+                        <svg
+                            aria-hidden='true'
+                            width='20'
+                            height='24'
+                            viewBox='0 0 30 24'
+                        >
+                            <rect
+                                width='30'
+                                height='4'
+                                rx='1'
+                                ry='1'
+                                fill='currentColor'
+                            ></rect>
+                            <rect
+                                y='10'
+                                width='30'
+                                height='4'
+                                rx='1'
+                                ry='1'
+                                fill='currentColor'
+                            ></rect>
+                            <rect
+                                y='20'
+                                width='30'
+                                height='4'
+                                rx='1'
+                                ry='1'
+                                fill='currentColor'
+                            ></rect>
+                        </svg>
+                    </div>
 
-      </div>
-      <div className="mid_col"></div>
-      <div className="right_col"></div>
-    </div>
-  )
+                    <div className='left_option'>
+                        <svg
+                            aria-hidden='true'
+                            width='20'
+                            height='24'
+                            viewBox='0 0 30 24'
+                        >
+                            <rect
+                                width='30'
+                                height='4'
+                                rx='1'
+                                ry='1'
+                                fill='currentColor'
+                            ></rect>
+                            <rect
+                                y='10'
+                                width='30'
+                                height='4'
+                                rx='1'
+                                ry='1'
+                                fill='currentColor'
+                            ></rect>
+                            <rect
+                                y='20'
+                                width='30'
+                                height='4'
+                                rx='1'
+                                ry='1'
+                                fill='currentColor'
+                            ></rect>
+                        </svg>
+                    </div>
+                </div>
+
+                <div className='left_options'>
+
+                    <div className='left_option'>
+                        <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            version='1.1'
+                            xmlnsXlink='http://www.w3.org/1999/xlink'
+                            width='25'
+                            height='25'
+                            x='0'
+                            y='0'
+                            viewBox='0 0 512 512'
+                            xmlSpace='preserve'
+                        >
+                            <g>
+                                <path
+                                    d='M255.893 150.569c-58.841 0-106.711 47.871-106.711 106.711s47.871 106.711 106.711 106.711S362.604 316.12 362.604 257.28s-47.87-106.711-106.711-106.711zm0 170.738c-35.3 0-64.027-28.727-64.027-64.027s28.727-64.027 64.027-64.027c35.321 0 64.027 28.727 64.027 64.027s-28.727 64.027-64.027 64.027z'
+                                    fill='currentcolor'
+                                    opacity='1'
+                                    data-original='#fff'
+                                ></path>
+                                <path
+                                    d='m493.688 193.51-60.676-9.775 36.282-48.233c6.36-8.473 5.57-20.296-1.857-27.83l-60.633-61.487c-7.513-7.641-19.464-8.516-27.98-2.113l-49.578 34.831-9.604-59.758a21.328 21.328 0 0 0-21.065-17.949h-85.369c-10.628 0-19.635 7.811-21.129 18.312l-9.988 60.484-49.321-36.07c-8.516-6.232-20.232-5.336-27.681 2.113L44.691 106.22c-7.555 7.512-8.388 19.443-1.985 27.958l35.364 49.493-59.758 8.537C7.811 193.702 0 202.709 0 213.337v85.369c0 10.628 7.811 19.635 18.312 21.086l60.676 9.775L42.706 377.8a21.332 21.332 0 0 0 1.964 27.937l60.398 60.398c7.534 7.576 19.443 8.345 27.937 1.963l49.471-35.364 8.537 59.758c1.494 10.5 10.5 18.312 21.129 18.312h85.369c10.628 0 19.635-7.79 21.129-18.248l9.775-60.676 48.233 36.282c8.537 6.403 20.424 5.592 27.937-1.963l60.398-60.398c7.534-7.534 8.366-19.443 1.963-27.937l-35.919-49.407 62.106-7.256C503.89 319.963 512 310.85 512 300.008v-85.369c0-10.629-7.811-19.635-18.312-21.129zm-24.351 87.482-43.559 5.079c-15.857 2.07-29.111 12.699-34.041 26.4-6.189 14-4.375 30.37 4.845 42.813l25.141 33.401-34.19 34.19-33.55-25.248c-12.357-9.134-28.727-10.949-41.34-5.25-15.025 5.442-25.653 18.696-27.724 34.318l-5.89 41.425h-48.362l-5.912-41.169c-2.07-15.857-12.699-29.111-26.379-34.019-13.979-6.189-30.306-4.418-42.834 4.823l-33.401 25.141-34.19-34.19 25.248-33.55c9.113-12.314 10.927-28.663 5.25-41.34-5.464-15.025-18.696-25.675-34.34-27.724l-41.425-5.89V231.84l41.19-5.912c15.857-2.07 29.111-12.699 34.02-26.379 6.211-14 4.396-30.327-4.802-42.834l-25.12-33.379 34.297-34.19 34.51 25.227c12.336 9.134 28.663 10.885 41.34 5.25 15.046-5.464 25.653-18.76 27.681-34.318l5.912-41.447h48.682l6.616 41.148c2.049 15.879 12.656 29.153 26.4 34.105a42.885 42.885 0 0 0 42.748-4.802l33.337-24.928 34.681 35.129-25.333 33.657c-9.113 12.315-10.927 28.663-5.25 41.361 5.464 15.046 18.76 25.653 34.318 27.681l41.425 5.912v47.871z'
+                                    fill='currentcolor'
+                                    opacity='1'
+                                    data-original='#fff'
+                                ></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div className='left_col'></div>
+            <div className='mid_col'></div>
+            <div className='right_col'></div>
+        </div>
+    );
 }
 
 export default App;
