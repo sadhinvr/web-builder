@@ -1,0 +1,35 @@
+.right_col {
+    &_top {
+        border-bottom: $border solid $borderWidth;
+        height: $size;
+        display: flex;
+
+        .option {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            border-left: $borderWidth $border solid;
+            cursor: pointer;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+
+        color: $fadeColor;
+    }
+
+    &_bottom {
+        border-left: $borderWidth $border solid;
+        flex: 1;
+        font-size: .92em;
+        color: #999;
+    }
+
+
+
+    display: flex;
+    flex-direction: column;
+
+}
