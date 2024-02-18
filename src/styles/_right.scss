@@ -23,8 +23,10 @@
     &_bottom {
         border-left: $borderWidth $border solid;
         flex: 1;
-        font-size: .92em;
+        font-size: .9em;
         color: #999;
+
+        overflow: scroll;
     }
 
 
