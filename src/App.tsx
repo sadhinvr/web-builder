@@ -1,8 +1,14 @@
 import "./styles/app.scss";
 import LeftBar from "./components/LeftBar";
 import Inputs from "./components/styles/Inputs";
+import { useEffect } from "react";
+import Site from "./components/Site";
 
 function App() {
+    useEffect(() => {
+        console.log("hello ");
+    }, []);
+
     return (
         <div className='app'>
             <LeftBar></LeftBar>
@@ -12,6 +18,10 @@ function App() {
             </div>
             <div className='mid_col'>
                 <div className='mid_col_top'></div>
+
+                <div className='site'>
+                    <Site></Site>
+                </div>
             </div>
             <div className='right_col'>
                 <div className='right_col_top'>

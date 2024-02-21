@@ -1,4 +1,7 @@
+
 .right_col {
+    width: 300px;
+    background: $dark;
     &_top {
         border-bottom: $border solid $borderWidth;
         height: $size;

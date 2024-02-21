@@ -48,8 +48,11 @@ body {
     width: 0
 }
 
+@import './left';
 @import './right';
 @import './style';
+
+@import './mid';
 
 .app {
     display: flex;
@@ -59,78 +62,9 @@ body {
 }
 
 
-.left_bar {
-    width: $size;
-    background: $dark;
-    border-right: $borderWidth $border solid;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: $fadeColor;
-}
-
-.left_col {
-    min-width: 250px;
-    background: $dark;
-
-}
-
-.mid_col {
-    flex-grow: 1;
-    background: #353535;
-}
-
-.right_col {
-    width: 300px;
-    background: $dark;
-
-}
 
 
-/* left side */
 
-.left_option {
-    border-bottom: $border solid $borderWidth;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: $size;
-    cursor: pointer;
-
-    &:hover {
-        // background: #000;
-        color: #fff;
-    }
-}
-
-.left_options:not(.left_options:nth-child(1))>.left_option:nth-child(1) {
-    border-top: $border solid $borderWidth;
-}
-
-.left_col {
-    &_top {
-        border-bottom: $border solid $borderWidth;
-        height: $size;
-    }
-
-    &_bottom {
-        border-right: $borderWidth $border solid;
-        flex: 1;
-    }
-
-    display: flex;
-    flex-direction: column;
-}
-
-.mid_col {
-    &_top {
-        border-bottom: $border solid $borderWidth;
-        height: $size;
-        background: $dark;
-    }
-
-
-}
 
 .inp_wrapper {
     border-radius: 3px;

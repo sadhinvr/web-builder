@@ -1,0 +1,115 @@
+.left_bar {
+    width: $size;
+    background: $dark;
+    border-right: $borderWidth $border solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: $fadeColor;
+    position: relative;
+
+    .addElement {
+        position: absolute;
+        top: 42px;
+        left: calc(100% + 1px);
+        bottom: 0px;
+        background: #222;
+        width: 320px;
+        padding: 10px;
+
+        &_heading {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #eee;
+            margin-bottom: 1em;
+        }
+
+        .elements {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+
+
+            .element {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: $border 1px solid;
+                border-radius: 3px;
+                padding: 3px;
+                cursor: grab;
+
+                >* {
+                    pointer-events: none;
+                    user-select: none;
+                }
+
+                .ele_icon {
+                    width: 100%;
+                }
+            }
+        }
+
+        .floating {
+            position: fixed;
+
+            .element {
+                width: 70px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: $border 1px solid;
+                border-radius: 3px;
+                padding: 3px;
+                pointer-events: none;
+                user-select: none;
+
+                .ele_icon {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.left_option {
+    border-bottom: $border solid $borderWidth;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $size;
+    cursor: pointer;
+    padding: 5px;
+
+    svg {
+        max-width: 22px;
+        width: 100%;
+    }
+
+    &:hover {
+        background: #181818;
+        color: #fff;
+    }
+}
+
+.left_options:not(.left_options:nth-child(1))>.left_option:nth-child(1) {
+    border-top: $border solid $borderWidth;
+}
+
+.left_col {
+    min-width: 250px;
+    background: $dark;
+
+    &_top {
+        border-bottom: $border solid $borderWidth;
+        height: $size;
+    }
+
+    &_bottom {
+        border-right: $borderWidth $border solid;
+        flex: 1;
+    }
+
+    display: flex;
+    flex-direction: column;
+}

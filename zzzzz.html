@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const i = document.createElement('iframe');
+        document.body.append(i);
+
+        console.log(i.contentDocument);
+
+        const idocument = i.contentDocument;
+        const s = idocument.createElement('script');
+        s.innerHTML = `console.log('fu')`;
+        idocument.head.append(s);
+        
+        console.log(i.contentWindow);
+        i.contentWindow.addEventListener('click',e=>console.log('hello '))
+    </script>
+</body>
+</html>
