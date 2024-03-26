@@ -3,7 +3,7 @@
 App versions try:- 
 
  - [1.0.0](https://sadhinvr.github.io/web-builder/releases/1/index.html) 
- - [3.0.0](https://sadhinvr.github.io/web-builder/dist/index.html) (latest) 
+ - [3.0.0](https://sadhinvr.github.io/web-builder/releases/2/dist/index.html) (latest) 
 
 
 
